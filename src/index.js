@@ -45,37 +45,61 @@ const parseFunc = (source, mac) => {
     /**
      * 1. 元信息
      */
-    let meta, _index = 0, note, _par, func = {}
-    while(source) {
-        if(meta = source.match(/(?<=#{4}\s).+/)) {
+    let meta, _index = 0, note, paras, func = {}, res, status = 0
+    while(source) { 
+        res = source.match(/(\*\s.+)|(\#{4}\s.+?(?=\n))|(>\s[\s\S]+?(?=\n))/m)
+        if(res) {
+            if(!res[0].trim().indexOf('####')) {
+                status = 1
+            }
+            if(!res[0].trim().indexOf('>')) {
+                status = 2
+            }
+            if(!res[0].trim().indexOf('*')) {
+                status = 3
+            }
+        } else {
+            source = ''
+            if (Object.keys(func).length) {
+                funcList.push(func)
+                func = {}
+            } 
+            continue
+        }
+        if(status === 1) {
+            // 先储存数据
+            if (Object.keys(func).length) {
+                funcList.push(func)
+                func = {}
+            } 
             // 解析name、method、url
+            meta = source.match(/(?<=#{4}\s).+/)
             const [name, method, url] = meta[0].split(' ')
             _index = source.search(/(?<=#{4}\s).+/)
             source = source.substring(_index + meta[0].length)
             Object.assign(func, {name, method, url})
         }
-        note = source.match(/(?<=>\s)[\s\S]+?(?=\n)/m) || ''
-        if(note) {
+        
+        if(status === 2) {
+            note = source.match(/(?<=>\s)[\s\S]+?(?=\n)/m) || ''
             !func.note && (func.note = '')
-            func.note += note
+            func.note += '\n' + note
             _index = source.search(/(?<=>\s)[\s\S]+?(?=\n)/m)
             source = source.substring(_index + note[0].length)
             continue
         }
-        _par = source.match(/(?<=\*\s).+/)
-        if(_par) {
+        if(status === 3) {
             // 解析参数
+            paras = source.match(/(?<=\*\s).+/)
             !func.params && (func.params = [])
-            func.params.push(parsePar(_par[0]))
+            func.params.push(parsePar(paras[0]))
             _index = source.search(/(?<=\*\s).+/)
-            source = source.substring(_index + _par[0].length)
-            console.log(source)
+            source = source.substring(_index + paras[0].length)
             continue
         }
-        source = ''
+        
     }
-    console.log(func)
-    return func
+    return funcList
 }
 
 const md2AST = md => {
@@ -83,7 +107,7 @@ const md2AST = md => {
     const MACRO = parseMacro(md)
     // 将接口信息解析成AST
     const funcList = parseFunc(md, MACRO)
-
+    console.log('funcList', funcList)
 }
 
 md2AST(md)

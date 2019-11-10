@@ -27,3 +27,11 @@
 * isAdmin - 是否管理员
 * id:Number!
 
+#### postUserDetail get /v1/user/detail
+
+
+* Name !:String - 用户姓名
+* isAdmin - 是否管理员
+* id:Number !
+
+> 细节

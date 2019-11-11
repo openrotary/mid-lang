@@ -1,4 +1,4 @@
-'use strict';
+"use strict";
 
 const prettier = require("prettier");
 
@@ -113,11 +113,12 @@ const md2AST = md => {
 const AST2API = (ast, mac) => {
   const API = ast
     .map(data => {
+      const params = data.params.map(item => item.name).join(", ");
       if (data.method === "get") {
         return `/**${data.note}*/
-              const ${data.name} = data => {
+              const ${data.name} = ({${params}}) => {
                   http.get('${data.url}', qs.stringify({
-                      ${data.params.map(item => item.name).join(", ")}
+                      ${params}
                   })).then(res => {
                       return res
                   }).catch(err => {
@@ -127,9 +128,9 @@ const AST2API = (ast, mac) => {
               `;
       } else {
         return `/**${data.note}*/
-              const ${data.name} = data => {
+              const ${data.name} = ({${params}}) => {
                   http.${data.method}('${data.url}', {
-                      ${data.params.map(item => item.name).join(", ")}
+                      ${params}
                   }).then(res => {
                       return res
                   }).catch(err => {
@@ -143,11 +144,7 @@ const AST2API = (ast, mac) => {
   return prettier.format(API, { semi: false, parser: "babel" });
 };
 
-const fs = require("fs");
-const path = require("path");
-
-const md = fs.readFileSync(path.join(__dirname, "../test/README.md"), "utf-8");
-const funcList = md2AST(md);
-const code = AST2API(funcList);
-
-console.log(code);
+module.exports = {
+  md2AST,
+  AST2API
+};

@@ -1,5 +1,3 @@
-'use strict';
-
 const prettier = require("prettier");
 
 const parseMacro = code => {
@@ -103,14 +101,14 @@ const parseFunc = (source, mac) => {
   return funcList;
 };
 
-const md2AST = md => {
+export const md2AST = md => {
   // 先取出宏
   const MACRO = parseMacro(md);
   // 将接口信息解析成AST
-  return parseFunc(md);
+  return parseFunc(md, MACRO);
 };
 
-const AST2API = (ast, mac) => {
+export const AST2API = (ast, mac) => {
   const API = ast
     .map(data => {
       if (data.method === "get") {
@@ -142,12 +140,3 @@ const AST2API = (ast, mac) => {
     .join("\n");
   return prettier.format(API, { semi: false, parser: "babel" });
 };
-
-const fs = require("fs");
-const path = require("path");
-
-const md = fs.readFileSync(path.join(__dirname, "../test/README.md"), "utf-8");
-const funcList = md2AST(md);
-const code = AST2API(funcList);
-
-console.log(code);

@@ -3,13 +3,21 @@
 ---
 
 ```
+
 #define error 
 	if(res.status !== 200) {
 		throw new Error(res.msg)
 	}
 #end
 
-    #define find
+#import (
+	prettier,
+	dayjs,
+	_=lodash,
+	{ stringify }=qs
+)
+
+#define find
 	if(res.status !== 200) {
 		throw new Error(res.msg)
 	}

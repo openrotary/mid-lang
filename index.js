@@ -12,8 +12,8 @@ commander
   .description("检查并获取配置文件")
   .action(async (mdName, apiName) => {
     const md = fs.readFileSync(`./${mdName}`, "utf-8");
-    const funcList = md2AST(md);
-    const code = AST2API(funcList);
+    const [funcList, importList] = md2AST(md);
+    const code = AST2API(funcList, importList);
     fs.writeFileSync(`./${apiName}`, code);
   });
 

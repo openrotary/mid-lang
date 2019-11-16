@@ -1,5 +1,25 @@
 const prettier = require("prettier");
 
+const parseImport = code => {
+  let importList = [];
+  let _content, _index;
+  while (code) {
+    _content = code.match(/(?<=#import\s\()[\s\S]+?(?=\))/m);
+    if (!_content) {
+      code = "";
+      continue;
+    }
+    _index = code.indexOf("#import");
+    code = code.substring(_index);
+    _index = code.indexOf(")");
+    const list = _content[0].trim().split(",");
+    importList = importList.concat(list);
+    code = code.substring(_index + 1);
+    continue;
+  }
+  return importList;
+};
+
 const parseMacro = code => {
   const macro = {};
   let _name, _content, _index;
@@ -37,7 +57,7 @@ const parsePar = string => {
   };
 };
 
-const parseFunc = (source, mac) => {
+const parseFunc = (source, mac, imp) => {
   const funcList = [];
   let meta,
     _index = 0,
@@ -102,19 +122,31 @@ const parseFunc = (source, mac) => {
 };
 
 const md2AST = md => {
-  // 先取出宏
+  // 取出宏 和 依赖
   const MACRO = parseMacro(md);
+  const importList = parseImport(md);
   // 将接口信息解析成AST
-  return parseFunc(md, MACRO);
+  return [parseFunc(md, MACRO), importList];
 };
 
-const AST2API = (ast, mac) => {
-  const API = ast
+const AST2API = (ast, imp) => {
+  let API = "";
+  API +=
+    imp
+      .map(item => {
+        if (~item.indexOf("=")) {
+          const [name, packName] = item.split("=");
+          return `import ${name.trim()} from '${packName.trim()}'`;
+        }
+        return `import ${item.trim()} from '${item.trim()}'`;
+      })
+      .join("\n") + "\n";
+  API += ast
     .map(data => {
       if (data.method === "get") {
         return `/**${data.note}*/
-              const ${data.name} = data => {
-                  http.get('${data.url}', qs.stringify({
+              export const ${data.name} = data => {
+                  http.get('${data.url}?' + qs.stringify({
                       ${data.params.map(item => item.name).join(", ")}
                   })).then(res => {
                       return res
@@ -125,7 +157,7 @@ const AST2API = (ast, mac) => {
               `;
       } else {
         return `/**${data.note}*/
-              const ${data.name} = data => {
+              export const ${data.name} = data => {
                   http.${data.method}('${data.url}', {
                       ${data.params.map(item => item.name).join(", ")}
                   }).then(res => {

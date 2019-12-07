@@ -1,9 +1,9 @@
 #!/usr/bin/env node
 
 const fs = require("fs");
-const path = require("path");
+// const path = require("path");
 const commander = require("commander");
-const { md2AST, AST2API } = require("./dist/index.js");
+const { AST2API } = require("./dist/index.js");
 
 commander.version("1.0.0");
 
@@ -11,9 +11,11 @@ commander
   .command("build <md> <api>")
   .description("检查并获取配置文件")
   .action(async (mdName, apiName) => {
-    const md = fs.readFileSync(`./${mdName}`, "utf-8");
-    const [funcList, importList] = md2AST(md);
-    const code = AST2API(funcList, importList);
+    const json = fs.readFileSync(`./${mdName}`, "utf-8");
+    const config = fs.readFileSync("./mid.config.js", "utf-8");
+    console.log(config);
+    // const [funcList, importList] = md2AST(md);
+    const code = AST2API(json);
     fs.writeFileSync(`./${apiName}`, code);
   });
 

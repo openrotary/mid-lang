@@ -7,8 +7,8 @@
     "mid": "index.js"
   },
   "scripts": {
-    "build": "rollup src/index.js --file dist/index.js --format cjs -w",
-    "dev": "nodemon dist/index.js",
+    "build": "rollup src/index.js --file dist/index.js --format cjs",
+    "dev": "rollup src/index.js --file dist/index.js --format cjs -w",
     "test": "rollup src/index.js --file dist/index.js --format cjs && nodemon test/index.js"
   },
   "devDependencies": {

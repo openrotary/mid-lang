@@ -13,7 +13,7 @@ commander
   .action(async (mdName, apiName) => {
     const json = fs.readFileSync(`./${mdName}`, "utf-8");
     const config = fs.readFileSync("./mid.config.js", "utf-8");
-    console.log(config);
+    // console.log(config);
     // const [funcList, importList] = md2AST(md);
     const code = AST2API(json);
     fs.writeFileSync(`./${apiName}`, code);

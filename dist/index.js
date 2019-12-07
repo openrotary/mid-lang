@@ -42,7 +42,9 @@ const AST2API = (_json, config) => {
       const ajaxName${i} = (${renderParamsIn(item.data)}) => {
     // ${item.name}
     ${renderParamsCheck(item.data, item.name)}
-    axios.${item.method.toLowerCase()}('${item.url.replace(/{{.+}}/, "")}', {
+    axios.${item.method.toLowerCase()}('${item.url
+        .replace(/{{.+}}/, "")
+        .replace(/\?.+/, "")}', {
           headers: {
               ${renderHeader(item.headerData)}
           }

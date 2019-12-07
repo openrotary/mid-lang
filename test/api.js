@@ -112,7 +112,7 @@ const ajaxName5 = () => {
   // 邻里-消息-消息详情
 
   axios
-    .get("/v1/near/message/get?uid=6c65e6d51ff74cf2bee999c6bb031a38", {
+    .get("/v1/near/message/get", {
       headers: {}
     })
     .then(res => res)
@@ -244,15 +244,12 @@ const ajaxName13 = () => {
   // 获取未读消息条数
 
   axios
-    .get(
-      "/v1/notification/num?xqId=1088416419604860930&houseId=1088416538085560321",
-      {
-        headers: {
-          "Content-Type": "application/x-www-form-urlencoded",
-          imei: "WFF0216B17000855"
-        }
+    .get("/v1/notification/num", {
+      headers: {
+        "Content-Type": "application/x-www-form-urlencoded",
+        imei: "WFF0216B17000855"
       }
-    )
+    })
     .then(res => res)
     .catch(err => console.error(err));
 };
@@ -297,7 +294,7 @@ const ajaxName16 = () => {
   // 首页
 
   axios
-    .get("/v1/index/datas?xqId=1105302076465876994", {
+    .get("/v1/index/datas", {
       headers: {
         "Content-Type": "application/x-www-form-urlencoded",
         imei: "WFF0216B17000855"
@@ -357,7 +354,7 @@ const ajaxName20 = () => {
   // 发送验证码
 
   axios
-    .get("/v1/code/sms?mobile=15602535911", {
+    .get("/v1/code/sms", {
       headers: {
         deviceId: "15602535911",
         "Content-Type": "application/x-www-form-urlencoded"
@@ -448,7 +445,7 @@ const ajaxName25 = () => {
   // 邻里-消息-列表
 
   axios
-    .get("/v1/near/message/list?current=1&size=10&xqId=1019480263843508226", {
+    .get("/v1/near/message/list", {
       headers: {}
     })
     .then(res => res)
@@ -493,7 +490,7 @@ const ajaxName28 = () => {
   // 房屋验收报修单列表
 
   axios
-    .get("/v1/house/acceptance/page?startTime=2019-04-12&endTime=2019-04-19", {
+    .get("/v1/house/acceptance/page", {
       headers: {
         "Content-Type": "application/x-www-form-urlencoded",
         imei: "WFF0216B17000855"
@@ -566,18 +563,14 @@ const ajaxName33 = () => {
   // 第三方openId注册
 
   axios
-    .post(
-      "/v1/appUser/social/registerByOpenId?smsCode=888888&phone=15602535911",
-      {
-        headers: {
-          Authorization:
-            "Basic aW9zOjliYWRkNGYwOTAwZTQxMDdhY2JhZjczZWQ3ZTc1ZGJj",
-          imei: "AEC48EDF-AF4F-4B06-B931-0190744C99C6",
-          "Content-Type": "application/json",
-          deviceId: "15602535911"
-        }
+    .post("/v1/appUser/social/registerByOpenId", {
+      headers: {
+        Authorization: "Basic aW9zOjliYWRkNGYwOTAwZTQxMDdhY2JhZjczZWQ3ZTc1ZGJj",
+        imei: "AEC48EDF-AF4F-4B06-B931-0190744C99C6",
+        "Content-Type": "application/json",
+        deviceId: "15602535911"
       }
-    )
+    })
     .then(res => res)
     .catch(err => console.error(err));
 };

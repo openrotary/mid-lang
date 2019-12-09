@@ -19,6 +19,13 @@ const renderParamsCheck = (data, apiName) =>
         .join("")
     : "";
 
+const renderParamsQs = data => {
+  if (!data || !data.length) {
+    return "";
+  }
+  return `+ '?' + qs.stringify({${data.map(it => it.key).join(",")}})`;
+};
+
 const AST2API = (_json, config) => {
   if (config) {
     console.log(config);
@@ -32,22 +39,39 @@ const AST2API = (_json, config) => {
   let result = "";
   // 注释头信息
   result += `// ${json.name} API 代码\n\n`;
+  // 引入qs
+  result += `const qs = require('qs')\n`;
   result += json.requests
-    .map(
-      (item, i) => `
-      const ajaxName${i} = (${renderParamsIn(item.data)}) => {
-    // ${item.name}
-    ${renderParamsCheck(item.data, item.name)}
-    axios.${item.method.toLowerCase()}('${item.url
+    .map((item, i) => {
+      if (item.method === "GET") {
+        return `export const ajaxName${i} = (${renderParamsIn(
+          item.queryParams
+        )}) => {
+            // ${item.name}
+            ${renderParamsCheck(item.queryParams, item.name)}
+            axios.get('${item.url
+              .replace(/{{.+}}/, "")
+              .replace(/\?.+/, "")}'${renderParamsQs(item.queryParams)}, {
+                  headers: {
+                      ${renderHeader(item.headerData)}
+                  }
+              }).then(res => res)
+              .catch(err => console.error(err))
+            }`;
+      }
+      return `export const ajaxName${i} = (${renderParamsIn(item.data)}) => {
+      // ${item.name}
+      ${renderParamsCheck(item.data, item.name)}
+      axios.${item.method.toLowerCase()}('${item.url
         .replace(/{{.+}}/, "")
         .replace(/\?.+/, "")}', {
-          headers: {
-              ${renderHeader(item.headerData)}
-          }
-      }).then(res => res)
-      .catch(err => console.error(err))
-    }`
-    )
+            headers: {
+                ${renderHeader(item.headerData)}
+            }
+        }).then(res => res)
+        .catch(err => console.error(err))
+      }`;
+    })
     .join("\n");
   return prettier.format(result, { parser: "babel" });
 };

@@ -1,6 +1,7 @@
 // 招呼社区APP API 代码
 
-const ajaxName0 = ({
+const qs = require("qs");
+export const ajaxName0 = ({
   xqOrgID,
   houseID,
   repairType,
@@ -41,8 +42,7 @@ const ajaxName0 = ({
     .then(res => res)
     .catch(err => console.error(err));
 };
-
-const ajaxName1 = ({ uid }) => {
+export const ajaxName1 = ({ uid }) => {
   // 物业详情
   if (!uid) {
     throw Error("物业详情 接口缺失参数 uid");
@@ -56,8 +56,7 @@ const ajaxName1 = ({ uid }) => {
     .then(res => res)
     .catch(err => console.error(err));
 };
-
-const ajaxName2 = ({ messageId }) => {
+export const ajaxName2 = ({ messageId }) => {
   // 邻里-收藏-取消收藏
   if (!messageId) {
     throw Error("邻里-收藏-取消收藏 接口缺失参数 messageId");
@@ -71,8 +70,7 @@ const ajaxName2 = ({ messageId }) => {
     .then(res => res)
     .catch(err => console.error(err));
 };
-
-const ajaxName3 = ({ current, size }) => {
+export const ajaxName3 = ({ current, size }) => {
   // 邻里-消息-我点赞的
   if (!current) {
     throw Error("邻里-消息-我点赞的 接口缺失参数 current");
@@ -89,8 +87,7 @@ const ajaxName3 = ({ current, size }) => {
     .then(res => res)
     .catch(err => console.error(err));
 };
-
-const ajaxName4 = ({ current, size }) => {
+export const ajaxName4 = ({ current, size }) => {
   // 邻里-消息-我评论的
   if (!current) {
     throw Error("邻里-消息-我评论的 接口缺失参数 current");
@@ -107,29 +104,21 @@ const ajaxName4 = ({ current, size }) => {
     .then(res => res)
     .catch(err => console.error(err));
 };
-
-const ajaxName5 = () => {
+export const ajaxName5 = ({ uid }) => {
   // 邻里-消息-消息详情
-
+  if (!uid) {
+    throw Error("邻里-消息-消息详情 接口缺失参数 uid");
+  }
   axios
-    .get("/v1/near/message/get", {
+    .get("/v1/near/message/get" + "?" + qs.stringify({ uid }), {
       headers: {}
     })
     .then(res => res)
     .catch(err => console.error(err));
 };
-
-const ajaxName6 = ({ status, pageNO, pageSize }) => {
+export const ajaxName6 = () => {
   // 反馈列表未读消息数
-  if (!status) {
-    throw Error("反馈列表未读消息数 接口缺失参数 status");
-  }
-  if (!pageNO) {
-    throw Error("反馈列表未读消息数 接口缺失参数 pageNO");
-  }
-  if (!pageSize) {
-    throw Error("反馈列表未读消息数 接口缺失参数 pageSize");
-  }
+
   axios
     .get("/v1/feedback/getUnreadNum", {
       headers: {
@@ -140,8 +129,7 @@ const ajaxName6 = ({ status, pageNO, pageSize }) => {
     .then(res => res)
     .catch(err => console.error(err));
 };
-
-const ajaxName7 = ({ houseId, month }) => {
+export const ajaxName7 = ({ houseId, month }) => {
   // 业主端-缴费-账单详情
   if (!houseId) {
     throw Error("业主端-缴费-账单详情 接口缺失参数 houseId");
@@ -156,8 +144,7 @@ const ajaxName7 = ({ houseId, month }) => {
     .then(res => res)
     .catch(err => console.error(err));
 };
-
-const ajaxName8 = () => {
+export const ajaxName8 = () => {
   // 添加发票信息
 
   axios
@@ -170,8 +157,7 @@ const ajaxName8 = () => {
     .then(res => res)
     .catch(err => console.error(err));
 };
-
-const ajaxName9 = () => {
+export const ajaxName9 = () => {
   // 邻里-消息-发布评论
 
   axios
@@ -183,8 +169,7 @@ const ajaxName9 = () => {
     .then(res => res)
     .catch(err => console.error(err));
 };
-
-const ajaxName10 = () => {
+export const ajaxName10 = () => {
   // 获取个人登录信息接口
 
   axios
@@ -198,8 +183,7 @@ const ajaxName10 = () => {
     .then(res => res)
     .catch(err => console.error(err));
 };
-
-const ajaxName11 = ({ houseId, isComplete, current }) => {
+export const ajaxName11 = ({ houseId, isComplete, current }) => {
   // 业主端-缴费-待缴列表
   if (!houseId) {
     throw Error("业主端-缴费-待缴列表 接口缺失参数 houseId");
@@ -217,8 +201,7 @@ const ajaxName11 = ({ houseId, isComplete, current }) => {
     .then(res => res)
     .catch(err => console.error(err));
 };
-
-const ajaxName12 = ({ houseId, month, payType, device }) => {
+export const ajaxName12 = ({ houseId, month, payType, device }) => {
   // 业主端-缴费-创建订单
   if (!houseId) {
     throw Error("业主端-缴费-创建订单 接口缺失参数 houseId");
@@ -239,12 +222,16 @@ const ajaxName12 = ({ houseId, month, payType, device }) => {
     .then(res => res)
     .catch(err => console.error(err));
 };
-
-const ajaxName13 = () => {
+export const ajaxName13 = ({ xqId, houseId }) => {
   // 获取未读消息条数
-
+  if (!xqId) {
+    throw Error("获取未读消息条数 接口缺失参数 xqId");
+  }
+  if (!houseId) {
+    throw Error("获取未读消息条数 接口缺失参数 houseId");
+  }
   axios
-    .get("/v1/notification/num", {
+    .get("/v1/notification/num" + "?" + qs.stringify({ xqId, houseId }), {
       headers: {
         "Content-Type": "application/x-www-form-urlencoded",
         imei: "WFF0216B17000855"
@@ -253,8 +240,7 @@ const ajaxName13 = () => {
     .then(res => res)
     .catch(err => console.error(err));
 };
-
-const ajaxName14 = ({ status, pageNO, pageSize }) => {
+export const ajaxName14 = ({ status, pageNO, pageSize }) => {
   // 我的房屋信息
   if (!status) {
     throw Error("我的房屋信息 接口缺失参数 status");
@@ -275,8 +261,7 @@ const ajaxName14 = ({ status, pageNO, pageSize }) => {
     .then(res => res)
     .catch(err => console.error(err));
 };
-
-const ajaxName15 = () => {
+export const ajaxName15 = () => {
   // 删除发票接口
 
   axios
@@ -289,12 +274,13 @@ const ajaxName15 = () => {
     .then(res => res)
     .catch(err => console.error(err));
 };
-
-const ajaxName16 = () => {
+export const ajaxName16 = ({ xqId }) => {
   // 首页
-
+  if (!xqId) {
+    throw Error("首页 接口缺失参数 xqId");
+  }
   axios
-    .get("/v1/index/datas", {
+    .get("/v1/index/datas" + "?" + qs.stringify({ xqId }), {
       headers: {
         "Content-Type": "application/x-www-form-urlencoded",
         imei: "WFF0216B17000855"
@@ -303,8 +289,7 @@ const ajaxName16 = () => {
     .then(res => res)
     .catch(err => console.error(err));
 };
-
-const ajaxName17 = () => {
+export const ajaxName17 = () => {
   // 编辑发票信息
 
   axios
@@ -317,8 +302,7 @@ const ajaxName17 = () => {
     .then(res => res)
     .catch(err => console.error(err));
 };
-
-const ajaxName18 = ({ current, size }) => {
+export const ajaxName18 = ({ current, size }) => {
   // 邻里-消息-我收藏的
   if (!current) {
     throw Error("邻里-消息-我收藏的 接口缺失参数 current");
@@ -335,8 +319,7 @@ const ajaxName18 = ({ current, size }) => {
     .then(res => res)
     .catch(err => console.error(err));
 };
-
-const ajaxName19 = () => {
+export const ajaxName19 = () => {
   // 报修列表未读消息数
 
   axios
@@ -349,12 +332,13 @@ const ajaxName19 = () => {
     .then(res => res)
     .catch(err => console.error(err));
 };
-
-const ajaxName20 = () => {
+export const ajaxName20 = ({ mobile }) => {
   // 发送验证码
-
+  if (!mobile) {
+    throw Error("发送验证码 接口缺失参数 mobile");
+  }
   axios
-    .get("/v1/code/sms", {
+    .get("/v1/code/sms" + "?" + qs.stringify({ mobile }), {
       headers: {
         deviceId: "15602535911",
         "Content-Type": "application/x-www-form-urlencoded"
@@ -363,8 +347,7 @@ const ajaxName20 = () => {
     .then(res => res)
     .catch(err => console.error(err));
 };
-
-const ajaxName21 = () => {
+export const ajaxName21 = () => {
   // 小区公告列表
 
   axios
@@ -377,8 +360,7 @@ const ajaxName21 = () => {
     .then(res => res)
     .catch(err => console.error(err));
 };
-
-const ajaxName22 = ({ current, size, userId }) => {
+export const ajaxName22 = ({ current, size, userId }) => {
   // 邻里-消息-某用户消息列表
   if (!current) {
     throw Error("邻里-消息-某用户消息列表 接口缺失参数 current");
@@ -398,8 +380,7 @@ const ajaxName22 = ({ current, size, userId }) => {
     .then(res => res)
     .catch(err => console.error(err));
 };
-
-const ajaxName23 = ({ houseId, month, payType, device }) => {
+export const ajaxName23 = ({ houseId, month, payType, device }) => {
   // 10.71.1.36:8084/v1/cost/bill/createOrder
   if (!houseId) {
     throw Error(
@@ -424,8 +405,7 @@ const ajaxName23 = ({ houseId, month, payType, device }) => {
     .then(res => res)
     .catch(err => console.error(err));
 };
-
-const ajaxName24 = ({ uid }) => {
+export const ajaxName24 = ({ uid }) => {
   // 小区公告详情
   if (!uid) {
     throw Error("小区公告详情 接口缺失参数 uid");
@@ -440,19 +420,33 @@ const ajaxName24 = ({ uid }) => {
     .then(res => res)
     .catch(err => console.error(err));
 };
-
-const ajaxName25 = () => {
+export const ajaxName25 = ({ current, size, xqId, typeKey }) => {
   // 邻里-消息-列表
-
+  if (!current) {
+    throw Error("邻里-消息-列表 接口缺失参数 current");
+  }
+  if (!size) {
+    throw Error("邻里-消息-列表 接口缺失参数 size");
+  }
+  if (!xqId) {
+    throw Error("邻里-消息-列表 接口缺失参数 xqId");
+  }
+  if (!typeKey) {
+    throw Error("邻里-消息-列表 接口缺失参数 typeKey");
+  }
   axios
-    .get("/v1/near/message/list", {
-      headers: {}
-    })
+    .get(
+      "/v1/near/message/list" +
+        "?" +
+        qs.stringify({ current, size, xqId, typeKey }),
+      {
+        headers: {}
+      }
+    )
     .then(res => res)
     .catch(err => console.error(err));
 };
-
-const ajaxName26 = ({ mainId, type }) => {
+export const ajaxName26 = ({ mainId, type }) => {
   // 邻里-点赞-点赞
   if (!mainId) {
     throw Error("邻里-点赞-点赞 接口缺失参数 mainId");
@@ -469,8 +463,7 @@ const ajaxName26 = ({ mainId, type }) => {
     .then(res => res)
     .catch(err => console.error(err));
 };
-
-const ajaxName27 = ({ houseId, current }) => {
+export const ajaxName27 = ({ houseId, current }) => {
   // 业主端-缴费-历史账单
   if (!houseId) {
     throw Error("业主端-缴费-历史账单 接口缺失参数 houseId");
@@ -485,22 +478,28 @@ const ajaxName27 = ({ houseId, current }) => {
     .then(res => res)
     .catch(err => console.error(err));
 };
-
-const ajaxName28 = () => {
+export const ajaxName28 = ({ startTime, endTime }) => {
   // 房屋验收报修单列表
-
+  if (!startTime) {
+    throw Error("房屋验收报修单列表 接口缺失参数 startTime");
+  }
+  if (!endTime) {
+    throw Error("房屋验收报修单列表 接口缺失参数 endTime");
+  }
   axios
-    .get("/v1/house/acceptance/page", {
-      headers: {
-        "Content-Type": "application/x-www-form-urlencoded",
-        imei: "WFF0216B17000855"
+    .get(
+      "/v1/house/acceptance/page" + "?" + qs.stringify({ startTime, endTime }),
+      {
+        headers: {
+          "Content-Type": "application/x-www-form-urlencoded",
+          imei: "WFF0216B17000855"
+        }
       }
-    })
+    )
     .then(res => res)
     .catch(err => console.error(err));
 };
-
-const ajaxName29 = () => {
+export const ajaxName29 = () => {
   // 业主端-反馈-提交反馈
 
   axios
@@ -513,8 +512,7 @@ const ajaxName29 = () => {
     .then(res => res)
     .catch(err => console.error(err));
 };
-
-const ajaxName30 = () => {
+export const ajaxName30 = () => {
   // 房屋验收报修 验收
 
   axios
@@ -527,8 +525,7 @@ const ajaxName30 = () => {
     .then(res => res)
     .catch(err => console.error(err));
 };
-
-const ajaxName31 = ({ grant_type, refresh_token }) => {
+export const ajaxName31 = ({ grant_type, refresh_token }) => {
   // 刷新token
   if (!grant_type) {
     throw Error("刷新token 接口缺失参数 grant_type");
@@ -545,8 +542,7 @@ const ajaxName31 = ({ grant_type, refresh_token }) => {
     .then(res => res)
     .catch(err => console.error(err));
 };
-
-const ajaxName32 = ({ current }) => {
+export const ajaxName32 = ({ current }) => {
   // 邻里-消息-我的消息列表
   if (!current) {
     throw Error("邻里-消息-我的消息列表 接口缺失参数 current");
@@ -558,8 +554,7 @@ const ajaxName32 = ({ current }) => {
     .then(res => res)
     .catch(err => console.error(err));
 };
-
-const ajaxName33 = () => {
+export const ajaxName33 = () => {
   // 第三方openId注册
 
   axios
@@ -574,8 +569,7 @@ const ajaxName33 = () => {
     .then(res => res)
     .catch(err => console.error(err));
 };
-
-const ajaxName34 = ({ id }) => {
+export const ajaxName34 = ({ id }) => {
   // 业主端-反馈-详情
   if (!id) {
     throw Error("业主端-反馈-详情 接口缺失参数 id");
@@ -589,8 +583,7 @@ const ajaxName34 = ({ id }) => {
     .then(res => res)
     .catch(err => console.error(err));
 };
-
-const ajaxName35 = () => {
+export const ajaxName35 = () => {
   // 业主端-反馈-回复
 
   axios
@@ -602,8 +595,7 @@ const ajaxName35 = () => {
     .then(res => res)
     .catch(err => console.error(err));
 };
-
-const ajaxName36 = ({ status, pageNO, pageSize }) => {
+export const ajaxName36 = ({ status, pageNO, pageSize }) => {
   // 我的报修列表
   if (!status) {
     throw Error("我的报修列表 接口缺失参数 status");
@@ -624,8 +616,7 @@ const ajaxName36 = ({ status, pageNO, pageSize }) => {
     .then(res => res)
     .catch(err => console.error(err));
 };
-
-const ajaxName37 = () => {
+export const ajaxName37 = () => {
   // 邻里-消息-发布消息
 
   axios
@@ -637,8 +628,7 @@ const ajaxName37 = () => {
     .then(res => res)
     .catch(err => console.error(err));
 };
-
-const ajaxName38 = ({ openId, providerId }) => {
+export const ajaxName38 = ({ openId, providerId }) => {
   // 第三方openId登录
   if (!openId) {
     throw Error("第三方openId登录 接口缺失参数 openId");
@@ -657,8 +647,7 @@ const ajaxName38 = ({ openId, providerId }) => {
     .then(res => res)
     .catch(err => console.error(err));
 };
-
-const ajaxName39 = ({ mainId, type }) => {
+export const ajaxName39 = ({ mainId, type }) => {
   // 邻里-点赞-取消点赞
   if (!mainId) {
     throw Error("邻里-点赞-取消点赞 接口缺失参数 mainId");
@@ -675,8 +664,7 @@ const ajaxName39 = ({ mainId, type }) => {
     .then(res => res)
     .catch(err => console.error(err));
 };
-
-const ajaxName40 = ({ username, password, grant_type }) => {
+export const ajaxName40 = ({ username, password, grant_type }) => {
   // 登录
   if (!username) {
     throw Error("登录 接口缺失参数 username");
@@ -698,8 +686,7 @@ const ajaxName40 = ({ username, password, grant_type }) => {
     .then(res => res)
     .catch(err => console.error(err));
 };
-
-const ajaxName41 = ({ xqId, current, categoryId }) => {
+export const ajaxName41 = ({ xqId, current, categoryId }) => {
   // 常用查询
   if (!xqId) {
     throw Error("常用查询 接口缺失参数 xqId");
@@ -719,8 +706,7 @@ const ajaxName41 = ({ xqId, current, categoryId }) => {
     .then(res => res)
     .catch(err => console.error(err));
 };
-
-const ajaxName42 = () => {
+export const ajaxName42 = () => {
   // 常用查询分类
 
   axios
@@ -732,8 +718,7 @@ const ajaxName42 = () => {
     .then(res => res)
     .catch(err => console.error(err));
 };
-
-const ajaxName43 = ({ uid }) => {
+export const ajaxName43 = ({ uid }) => {
   // 获取报修详情
   if (!uid) {
     throw Error("获取报修详情 接口缺失参数 uid");
@@ -748,8 +733,7 @@ const ajaxName43 = ({ uid }) => {
     .then(res => res)
     .catch(err => console.error(err));
 };
-
-const ajaxName44 = ({ messageId }) => {
+export const ajaxName44 = ({ messageId }) => {
   // 邻里-收藏-收藏
   if (!messageId) {
     throw Error("邻里-收藏-收藏 接口缺失参数 messageId");
@@ -763,8 +747,7 @@ const ajaxName44 = ({ messageId }) => {
     .then(res => res)
     .catch(err => console.error(err));
 };
-
-const ajaxName45 = () => {
+export const ajaxName45 = () => {
   // 业主端-反馈-列表
 
   axios
@@ -777,8 +760,7 @@ const ajaxName45 = () => {
     .then(res => res)
     .catch(err => console.error(err));
 };
-
-const ajaxName46 = () => {
+export const ajaxName46 = () => {
   // 查看发票信息
 
   axios

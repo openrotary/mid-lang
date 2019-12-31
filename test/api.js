@@ -1,775 +1,1262 @@
-// 招呼社区APP API 代码
-
-const qs = require("qs");
-export const ajaxName0 = ({
-  xqOrgID,
-  houseID,
-  repairType,
-  repairImages,
-  repairContent,
-  userPhone,
-  bookTime
-}) => {
-  // 添加报修任务
+// 招呼社区APP 项目 API代码
+import qs from "qs";
+import axios from "axios";
+export const ajaxName1 = (
+  {
+    xqOrgID,
+    houseID,
+    repairType,
+    repairImages,
+    repairContent,
+    userPhone,
+    bookTime
+  },
+  config = {}
+) => {
+  // 添加报修任务   01f79a0f-4840-49b3-8e57-8c5fd1ee8354
   if (!xqOrgID) {
-    throw Error("添加报修任务 接口缺失参数 xqOrgID");
+    throw Error("添加报修任务 请求缺失参数 xqOrgID");
   }
   if (!houseID) {
-    throw Error("添加报修任务 接口缺失参数 houseID");
+    throw Error("添加报修任务 请求缺失参数 houseID");
   }
   if (!repairType) {
-    throw Error("添加报修任务 接口缺失参数 repairType");
+    throw Error("添加报修任务 请求缺失参数 repairType");
   }
   if (!repairImages) {
-    throw Error("添加报修任务 接口缺失参数 repairImages");
+    throw Error("添加报修任务 请求缺失参数 repairImages");
   }
   if (!repairContent) {
-    throw Error("添加报修任务 接口缺失参数 repairContent");
+    throw Error("添加报修任务 请求缺失参数 repairContent");
   }
   if (!userPhone) {
-    throw Error("添加报修任务 接口缺失参数 userPhone");
+    throw Error("添加报修任务 请求缺失参数 userPhone");
   }
   if (!bookTime) {
-    throw Error("添加报修任务 接口缺失参数 bookTime");
+    throw Error("添加报修任务 请求缺失参数 bookTime");
   }
-  axios
-    .post("/v1/repair/saveRepair", {
-      headers: {
-        "Content-Type": "application/x-www-form-urlencoded",
-        imei: "AEC48EDF-AF4F-4B06-B931-0190744C99C6"
-      }
-    })
-    .then(res => res)
-    .catch(err => console.error(err));
+  return new Promise((resolve, reject) => {
+    $axios
+      .post(
+        "/v1/repair/saveRepair",
+        {},
+        Object.assign(
+          {
+            headers: {
+              "Content-Type": "application/x-www-form-urlencoded",
+              imei: "AEC48EDF-AF4F-4B06-B931-0190744C99C6"
+            }
+          },
+          config
+        )
+      )
+      .then(res => resolve(res))
+      .catch(err => reject(err));
+  });
 };
-export const ajaxName1 = ({ uid }) => {
-  // 物业详情
-  if (!uid) {
-    throw Error("物业详情 接口缺失参数 uid");
-  }
-  axios
-    .post("/v1/wy/detail", {
-      headers: {
-        "Content-Type": "application/x-www-form-urlencoded"
-      }
-    })
-    .then(res => res)
-    .catch(err => console.error(err));
-};
-export const ajaxName2 = ({ messageId }) => {
-  // 邻里-收藏-取消收藏
-  if (!messageId) {
-    throw Error("邻里-收藏-取消收藏 接口缺失参数 messageId");
-  }
-  axios
-    .post("/v1/near/collect/delete", {
-      headers: {
-        "Content-Type": "application/x-www-form-urlencoded"
-      }
-    })
-    .then(res => res)
-    .catch(err => console.error(err));
-};
-export const ajaxName3 = ({ current, size }) => {
-  // 邻里-消息-我点赞的
-  if (!current) {
-    throw Error("邻里-消息-我点赞的 接口缺失参数 current");
-  }
-  if (!size) {
-    throw Error("邻里-消息-我点赞的 接口缺失参数 size");
-  }
-  axios
-    .post("/v1/near/message/listByMyPraise", {
-      headers: {
-        "Content-Type": "application/x-www-form-urlencoded"
-      }
-    })
-    .then(res => res)
-    .catch(err => console.error(err));
-};
-export const ajaxName4 = ({ current, size }) => {
-  // 邻里-消息-我评论的
-  if (!current) {
-    throw Error("邻里-消息-我评论的 接口缺失参数 current");
-  }
-  if (!size) {
-    throw Error("邻里-消息-我评论的 接口缺失参数 size");
-  }
-  axios
-    .post("/v1/near/message/listByMyComment", {
-      headers: {
-        "Content-Type": "application/x-www-form-urlencoded"
-      }
-    })
-    .then(res => res)
-    .catch(err => console.error(err));
-};
-export const ajaxName5 = ({ uid }) => {
-  // 邻里-消息-消息详情
-  if (!uid) {
-    throw Error("邻里-消息-消息详情 接口缺失参数 uid");
-  }
-  axios
-    .get("/v1/near/message/get" + "?" + qs.stringify({ uid }), {
-      headers: {}
-    })
-    .then(res => res)
-    .catch(err => console.error(err));
-};
-export const ajaxName6 = () => {
-  // 反馈列表未读消息数
 
-  axios
-    .get("/v1/feedback/getUnreadNum", {
-      headers: {
-        "Content-Type": "application/x-www-form-urlencoded",
-        imei: "AEC48EDF-AF4F-4B06-B931-0190744C99C6"
-      }
-    })
-    .then(res => res)
-    .catch(err => console.error(err));
+export const ajaxName2 = ({ uid }, config = {}) => {
+  // 物业详情   0b059658-bb7e-4694-8a9f-8584709d4370
+  if (!uid) {
+    throw Error("物业详情 请求缺失参数 uid");
+  }
+  return new Promise((resolve, reject) => {
+    $axios
+      .post(
+        "/v1/wy/detail",
+        {},
+        Object.assign(
+          {
+            headers: {
+              "Content-Type": "application/x-www-form-urlencoded"
+            }
+          },
+          config
+        )
+      )
+      .then(res => resolve(res))
+      .catch(err => reject(err));
+  });
 };
-export const ajaxName7 = ({ houseId, month }) => {
-  // 业主端-缴费-账单详情
+
+export const ajaxName3 = ({ messageId }, config = {}) => {
+  // 邻里-收藏-取消收藏   0c4d8721-1ad3-40d8-85be-2c0113d14edf
+  if (!messageId) {
+    throw Error("邻里-收藏-取消收藏 请求缺失参数 messageId");
+  }
+  return new Promise((resolve, reject) => {
+    $axios
+      .post(
+        "/v1/near/collect/delete",
+        {},
+        Object.assign(
+          {
+            headers: {
+              "Content-Type": "application/x-www-form-urlencoded"
+            }
+          },
+          config
+        )
+      )
+      .then(res => resolve(res))
+      .catch(err => reject(err));
+  });
+};
+
+export const ajaxName4 = ({ current, size }, config = {}) => {
+  // 邻里-消息-我点赞的   11ad9763-816f-4c02-a5a6-1cf9f3a7c508
+  if (!current) {
+    throw Error("邻里-消息-我点赞的 请求缺失参数 current");
+  }
+  if (!size) {
+    throw Error("邻里-消息-我点赞的 请求缺失参数 size");
+  }
+  return new Promise((resolve, reject) => {
+    $axios
+      .post(
+        "/v1/near/message/listByMyPraise",
+        {},
+        Object.assign(
+          {
+            headers: {
+              "Content-Type": "application/x-www-form-urlencoded"
+            }
+          },
+          config
+        )
+      )
+      .then(res => resolve(res))
+      .catch(err => reject(err));
+  });
+};
+
+export const ajaxName5 = ({ current, size }, config = {}) => {
+  // 邻里-消息-我评论的   15a5b9a8-3b0b-437e-a130-76c02502ef25
+  if (!current) {
+    throw Error("邻里-消息-我评论的 请求缺失参数 current");
+  }
+  if (!size) {
+    throw Error("邻里-消息-我评论的 请求缺失参数 size");
+  }
+  return new Promise((resolve, reject) => {
+    $axios
+      .post(
+        "/v1/near/message/listByMyComment",
+        {},
+        Object.assign(
+          {
+            headers: {
+              "Content-Type": "application/x-www-form-urlencoded"
+            }
+          },
+          config
+        )
+      )
+      .then(res => resolve(res))
+      .catch(err => reject(err));
+  });
+};
+
+export const ajaxName6 = ({ uid }, config = {}) => {
+  // 邻里-消息-消息详情   2a13bebe-2510-40ef-8135-e8360cc0eb1c
+  if (!uid) {
+    throw Error("邻里-消息-消息详情 请求缺失参数 uid");
+  }
+  return new Promise((resolve, reject) => {
+    $axios
+      .get(
+        "/v1/near/message/get",
+        { params: { uid } },
+        Object.assign(
+          {
+            headers: {}
+          },
+          config
+        )
+      )
+      .then(res => resolve(res))
+      .catch(err => reject(err));
+  });
+};
+
+export const ajaxName7 = ({ status, pageNO, pageSize }, config = {}) => {
+  // 反馈列表未读消息数   2a9c40b6-e14f-40cd-8200-a9dbb526fcf8
+  if (!status) {
+    throw Error("反馈列表未读消息数 请求缺失参数 status");
+  }
+  if (!pageNO) {
+    throw Error("反馈列表未读消息数 请求缺失参数 pageNO");
+  }
+  if (!pageSize) {
+    throw Error("反馈列表未读消息数 请求缺失参数 pageSize");
+  }
+  return new Promise((resolve, reject) => {
+    $axios
+      .get(
+        "/v1/feedback/getUnreadNum",
+        { params: { status, pageNO, pageSize } },
+        Object.assign(
+          {
+            headers: {
+              "Content-Type": "application/x-www-form-urlencoded",
+              imei: "AEC48EDF-AF4F-4B06-B931-0190744C99C6"
+            }
+          },
+          config
+        )
+      )
+      .then(res => resolve(res))
+      .catch(err => reject(err));
+  });
+};
+
+export const ajaxName8 = ({ houseId, month }, config = {}) => {
+  // 业主端-缴费-账单详情   304800aa-bf01-4665-bbda-3f310c47def2
   if (!houseId) {
-    throw Error("业主端-缴费-账单详情 接口缺失参数 houseId");
+    throw Error("业主端-缴费-账单详情 请求缺失参数 houseId");
   }
   if (!month) {
-    throw Error("业主端-缴费-账单详情 接口缺失参数 month");
+    throw Error("业主端-缴费-账单详情 请求缺失参数 month");
   }
-  axios
-    .post("/v1/cost/bill/detail", {
-      headers: {}
-    })
-    .then(res => res)
-    .catch(err => console.error(err));
+  return new Promise((resolve, reject) => {
+    $axios
+      .post(
+        "/v1/cost/bill/detail",
+        {},
+        Object.assign(
+          {
+            headers: {}
+          },
+          config
+        )
+      )
+      .then(res => resolve(res))
+      .catch(err => reject(err));
+  });
 };
-export const ajaxName8 = () => {
-  // 添加发票信息
 
-  axios
-    .post("/v1/house/invoice/add", {
-      headers: {
-        "Content-Type": "application/json",
-        imei: "UYT0217C28009256"
-      }
-    })
-    .then(res => res)
-    .catch(err => console.error(err));
-};
-export const ajaxName9 = () => {
-  // 邻里-消息-发布评论
+export const ajaxName9 = (config = {}) => {
+  // 添加发票信息   3a46a395-4956-483b-a09b-0a240fae565c
 
-  axios
-    .post("/v1/near/comment/save", {
-      headers: {
-        "Content-Type": "application/json"
-      }
-    })
-    .then(res => res)
-    .catch(err => console.error(err));
+  return new Promise((resolve, reject) => {
+    $axios
+      .post(
+        "/v1/house/invoice/add",
+        {},
+        Object.assign(
+          {
+            headers: {
+              "Content-Type": "application/json",
+              imei: "UYT0217C28009256"
+            }
+          },
+          config
+        )
+      )
+      .then(res => resolve(res))
+      .catch(err => reject(err));
+  });
 };
-export const ajaxName10 = () => {
-  // 获取个人登录信息接口
 
-  axios
-    .post("/v1/appUser/me", {
-      headers: {
-        "Content-Type": "application/x-www-form-urlencoded",
-        imei: "WFF0216B17000855",
-        token: "{{token}}"
-      }
-    })
-    .then(res => res)
-    .catch(err => console.error(err));
+export const ajaxName10 = (config = {}) => {
+  // 邻里-消息-发布评论   3b2c8b29-961b-4e4d-8c4d-2e43e2dbca0c
+
+  return new Promise((resolve, reject) => {
+    $axios
+      .post(
+        "/v1/near/comment/save",
+        {},
+        Object.assign(
+          {
+            headers: {
+              "Content-Type": "application/json"
+            }
+          },
+          config
+        )
+      )
+      .then(res => resolve(res))
+      .catch(err => reject(err));
+  });
 };
-export const ajaxName11 = ({ houseId, isComplete, current }) => {
-  // 业主端-缴费-待缴列表
+
+export const ajaxName11 = (config = {}) => {
+  // 获取个人登录信息接口   3b7a2180-1543-51d8-a798-bdb736497f84
+
+  return new Promise((resolve, reject) => {
+    $axios
+      .post(
+        "/v1/appUser/me",
+        {},
+        Object.assign(
+          {
+            headers: {
+              "Content-Type": "application/x-www-form-urlencoded",
+              imei: "WFF0216B17000855",
+              token: "{{token}}"
+            }
+          },
+          config
+        )
+      )
+      .then(res => resolve(res))
+      .catch(err => reject(err));
+  });
+};
+
+export const ajaxName12 = ({ houseId, isComplete, current }, config = {}) => {
+  // 业主端-缴费-待缴列表   411db0a4-53e5-4a67-80bb-b36cee1506fc
   if (!houseId) {
-    throw Error("业主端-缴费-待缴列表 接口缺失参数 houseId");
+    throw Error("业主端-缴费-待缴列表 请求缺失参数 houseId");
   }
   if (!isComplete) {
-    throw Error("业主端-缴费-待缴列表 接口缺失参数 isComplete");
+    throw Error("业主端-缴费-待缴列表 请求缺失参数 isComplete");
   }
   if (!current) {
-    throw Error("业主端-缴费-待缴列表 接口缺失参数 current");
+    throw Error("业主端-缴费-待缴列表 请求缺失参数 current");
   }
-  axios
-    .post("/v1/cost/bill/list", {
-      headers: {}
-    })
-    .then(res => res)
-    .catch(err => console.error(err));
+  return new Promise((resolve, reject) => {
+    $axios
+      .post(
+        "/v1/cost/bill/list",
+        {},
+        Object.assign(
+          {
+            headers: {}
+          },
+          config
+        )
+      )
+      .then(res => resolve(res))
+      .catch(err => reject(err));
+  });
 };
-export const ajaxName12 = ({ houseId, month, payType, device }) => {
-  // 业主端-缴费-创建订单
+
+export const ajaxName13 = (
+  { houseId, month, payType, device },
+  config = {}
+) => {
+  // 业主端-缴费-创建订单   4323c78a-2c30-473f-912b-e5bc2d198dd2
   if (!houseId) {
-    throw Error("业主端-缴费-创建订单 接口缺失参数 houseId");
+    throw Error("业主端-缴费-创建订单 请求缺失参数 houseId");
   }
   if (!month) {
-    throw Error("业主端-缴费-创建订单 接口缺失参数 month");
+    throw Error("业主端-缴费-创建订单 请求缺失参数 month");
   }
   if (!payType) {
-    throw Error("业主端-缴费-创建订单 接口缺失参数 payType");
+    throw Error("业主端-缴费-创建订单 请求缺失参数 payType");
   }
   if (!device) {
-    throw Error("业主端-缴费-创建订单 接口缺失参数 device");
+    throw Error("业主端-缴费-创建订单 请求缺失参数 device");
   }
-  axios
-    .post("/v1/cost/bill/createOrder", {
-      headers: {}
-    })
-    .then(res => res)
-    .catch(err => console.error(err));
+  return new Promise((resolve, reject) => {
+    $axios
+      .post(
+        "/v1/cost/bill/createOrder",
+        {},
+        Object.assign(
+          {
+            headers: {}
+          },
+          config
+        )
+      )
+      .then(res => resolve(res))
+      .catch(err => reject(err));
+  });
 };
-export const ajaxName13 = ({ xqId, houseId }) => {
-  // 获取未读消息条数
+
+export const ajaxName14 = ({ xqId, houseId }, config = {}) => {
+  // 获取未读消息条数   48792328-6fda-4c32-9fde-ca4ef5b3486b
   if (!xqId) {
-    throw Error("获取未读消息条数 接口缺失参数 xqId");
+    throw Error("获取未读消息条数 请求缺失参数 xqId");
   }
   if (!houseId) {
-    throw Error("获取未读消息条数 接口缺失参数 houseId");
+    throw Error("获取未读消息条数 请求缺失参数 houseId");
   }
-  axios
-    .get("/v1/notification/num" + "?" + qs.stringify({ xqId, houseId }), {
-      headers: {
-        "Content-Type": "application/x-www-form-urlencoded",
-        imei: "WFF0216B17000855"
-      }
-    })
-    .then(res => res)
-    .catch(err => console.error(err));
+  return new Promise((resolve, reject) => {
+    $axios
+      .get(
+        "/v1/notification/num",
+        { params: { xqId, houseId } },
+        Object.assign(
+          {
+            headers: {
+              "Content-Type": "application/x-www-form-urlencoded",
+              imei: "WFF0216B17000855"
+            }
+          },
+          config
+        )
+      )
+      .then(res => resolve(res))
+      .catch(err => reject(err));
+  });
 };
-export const ajaxName14 = ({ status, pageNO, pageSize }) => {
-  // 我的房屋信息
+
+export const ajaxName15 = ({ status, pageNO, pageSize }, config = {}) => {
+  // 我的房屋信息   4934c523-96c7-41b0-9d21-09bb94eeff33
   if (!status) {
-    throw Error("我的房屋信息 接口缺失参数 status");
+    throw Error("我的房屋信息 请求缺失参数 status");
   }
   if (!pageNO) {
-    throw Error("我的房屋信息 接口缺失参数 pageNO");
+    throw Error("我的房屋信息 请求缺失参数 pageNO");
   }
   if (!pageSize) {
-    throw Error("我的房屋信息 接口缺失参数 pageSize");
+    throw Error("我的房屋信息 请求缺失参数 pageSize");
   }
-  axios
-    .post("/v1/houseUser/getMyHouse", {
-      headers: {
-        "Content-Type": "application/x-www-form-urlencoded",
-        imei: "AEC48EDF-AF4F-4B06-B931-0190744C99C6"
-      }
-    })
-    .then(res => res)
-    .catch(err => console.error(err));
+  return new Promise((resolve, reject) => {
+    $axios
+      .post(
+        "/v1/houseUser/getMyHouse",
+        {},
+        Object.assign(
+          {
+            headers: {
+              "Content-Type": "application/x-www-form-urlencoded",
+              imei: "AEC48EDF-AF4F-4B06-B931-0190744C99C6"
+            }
+          },
+          config
+        )
+      )
+      .then(res => resolve(res))
+      .catch(err => reject(err));
+  });
 };
-export const ajaxName15 = () => {
-  // 删除发票接口
 
-  axios
-    .post("/v1/house/invoice/delete/1195558735389396993", {
-      headers: {
-        "Content-Type": "application/json",
-        imei: "WFF0216B17000855"
-      }
-    })
-    .then(res => res)
-    .catch(err => console.error(err));
+export const ajaxName16 = (config = {}) => {
+  // 删除发票接口   51f184f4-0236-45c5-b543-46ae64d7690e
+
+  return new Promise((resolve, reject) => {
+    $axios
+      .post(
+        "/v1/house/invoice/delete/1195558735389396993",
+        {},
+        Object.assign(
+          {
+            headers: {
+              "Content-Type": "application/json",
+              imei: "WFF0216B17000855"
+            }
+          },
+          config
+        )
+      )
+      .then(res => resolve(res))
+      .catch(err => reject(err));
+  });
 };
-export const ajaxName16 = ({ xqId }) => {
-  // 首页
+
+export const ajaxName17 = ({ xqId }, config = {}) => {
+  // 首页   55aa8c2f-7acb-4336-a54a-0b222cb6c5ac
   if (!xqId) {
-    throw Error("首页 接口缺失参数 xqId");
+    throw Error("首页 请求缺失参数 xqId");
   }
-  axios
-    .get("/v1/index/datas" + "?" + qs.stringify({ xqId }), {
-      headers: {
-        "Content-Type": "application/x-www-form-urlencoded",
-        imei: "WFF0216B17000855"
-      }
-    })
-    .then(res => res)
-    .catch(err => console.error(err));
+  return new Promise((resolve, reject) => {
+    $axios
+      .get(
+        "/v1/index/datas",
+        { params: { xqId } },
+        Object.assign(
+          {
+            headers: {
+              "Content-Type": "application/x-www-form-urlencoded",
+              imei: "WFF0216B17000855"
+            }
+          },
+          config
+        )
+      )
+      .then(res => resolve(res))
+      .catch(err => reject(err));
+  });
 };
-export const ajaxName17 = () => {
-  // 编辑发票信息
 
-  axios
-    .post("/v1/house/invoice/edit", {
-      headers: {
-        "Content-Type": "application/json",
-        imei: "AEC48EDF-AF4F-4B06-B931-0190744C99C6"
-      }
-    })
-    .then(res => res)
-    .catch(err => console.error(err));
+export const ajaxName18 = (config = {}) => {
+  // 编辑发票信息   56567e3a-f912-4144-817a-cb9d7880cd3c
+
+  return new Promise((resolve, reject) => {
+    $axios
+      .post(
+        "/v1/house/invoice/edit",
+        {},
+        Object.assign(
+          {
+            headers: {
+              "Content-Type": "application/json",
+              imei: "AEC48EDF-AF4F-4B06-B931-0190744C99C6"
+            }
+          },
+          config
+        )
+      )
+      .then(res => resolve(res))
+      .catch(err => reject(err));
+  });
 };
-export const ajaxName18 = ({ current, size }) => {
-  // 邻里-消息-我收藏的
+
+export const ajaxName19 = ({ current, size }, config = {}) => {
+  // 邻里-消息-我收藏的   5b69df91-17e7-4d49-b5f1-fb41dd0054d3
   if (!current) {
-    throw Error("邻里-消息-我收藏的 接口缺失参数 current");
+    throw Error("邻里-消息-我收藏的 请求缺失参数 current");
   }
   if (!size) {
-    throw Error("邻里-消息-我收藏的 接口缺失参数 size");
+    throw Error("邻里-消息-我收藏的 请求缺失参数 size");
   }
-  axios
-    .post("/v1/near/message/listByMyCollect", {
-      headers: {
-        "Content-Type": "application/x-www-form-urlencoded"
-      }
-    })
-    .then(res => res)
-    .catch(err => console.error(err));
+  return new Promise((resolve, reject) => {
+    $axios
+      .post(
+        "/v1/near/message/listByMyCollect",
+        {},
+        Object.assign(
+          {
+            headers: {
+              "Content-Type": "application/x-www-form-urlencoded"
+            }
+          },
+          config
+        )
+      )
+      .then(res => resolve(res))
+      .catch(err => reject(err));
+  });
 };
-export const ajaxName19 = () => {
-  // 报修列表未读消息数
 
-  axios
-    .get("/v1/repair/getUnreadNum", {
-      headers: {
-        "Content-Type": "application/x-www-form-urlencoded",
-        imei: "96843153-D1CC-4C3B-BA6D-FE65F85F338D"
-      }
-    })
-    .then(res => res)
-    .catch(err => console.error(err));
+export const ajaxName20 = (config = {}) => {
+  // 报修列表未读消息数   5df16cc1-d8c9-4345-94b1-afde7fc77d53
+
+  return new Promise((resolve, reject) => {
+    $axios
+      .get(
+        "/v1/repair/getUnreadNum",
+        {},
+        Object.assign(
+          {
+            headers: {
+              "Content-Type": "application/x-www-form-urlencoded",
+              imei: "96843153-D1CC-4C3B-BA6D-FE65F85F338D"
+            }
+          },
+          config
+        )
+      )
+      .then(res => resolve(res))
+      .catch(err => reject(err));
+  });
 };
-export const ajaxName20 = ({ mobile }) => {
-  // 发送验证码
+
+export const ajaxName21 = ({ mobile }, config = {}) => {
+  // 发送验证码   5f35d07a-bf97-404f-a79a-9410d4b20509
   if (!mobile) {
-    throw Error("发送验证码 接口缺失参数 mobile");
+    throw Error("发送验证码 请求缺失参数 mobile");
   }
-  axios
-    .get("/v1/code/sms" + "?" + qs.stringify({ mobile }), {
-      headers: {
-        deviceId: "15602535911",
-        "Content-Type": "application/x-www-form-urlencoded"
-      }
-    })
-    .then(res => res)
-    .catch(err => console.error(err));
+  return new Promise((resolve, reject) => {
+    $axios
+      .get(
+        "/v1/code/sms",
+        { params: { mobile } },
+        Object.assign(
+          {
+            headers: {
+              deviceId: "15602535911",
+              "Content-Type": "application/x-www-form-urlencoded"
+            }
+          },
+          config
+        )
+      )
+      .then(res => resolve(res))
+      .catch(err => reject(err));
+  });
 };
-export const ajaxName21 = () => {
-  // 小区公告列表
 
-  axios
-    .post("/v1/xq/noticeList", {
-      headers: {
-        "Content-Type": "application/x-www-form-urlencoded",
-        imei: "WFF0216B17000855"
-      }
-    })
-    .then(res => res)
-    .catch(err => console.error(err));
+export const ajaxName22 = (config = {}) => {
+  // 小区公告列表   73a47e7f-df09-4a5a-9c44-74ecfc207c80
+
+  return new Promise((resolve, reject) => {
+    $axios
+      .post(
+        "/v1/xq/noticeList",
+        {},
+        Object.assign(
+          {
+            headers: {
+              "Content-Type": "application/x-www-form-urlencoded",
+              imei: "WFF0216B17000855"
+            }
+          },
+          config
+        )
+      )
+      .then(res => resolve(res))
+      .catch(err => reject(err));
+  });
 };
-export const ajaxName22 = ({ current, size, userId }) => {
-  // 邻里-消息-某用户消息列表
+
+export const ajaxName23 = ({ current, size, userId }, config = {}) => {
+  // 邻里-消息-某用户消息列表   74b7dd70-6ad7-4497-ad1b-5df9a22c18a3
   if (!current) {
-    throw Error("邻里-消息-某用户消息列表 接口缺失参数 current");
+    throw Error("邻里-消息-某用户消息列表 请求缺失参数 current");
   }
   if (!size) {
-    throw Error("邻里-消息-某用户消息列表 接口缺失参数 size");
+    throw Error("邻里-消息-某用户消息列表 请求缺失参数 size");
   }
   if (!userId) {
-    throw Error("邻里-消息-某用户消息列表 接口缺失参数 userId");
+    throw Error("邻里-消息-某用户消息列表 请求缺失参数 userId");
   }
-  axios
-    .post("/v1/near/message/listByUserId", {
-      headers: {
-        "Content-Type": "application/x-www-form-urlencoded"
-      }
-    })
-    .then(res => res)
-    .catch(err => console.error(err));
+  return new Promise((resolve, reject) => {
+    $axios
+      .post(
+        "/v1/near/message/listByUserId",
+        {},
+        Object.assign(
+          {
+            headers: {
+              "Content-Type": "application/x-www-form-urlencoded"
+            }
+          },
+          config
+        )
+      )
+      .then(res => resolve(res))
+      .catch(err => reject(err));
+  });
 };
-export const ajaxName23 = ({ houseId, month, payType, device }) => {
-  // 10.71.1.36:8084/v1/cost/bill/createOrder
+
+export const ajaxName24 = (
+  { houseId, month, payType, device },
+  config = {}
+) => {
+  // 10.71.1.36:8084/v1/cost/bill/createOrder   74c97bf5-c8dd-4cee-9cc8-39ae68c7e8d8
   if (!houseId) {
     throw Error(
-      "10.71.1.36:8084/v1/cost/bill/createOrder 接口缺失参数 houseId"
+      "10.71.1.36:8084/v1/cost/bill/createOrder 请求缺失参数 houseId"
     );
   }
   if (!month) {
-    throw Error("10.71.1.36:8084/v1/cost/bill/createOrder 接口缺失参数 month");
+    throw Error("10.71.1.36:8084/v1/cost/bill/createOrder 请求缺失参数 month");
   }
   if (!payType) {
     throw Error(
-      "10.71.1.36:8084/v1/cost/bill/createOrder 接口缺失参数 payType"
+      "10.71.1.36:8084/v1/cost/bill/createOrder 请求缺失参数 payType"
     );
   }
   if (!device) {
-    throw Error("10.71.1.36:8084/v1/cost/bill/createOrder 接口缺失参数 device");
+    throw Error("10.71.1.36:8084/v1/cost/bill/createOrder 请求缺失参数 device");
   }
-  axios
-    .post("10.71.1.36:8084/v1/cost/bill/createOrder", {
-      headers: {}
-    })
-    .then(res => res)
-    .catch(err => console.error(err));
+  return new Promise((resolve, reject) => {
+    $axios
+      .post(
+        "10.71.1.36:8084/v1/cost/bill/createOrder",
+        {},
+        Object.assign(
+          {
+            headers: {}
+          },
+          config
+        )
+      )
+      .then(res => resolve(res))
+      .catch(err => reject(err));
+  });
 };
-export const ajaxName24 = ({ uid }) => {
-  // 小区公告详情
+
+export const ajaxName25 = ({ uid }, config = {}) => {
+  // 小区公告详情   77144c03-a2cb-4761-a5c0-9c1a98200bbf
   if (!uid) {
-    throw Error("小区公告详情 接口缺失参数 uid");
+    throw Error("小区公告详情 请求缺失参数 uid");
   }
-  axios
-    .post("/v1/xq/noticeDetail", {
-      headers: {
-        "Content-Type": "application/x-www-form-urlencoded",
-        imei: "AEC48EDF-AF4F-4B06-B931-0190744C99C6"
-      }
-    })
-    .then(res => res)
-    .catch(err => console.error(err));
+  return new Promise((resolve, reject) => {
+    $axios
+      .post(
+        "/v1/xq/noticeDetail",
+        {},
+        Object.assign(
+          {
+            headers: {
+              "Content-Type": "application/x-www-form-urlencoded",
+              imei: "AEC48EDF-AF4F-4B06-B931-0190744C99C6"
+            }
+          },
+          config
+        )
+      )
+      .then(res => resolve(res))
+      .catch(err => reject(err));
+  });
 };
-export const ajaxName25 = ({ current, size, xqId, typeKey }) => {
-  // 邻里-消息-列表
+
+export const ajaxName26 = ({ current, size, xqId, typeKey }, config = {}) => {
+  // 邻里-消息-列表   79e19a6d-cbcf-48ed-aa27-8045a2284190
   if (!current) {
-    throw Error("邻里-消息-列表 接口缺失参数 current");
+    throw Error("邻里-消息-列表 请求缺失参数 current");
   }
   if (!size) {
-    throw Error("邻里-消息-列表 接口缺失参数 size");
+    throw Error("邻里-消息-列表 请求缺失参数 size");
   }
   if (!xqId) {
-    throw Error("邻里-消息-列表 接口缺失参数 xqId");
+    throw Error("邻里-消息-列表 请求缺失参数 xqId");
   }
   if (!typeKey) {
-    throw Error("邻里-消息-列表 接口缺失参数 typeKey");
+    throw Error("邻里-消息-列表 请求缺失参数 typeKey");
   }
-  axios
-    .get(
-      "/v1/near/message/list" +
-        "?" +
-        qs.stringify({ current, size, xqId, typeKey }),
-      {
-        headers: {}
-      }
-    )
-    .then(res => res)
-    .catch(err => console.error(err));
+  return new Promise((resolve, reject) => {
+    $axios
+      .get(
+        "/v1/near/message/list",
+        { params: { current, size, xqId, typeKey } },
+        Object.assign(
+          {
+            headers: {}
+          },
+          config
+        )
+      )
+      .then(res => resolve(res))
+      .catch(err => reject(err));
+  });
 };
-export const ajaxName26 = ({ mainId, type }) => {
-  // 邻里-点赞-点赞
+
+export const ajaxName27 = ({ mainId, type }, config = {}) => {
+  // 邻里-点赞-点赞   80233515-3cc2-402d-b9a5-312c2141d69c
   if (!mainId) {
-    throw Error("邻里-点赞-点赞 接口缺失参数 mainId");
+    throw Error("邻里-点赞-点赞 请求缺失参数 mainId");
   }
   if (!type) {
-    throw Error("邻里-点赞-点赞 接口缺失参数 type");
+    throw Error("邻里-点赞-点赞 请求缺失参数 type");
   }
-  axios
-    .post("/v1/near/praise/save", {
-      headers: {
-        "Content-Type": "application/x-www-form-urlencoded"
-      }
-    })
-    .then(res => res)
-    .catch(err => console.error(err));
+  return new Promise((resolve, reject) => {
+    $axios
+      .post(
+        "/v1/near/praise/save",
+        {},
+        Object.assign(
+          {
+            headers: {
+              "Content-Type": "application/x-www-form-urlencoded"
+            }
+          },
+          config
+        )
+      )
+      .then(res => resolve(res))
+      .catch(err => reject(err));
+  });
 };
-export const ajaxName27 = ({ houseId, current }) => {
-  // 业主端-缴费-历史账单
+
+export const ajaxName28 = ({ houseId, current }, config = {}) => {
+  // 业主端-缴费-历史账单   83290d07-930f-4f38-97dc-847a9191d765
   if (!houseId) {
-    throw Error("业主端-缴费-历史账单 接口缺失参数 houseId");
+    throw Error("业主端-缴费-历史账单 请求缺失参数 houseId");
   }
   if (!current) {
-    throw Error("业主端-缴费-历史账单 接口缺失参数 current");
+    throw Error("业主端-缴费-历史账单 请求缺失参数 current");
   }
-  axios
-    .post("/v1/cost/bill/listYear", {
-      headers: {}
-    })
-    .then(res => res)
-    .catch(err => console.error(err));
+  return new Promise((resolve, reject) => {
+    $axios
+      .post(
+        "/v1/cost/bill/listYear",
+        {},
+        Object.assign(
+          {
+            headers: {}
+          },
+          config
+        )
+      )
+      .then(res => resolve(res))
+      .catch(err => reject(err));
+  });
 };
-export const ajaxName28 = ({ startTime, endTime }) => {
-  // 房屋验收报修单列表
+
+export const ajaxName29 = ({ startTime, endTime }, config = {}) => {
+  // 房屋验收报修单列表   8493e141-7ea6-4f57-b461-228e9d4b7f35
   if (!startTime) {
-    throw Error("房屋验收报修单列表 接口缺失参数 startTime");
+    throw Error("房屋验收报修单列表 请求缺失参数 startTime");
   }
   if (!endTime) {
-    throw Error("房屋验收报修单列表 接口缺失参数 endTime");
+    throw Error("房屋验收报修单列表 请求缺失参数 endTime");
   }
-  axios
-    .get(
-      "/v1/house/acceptance/page" + "?" + qs.stringify({ startTime, endTime }),
-      {
-        headers: {
-          "Content-Type": "application/x-www-form-urlencoded",
-          imei: "WFF0216B17000855"
-        }
-      }
-    )
-    .then(res => res)
-    .catch(err => console.error(err));
+  return new Promise((resolve, reject) => {
+    $axios
+      .get(
+        "/v1/house/acceptance/page",
+        { params: { startTime, endTime } },
+        Object.assign(
+          {
+            headers: {
+              "Content-Type": "application/x-www-form-urlencoded",
+              imei: "WFF0216B17000855"
+            }
+          },
+          config
+        )
+      )
+      .then(res => resolve(res))
+      .catch(err => reject(err));
+  });
 };
-export const ajaxName29 = () => {
-  // 业主端-反馈-提交反馈
 
-  axios
-    .post("/v1/feedback/save", {
-      headers: {
-        "Content-Type": "application/json",
-        imei: "AEC48EDF-AF4F-4B06-B931-0190744C99C6"
-      }
-    })
-    .then(res => res)
-    .catch(err => console.error(err));
-};
-export const ajaxName30 = () => {
-  // 房屋验收报修 验收
+export const ajaxName30 = (config = {}) => {
+  // 业主端-反馈-提交反馈   84ed1ea5-c6f0-4096-a415-4c151803b55b
 
-  axios
-    .post("/v1/house/acceptance/acceptance", {
-      headers: {
-        "Content-Type": "application/json",
-        imei: "WFF0216B17000855"
-      }
-    })
-    .then(res => res)
-    .catch(err => console.error(err));
+  return new Promise((resolve, reject) => {
+    $axios
+      .post(
+        "/v1/feedback/save",
+        {},
+        Object.assign(
+          {
+            headers: {
+              "Content-Type": "application/json",
+              imei: "AEC48EDF-AF4F-4B06-B931-0190744C99C6"
+            }
+          },
+          config
+        )
+      )
+      .then(res => resolve(res))
+      .catch(err => reject(err));
+  });
 };
-export const ajaxName31 = ({ grant_type, refresh_token }) => {
-  // 刷新token
+
+export const ajaxName31 = (config = {}) => {
+  // 房屋验收报修 验收   8ccb544d-67c2-498d-a032-d9357fb76475
+
+  return new Promise((resolve, reject) => {
+    $axios
+      .post(
+        "/v1/house/acceptance/acceptance",
+        {},
+        Object.assign(
+          {
+            headers: {
+              "Content-Type": "application/json",
+              imei: "WFF0216B17000855"
+            }
+          },
+          config
+        )
+      )
+      .then(res => resolve(res))
+      .catch(err => reject(err));
+  });
+};
+
+export const ajaxName32 = ({ grant_type, refresh_token }, config = {}) => {
+  // 刷新token   902cfc93-45f8-459b-b61a-887732a2b683
   if (!grant_type) {
-    throw Error("刷新token 接口缺失参数 grant_type");
+    throw Error("刷新token 请求缺失参数 grant_type");
   }
   if (!refresh_token) {
-    throw Error("刷新token 接口缺失参数 refresh_token");
+    throw Error("刷新token 请求缺失参数 refresh_token");
   }
-  axios
-    .post("/oauth/token", {
-      headers: {
-        Authorization: "Basic aW9zOjliYWRkNGYwOTAwZTQxMDdhY2JhZjczZWQ3ZTc1ZGJj"
-      }
-    })
-    .then(res => res)
-    .catch(err => console.error(err));
+  return new Promise((resolve, reject) => {
+    $axios
+      .post(
+        "/oauth/token",
+        {},
+        Object.assign(
+          {
+            headers: {
+              Authorization:
+                "Basic aW9zOjliYWRkNGYwOTAwZTQxMDdhY2JhZjczZWQ3ZTc1ZGJj"
+            }
+          },
+          config
+        )
+      )
+      .then(res => resolve(res))
+      .catch(err => reject(err));
+  });
 };
-export const ajaxName32 = ({ current }) => {
-  // 邻里-消息-我的消息列表
+
+export const ajaxName33 = ({ current }, config = {}) => {
+  // 邻里-消息-我的消息列表   91578b11-c780-488e-9671-8102a32b2d3a
   if (!current) {
-    throw Error("邻里-消息-我的消息列表 接口缺失参数 current");
+    throw Error("邻里-消息-我的消息列表 请求缺失参数 current");
   }
-  axios
-    .post("/v1/near/message/messageList", {
-      headers: {}
-    })
-    .then(res => res)
-    .catch(err => console.error(err));
+  return new Promise((resolve, reject) => {
+    $axios
+      .post(
+        "/v1/near/message/messageList",
+        {},
+        Object.assign(
+          {
+            headers: {}
+          },
+          config
+        )
+      )
+      .then(res => resolve(res))
+      .catch(err => reject(err));
+  });
 };
-export const ajaxName33 = () => {
-  // 第三方openId注册
 
-  axios
-    .post("/v1/appUser/social/registerByOpenId", {
-      headers: {
-        Authorization: "Basic aW9zOjliYWRkNGYwOTAwZTQxMDdhY2JhZjczZWQ3ZTc1ZGJj",
-        imei: "AEC48EDF-AF4F-4B06-B931-0190744C99C6",
-        "Content-Type": "application/json",
-        deviceId: "15602535911"
-      }
-    })
-    .then(res => res)
-    .catch(err => console.error(err));
+export const ajaxName34 = ({ smsCode, phone }, config = {}) => {
+  // 第三方openId注册   9b403fd7-205a-4e71-a674-87c06386f4ce
+  if (!smsCode) {
+    throw Error("第三方openId注册 请求缺失参数 smsCode");
+  }
+  if (!phone) {
+    throw Error("第三方openId注册 请求缺失参数 phone");
+  }
+  return new Promise((resolve, reject) => {
+    $axios
+      .post(
+        "/v1/appUser/social/registerByOpenId",
+        {},
+        Object.assign(
+          {
+            headers: {
+              Authorization:
+                "Basic aW9zOjliYWRkNGYwOTAwZTQxMDdhY2JhZjczZWQ3ZTc1ZGJj",
+              imei: "AEC48EDF-AF4F-4B06-B931-0190744C99C6",
+              "Content-Type": "application/json",
+              deviceId: "15602535911"
+            }
+          },
+          config
+        )
+      )
+      .then(res => resolve(res))
+      .catch(err => reject(err));
+  });
 };
-export const ajaxName34 = ({ id }) => {
-  // 业主端-反馈-详情
+
+export const ajaxName35 = ({ id }, config = {}) => {
+  // 业主端-反馈-详情   b16fab62-f135-4b83-997a-b6b59c515e4e
   if (!id) {
-    throw Error("业主端-反馈-详情 接口缺失参数 id");
+    throw Error("业主端-反馈-详情 请求缺失参数 id");
   }
-  axios
-    .post("/v1/feedback/detail", {
-      headers: {
-        "Content-Type": "application/x-www-form-urlencoded"
-      }
-    })
-    .then(res => res)
-    .catch(err => console.error(err));
+  return new Promise((resolve, reject) => {
+    $axios
+      .post(
+        "/v1/feedback/detail",
+        {},
+        Object.assign(
+          {
+            headers: {
+              "Content-Type": "application/x-www-form-urlencoded"
+            }
+          },
+          config
+        )
+      )
+      .then(res => resolve(res))
+      .catch(err => reject(err));
+  });
 };
-export const ajaxName35 = () => {
-  // 业主端-反馈-回复
 
-  axios
-    .post("/v1/feedback/reply", {
-      headers: {
-        "Content-Type": "application/json"
-      }
-    })
-    .then(res => res)
-    .catch(err => console.error(err));
+export const ajaxName36 = (config = {}) => {
+  // 业主端-反馈-回复   b54e6bba-c621-4412-97eb-68ef896bcadf
+
+  return new Promise((resolve, reject) => {
+    $axios
+      .post(
+        "/v1/feedback/reply",
+        {},
+        Object.assign(
+          {
+            headers: {
+              "Content-Type": "application/json"
+            }
+          },
+          config
+        )
+      )
+      .then(res => resolve(res))
+      .catch(err => reject(err));
+  });
 };
-export const ajaxName36 = ({ status, pageNO, pageSize }) => {
-  // 我的报修列表
+
+export const ajaxName37 = ({ status, pageNO, pageSize }, config = {}) => {
+  // 我的报修列表   bc879843-937d-426f-a1b8-70a5b45883d5
   if (!status) {
-    throw Error("我的报修列表 接口缺失参数 status");
+    throw Error("我的报修列表 请求缺失参数 status");
   }
   if (!pageNO) {
-    throw Error("我的报修列表 接口缺失参数 pageNO");
+    throw Error("我的报修列表 请求缺失参数 pageNO");
   }
   if (!pageSize) {
-    throw Error("我的报修列表 接口缺失参数 pageSize");
+    throw Error("我的报修列表 请求缺失参数 pageSize");
   }
-  axios
-    .post("/v1/repair/getMyRepair", {
-      headers: {
-        "Content-Type": "application/x-www-form-urlencoded",
-        imei: "UYT0217C28009256"
-      }
-    })
-    .then(res => res)
-    .catch(err => console.error(err));
+  return new Promise((resolve, reject) => {
+    $axios
+      .post(
+        "/v1/repair/getMyRepair",
+        {},
+        Object.assign(
+          {
+            headers: {
+              "Content-Type": "application/x-www-form-urlencoded",
+              imei: "UYT0217C28009256"
+            }
+          },
+          config
+        )
+      )
+      .then(res => resolve(res))
+      .catch(err => reject(err));
+  });
 };
-export const ajaxName37 = () => {
-  // 邻里-消息-发布消息
 
-  axios
-    .post("/v1/near/message/save", {
-      headers: {
-        "Content-Type": "application/json"
-      }
-    })
-    .then(res => res)
-    .catch(err => console.error(err));
+export const ajaxName38 = (config = {}) => {
+  // 邻里-消息-发布消息   bd4bff5e-f5f2-4738-a954-22768c97c3f1
+
+  return new Promise((resolve, reject) => {
+    $axios
+      .post(
+        "/v1/near/message/save",
+        {},
+        Object.assign(
+          {
+            headers: {
+              "Content-Type": "application/json"
+            }
+          },
+          config
+        )
+      )
+      .then(res => resolve(res))
+      .catch(err => reject(err));
+  });
 };
-export const ajaxName38 = ({ openId, providerId }) => {
-  // 第三方openId登录
+
+export const ajaxName39 = ({ openId, providerId }, config = {}) => {
+  // 第三方openId登录   db2c5db7-626e-4b18-9a8d-a082ae0db5ae
   if (!openId) {
-    throw Error("第三方openId登录 接口缺失参数 openId");
+    throw Error("第三方openId登录 请求缺失参数 openId");
   }
   if (!providerId) {
-    throw Error("第三方openId登录 接口缺失参数 providerId");
+    throw Error("第三方openId登录 请求缺失参数 providerId");
   }
-  axios
-    .post("/v1/authentication/openId", {
-      headers: {
-        Authorization: "Basic aW9zOjliYWRkNGYwOTAwZTQxMDdhY2JhZjczZWQ3ZTc1ZGJj",
-        imei: "AEC48EDF-AF4F-4B06-B931-0190744C99C6",
-        "Content-Type": "application/x-www-form-urlencoded"
-      }
-    })
-    .then(res => res)
-    .catch(err => console.error(err));
+  return new Promise((resolve, reject) => {
+    $axios
+      .post(
+        "/v1/authentication/openId",
+        {},
+        Object.assign(
+          {
+            headers: {
+              Authorization:
+                "Basic aW9zOjliYWRkNGYwOTAwZTQxMDdhY2JhZjczZWQ3ZTc1ZGJj",
+              imei: "AEC48EDF-AF4F-4B06-B931-0190744C99C6",
+              "Content-Type": "application/x-www-form-urlencoded"
+            }
+          },
+          config
+        )
+      )
+      .then(res => resolve(res))
+      .catch(err => reject(err));
+  });
 };
-export const ajaxName39 = ({ mainId, type }) => {
-  // 邻里-点赞-取消点赞
+
+export const ajaxName40 = ({ mainId, type }, config = {}) => {
+  // 邻里-点赞-取消点赞   de54fe24-3588-44fc-af9d-ac52201875d4
   if (!mainId) {
-    throw Error("邻里-点赞-取消点赞 接口缺失参数 mainId");
+    throw Error("邻里-点赞-取消点赞 请求缺失参数 mainId");
   }
   if (!type) {
-    throw Error("邻里-点赞-取消点赞 接口缺失参数 type");
+    throw Error("邻里-点赞-取消点赞 请求缺失参数 type");
   }
-  axios
-    .post("/v1/near/praise/delete", {
-      headers: {
-        "Content-Type": "application/x-www-form-urlencoded"
-      }
-    })
-    .then(res => res)
-    .catch(err => console.error(err));
+  return new Promise((resolve, reject) => {
+    $axios
+      .post(
+        "/v1/near/praise/delete",
+        {},
+        Object.assign(
+          {
+            headers: {
+              "Content-Type": "application/x-www-form-urlencoded"
+            }
+          },
+          config
+        )
+      )
+      .then(res => resolve(res))
+      .catch(err => reject(err));
+  });
 };
-export const ajaxName40 = ({ username, password, grant_type }) => {
-  // 登录
+
+export const ajaxName41 = ({ username, password, grant_type }, config = {}) => {
+  // 登录   e7929de4-5c5f-4758-ac84-7ad9e7afed43
   if (!username) {
-    throw Error("登录 接口缺失参数 username");
+    throw Error("登录 请求缺失参数 username");
   }
   if (!password) {
-    throw Error("登录 接口缺失参数 password");
+    throw Error("登录 请求缺失参数 password");
   }
   if (!grant_type) {
-    throw Error("登录 接口缺失参数 grant_type");
+    throw Error("登录 请求缺失参数 grant_type");
   }
-  axios
-    .post("/v1/authentication/login", {
-      headers: {
-        Authorization: "Basic aW9zOjliYWRkNGYwOTAwZTQxMDdhY2JhZjczZWQ3ZTc1ZGJj",
-        imei: "AEC48EDF-AF4F-4B06-B931-0190744C99C6",
-        "Content-Type": "application/x-www-form-urlencoded"
-      }
-    })
-    .then(res => res)
-    .catch(err => console.error(err));
+  return new Promise((resolve, reject) => {
+    $axios
+      .post(
+        "/v1/authentication/login",
+        {},
+        Object.assign(
+          {
+            headers: {
+              Authorization:
+                "Basic aW9zOjliYWRkNGYwOTAwZTQxMDdhY2JhZjczZWQ3ZTc1ZGJj",
+              imei: "AEC48EDF-AF4F-4B06-B931-0190744C99C6",
+              "Content-Type": "application/x-www-form-urlencoded"
+            }
+          },
+          config
+        )
+      )
+      .then(res => resolve(res))
+      .catch(err => reject(err));
+  });
 };
-export const ajaxName41 = ({ xqId, current, categoryId }) => {
-  // 常用查询
+
+export const ajaxName42 = ({ xqId, current, categoryId }, config = {}) => {
+  // 常用查询   e917c86f-0857-4f01-a309-ba6f187b4379
   if (!xqId) {
-    throw Error("常用查询 接口缺失参数 xqId");
+    throw Error("常用查询 请求缺失参数 xqId");
   }
   if (!current) {
-    throw Error("常用查询 接口缺失参数 current");
+    throw Error("常用查询 请求缺失参数 current");
   }
   if (!categoryId) {
-    throw Error("常用查询 接口缺失参数 categoryId");
+    throw Error("常用查询 请求缺失参数 categoryId");
   }
-  axios
-    .post("/v1/xq/contact", {
-      headers: {
-        "Content-Type": "application/x-www-form-urlencoded"
-      }
-    })
-    .then(res => res)
-    .catch(err => console.error(err));
+  return new Promise((resolve, reject) => {
+    $axios
+      .post(
+        "/v1/xq/contact",
+        {},
+        Object.assign(
+          {
+            headers: {
+              "Content-Type": "application/x-www-form-urlencoded"
+            }
+          },
+          config
+        )
+      )
+      .then(res => resolve(res))
+      .catch(err => reject(err));
+  });
 };
-export const ajaxName42 = () => {
-  // 常用查询分类
 
-  axios
-    .post("/v1/xq/contactCategory", {
-      headers: {
-        "Content-Type": "application/x-www-form-urlencoded"
-      }
-    })
-    .then(res => res)
-    .catch(err => console.error(err));
+export const ajaxName43 = (config = {}) => {
+  // 常用查询分类   e97817a6-2cd8-42dd-9993-0b78e34079f5
+
+  return new Promise((resolve, reject) => {
+    $axios
+      .post(
+        "/v1/xq/contactCategory",
+        {},
+        Object.assign(
+          {
+            headers: {
+              "Content-Type": "application/x-www-form-urlencoded"
+            }
+          },
+          config
+        )
+      )
+      .then(res => resolve(res))
+      .catch(err => reject(err));
+  });
 };
-export const ajaxName43 = ({ uid }) => {
-  // 获取报修详情
+
+export const ajaxName44 = ({ uid }, config = {}) => {
+  // 获取报修详情   ea6e7699-8cbb-4e36-88f4-71dda69ec761
   if (!uid) {
-    throw Error("获取报修详情 接口缺失参数 uid");
+    throw Error("获取报修详情 请求缺失参数 uid");
   }
-  axios
-    .post("/v1/repair/getRepairDetail", {
-      headers: {
-        "Content-Type": "application/x-www-form-urlencoded",
-        imei: "AEC48EDF-AF4F-4B06-B931-0190744C99C6"
-      }
-    })
-    .then(res => res)
-    .catch(err => console.error(err));
+  return new Promise((resolve, reject) => {
+    $axios
+      .post(
+        "/v1/repair/getRepairDetail",
+        {},
+        Object.assign(
+          {
+            headers: {
+              "Content-Type": "application/x-www-form-urlencoded",
+              imei: "AEC48EDF-AF4F-4B06-B931-0190744C99C6"
+            }
+          },
+          config
+        )
+      )
+      .then(res => resolve(res))
+      .catch(err => reject(err));
+  });
 };
-export const ajaxName44 = ({ messageId }) => {
-  // 邻里-收藏-收藏
+
+export const ajaxName45 = ({ messageId }, config = {}) => {
+  // 邻里-收藏-收藏   ed205536-72a4-41ef-8116-e68df972dbd3
   if (!messageId) {
-    throw Error("邻里-收藏-收藏 接口缺失参数 messageId");
+    throw Error("邻里-收藏-收藏 请求缺失参数 messageId");
   }
-  axios
-    .post("/v1/near/collect/save", {
-      headers: {
-        "Content-Type": "application/x-www-form-urlencoded"
-      }
-    })
-    .then(res => res)
-    .catch(err => console.error(err));
+  return new Promise((resolve, reject) => {
+    $axios
+      .post(
+        "/v1/near/collect/save",
+        {},
+        Object.assign(
+          {
+            headers: {
+              "Content-Type": "application/x-www-form-urlencoded"
+            }
+          },
+          config
+        )
+      )
+      .then(res => resolve(res))
+      .catch(err => reject(err));
+  });
 };
-export const ajaxName45 = () => {
-  // 业主端-反馈-列表
 
-  axios
-    .post("/v1/feedback/list", {
-      headers: {
-        "Content-Type": "application/x-www-form-urlencoded",
-        imei: "AEC48EDF-AF4F-4B06-B931-0190744C99C6"
-      }
-    })
-    .then(res => res)
-    .catch(err => console.error(err));
+export const ajaxName46 = (config = {}) => {
+  // 业主端-反馈-列表   ef608850-5f38-4070-afd3-a1ba4d994833
+
+  return new Promise((resolve, reject) => {
+    $axios
+      .post(
+        "/v1/feedback/list",
+        {},
+        Object.assign(
+          {
+            headers: {
+              "Content-Type": "application/x-www-form-urlencoded",
+              imei: "AEC48EDF-AF4F-4B06-B931-0190744C99C6"
+            }
+          },
+          config
+        )
+      )
+      .then(res => resolve(res))
+      .catch(err => reject(err));
+  });
 };
-export const ajaxName46 = () => {
-  // 查看发票信息
 
-  axios
-    .get("/v1/house/invoice/detail/1146613112800022530", {
-      headers: {
-        "Content-Type": "application/x-www-form-urlencoded",
-        imei: "WFF0216B17000855"
-      }
-    })
-    .then(res => res)
-    .catch(err => console.error(err));
+export const ajaxName47 = (config = {}) => {
+  // 查看发票信息   fe358ba9-f21a-4774-bf94-129f26135dcf
+
+  return new Promise((resolve, reject) => {
+    $axios
+      .get(
+        "/v1/house/invoice/detail/1146613112800022530",
+        {},
+        Object.assign(
+          {
+            headers: {
+              "Content-Type": "application/x-www-form-urlencoded",
+              imei: "WFF0216B17000855"
+            }
+          },
+          config
+        )
+      )
+      .then(res => resolve(res))
+      .catch(err => reject(err));
+  });
 };

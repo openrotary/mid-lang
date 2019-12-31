@@ -12,10 +12,10 @@ commander
   .description("检查并获取配置文件")
   .action(async (mdName, apiName) => {
     const json = fs.readFileSync(`./${mdName}`, "utf-8");
-    const config = fs.readFileSync("./mid.config.js", "utf-8");
+    const config = require(`${process.cwd()}/mid.config.js`);
     // console.log(config);
     // const [funcList, importList] = md2AST(md);
-    const code = AST2API(json);
+    const code = AST2API(json, config);
     fs.writeFileSync(`./${apiName}`, code);
   });
 

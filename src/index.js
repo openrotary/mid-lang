@@ -1,4 +1,8 @@
 const prettier = require("prettier");
+import { ErrorStyle } from "./utils.js";
+
+const addErrorTips = () =>
+  `console.log(\'%c Error: 建议使用Postman配合排查 %c\', '${ErrorStyle}', '')`;
 
 const addHeader = name => `
   // ${name} 项目 API代码
@@ -130,7 +134,10 @@ const AST2API = (_json, config) => {
           }, config)
         )
         .then(res => resolve(res))
-        .catch(err => reject(err))
+        .catch(err => {
+          ${config.dev ? addErrorTips() : ""}
+          reject(err)
+        })
       })
     }
     `;

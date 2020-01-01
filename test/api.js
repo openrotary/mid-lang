@@ -63,7 +63,9 @@ export const ajaxName1 = (
         )
       )
       .then(res => resolve(res))
-      .catch(err => reject(err));
+      .catch(err => {
+        reject(err);
+      });
   });
 };
 
@@ -88,7 +90,9 @@ export const ajaxName2 = ({ uid }, config = {}) => {
         )
       )
       .then(res => resolve(res))
-      .catch(err => reject(err));
+      .catch(err => {
+        reject(err);
+      });
   });
 };
 
@@ -113,7 +117,9 @@ export const ajaxName3 = ({ messageId }, config = {}) => {
         )
       )
       .then(res => resolve(res))
-      .catch(err => reject(err));
+      .catch(err => {
+        reject(err);
+      });
   });
 };
 
@@ -141,7 +147,9 @@ export const ajaxName4 = ({ current, size }, config = {}) => {
         )
       )
       .then(res => resolve(res))
-      .catch(err => reject(err));
+      .catch(err => {
+        reject(err);
+      });
   });
 };
 
@@ -169,7 +177,9 @@ export const ajaxName5 = ({ current, size }, config = {}) => {
         )
       )
       .then(res => resolve(res))
-      .catch(err => reject(err));
+      .catch(err => {
+        reject(err);
+      });
   });
 };
 
@@ -192,7 +202,9 @@ export const ajaxName6 = ({ uid }, config = {}) => {
         )
       )
       .then(res => resolve(res))
-      .catch(err => reject(err));
+      .catch(err => {
+        reject(err);
+      });
   });
 };
 
@@ -225,7 +237,9 @@ export const ajaxName7 = ({ status, pageNO, pageSize }, config = {}) => {
         )
       )
       .then(res => resolve(res))
-      .catch(err => reject(err));
+      .catch(err => {
+        reject(err);
+      });
   });
 };
 
@@ -251,7 +265,9 @@ export const ajaxName8 = ({ houseId, month }, config = {}) => {
         )
       )
       .then(res => resolve(res))
-      .catch(err => reject(err));
+      .catch(err => {
+        reject(err);
+      });
   });
 };
 
@@ -276,7 +292,9 @@ export const ajaxName9 = (config = {}) => {
         )
       )
       .then(res => resolve(res))
-      .catch(err => reject(err));
+      .catch(err => {
+        reject(err);
+      });
   });
 };
 
@@ -298,7 +316,9 @@ export const ajaxName10 = (config = {}) => {
         )
       )
       .then(res => resolve(res))
-      .catch(err => reject(err));
+      .catch(err => {
+        reject(err);
+      });
   });
 };
 
@@ -326,7 +346,9 @@ export const ajaxName11 = (config = {}) => {
         )
       )
       .then(res => resolve(res))
-      .catch(err => reject(err));
+      .catch(err => {
+        reject(err);
+      });
   });
 };
 
@@ -355,7 +377,9 @@ export const ajaxName12 = ({ houseId, isComplete, current }, config = {}) => {
         )
       )
       .then(res => resolve(res))
-      .catch(err => reject(err));
+      .catch(err => {
+        reject(err);
+      });
   });
 };
 
@@ -390,7 +414,9 @@ export const ajaxName13 = (
         )
       )
       .then(res => resolve(res))
-      .catch(err => reject(err));
+      .catch(err => {
+        reject(err);
+      });
   });
 };
 
@@ -420,7 +446,9 @@ export const ajaxName14 = ({ xqId, houseId }, config = {}) => {
         )
       )
       .then(res => resolve(res))
-      .catch(err => reject(err));
+      .catch(err => {
+        reject(err);
+      });
   });
 };
 
@@ -453,7 +481,9 @@ export const ajaxName15 = ({ status, pageNO, pageSize }, config = {}) => {
         )
       )
       .then(res => resolve(res))
-      .catch(err => reject(err));
+      .catch(err => {
+        reject(err);
+      });
   });
 };
 
@@ -480,7 +510,9 @@ export const ajaxName16 = (uid, config = {}) => {
         )
       )
       .then(res => resolve(res))
-      .catch(err => reject(err));
+      .catch(err => {
+        reject(err);
+      });
   });
 };
 
@@ -507,7 +539,9 @@ export const ajaxName17 = ({ xqId }, config = {}) => {
         )
       )
       .then(res => resolve(res))
-      .catch(err => reject(err));
+      .catch(err => {
+        reject(err);
+      });
   });
 };
 
@@ -532,7 +566,9 @@ export const ajaxName18 = (config = {}) => {
         )
       )
       .then(res => resolve(res))
-      .catch(err => reject(err));
+      .catch(err => {
+        reject(err);
+      });
   });
 };
 
@@ -560,7 +596,9 @@ export const ajaxName19 = ({ current, size }, config = {}) => {
         )
       )
       .then(res => resolve(res))
-      .catch(err => reject(err));
+      .catch(err => {
+        reject(err);
+      });
   });
 };
 
@@ -585,7 +623,9 @@ export const ajaxName20 = (config = {}) => {
         )
       )
       .then(res => resolve(res))
-      .catch(err => reject(err));
+      .catch(err => {
+        reject(err);
+      });
   });
 };
 
@@ -612,7 +652,9 @@ export const ajaxName21 = ({ mobile }, config = {}) => {
         )
       )
       .then(res => resolve(res))
-      .catch(err => reject(err));
+      .catch(err => {
+        reject(err);
+      });
   });
 };
 
@@ -637,7 +679,9 @@ export const ajaxName22 = (config = {}) => {
         )
       )
       .then(res => resolve(res))
-      .catch(err => reject(err));
+      .catch(err => {
+        reject(err);
+      });
   });
 };
 
@@ -668,7 +712,9 @@ export const ajaxName23 = ({ current, size, userId }, config = {}) => {
         )
       )
       .then(res => resolve(res))
-      .catch(err => reject(err));
+      .catch(err => {
+        reject(err);
+      });
   });
 };
 
@@ -707,7 +753,9 @@ export const ajaxName24 = (
         )
       )
       .then(res => resolve(res))
-      .catch(err => reject(err));
+      .catch(err => {
+        reject(err);
+      });
   });
 };
 
@@ -734,7 +782,9 @@ export const ajaxName25 = ({ uid }, config = {}) => {
         )
       )
       .then(res => resolve(res))
-      .catch(err => reject(err));
+      .catch(err => {
+        reject(err);
+      });
   });
 };
 
@@ -766,7 +816,9 @@ export const ajaxName26 = ({ current, size, xqId, typeKey }, config = {}) => {
         )
       )
       .then(res => resolve(res))
-      .catch(err => reject(err));
+      .catch(err => {
+        reject(err);
+      });
   });
 };
 
@@ -794,7 +846,9 @@ export const ajaxName27 = ({ mainId, type }, config = {}) => {
         )
       )
       .then(res => resolve(res))
-      .catch(err => reject(err));
+      .catch(err => {
+        reject(err);
+      });
   });
 };
 
@@ -820,7 +874,9 @@ export const ajaxName28 = ({ houseId, current }, config = {}) => {
         )
       )
       .then(res => resolve(res))
-      .catch(err => reject(err));
+      .catch(err => {
+        reject(err);
+      });
   });
 };
 
@@ -850,7 +906,9 @@ export const ajaxName29 = ({ startTime, endTime }, config = {}) => {
         )
       )
       .then(res => resolve(res))
-      .catch(err => reject(err));
+      .catch(err => {
+        reject(err);
+      });
   });
 };
 
@@ -875,7 +933,9 @@ export const ajaxName30 = (config = {}) => {
         )
       )
       .then(res => resolve(res))
-      .catch(err => reject(err));
+      .catch(err => {
+        reject(err);
+      });
   });
 };
 
@@ -900,7 +960,9 @@ export const ajaxName31 = (config = {}) => {
         )
       )
       .then(res => resolve(res))
-      .catch(err => reject(err));
+      .catch(err => {
+        reject(err);
+      });
   });
 };
 
@@ -929,7 +991,9 @@ export const ajaxName32 = ({ grant_type, refresh_token }, config = {}) => {
         )
       )
       .then(res => resolve(res))
-      .catch(err => reject(err));
+      .catch(err => {
+        reject(err);
+      });
   });
 };
 
@@ -952,7 +1016,9 @@ export const ajaxName33 = ({ current }, config = {}) => {
         )
       )
       .then(res => resolve(res))
-      .catch(err => reject(err));
+      .catch(err => {
+        reject(err);
+      });
   });
 };
 
@@ -987,7 +1053,9 @@ export const ajaxName34 = ({ smsCode, phone }, config = {}) => {
         )
       )
       .then(res => resolve(res))
-      .catch(err => reject(err));
+      .catch(err => {
+        reject(err);
+      });
   });
 };
 
@@ -1012,7 +1080,9 @@ export const ajaxName35 = ({ id }, config = {}) => {
         )
       )
       .then(res => resolve(res))
-      .catch(err => reject(err));
+      .catch(err => {
+        reject(err);
+      });
   });
 };
 
@@ -1034,7 +1104,9 @@ export const ajaxName36 = (config = {}) => {
         )
       )
       .then(res => resolve(res))
-      .catch(err => reject(err));
+      .catch(err => {
+        reject(err);
+      });
   });
 };
 
@@ -1067,7 +1139,9 @@ export const ajaxName37 = ({ status, pageNO, pageSize }, config = {}) => {
         )
       )
       .then(res => resolve(res))
-      .catch(err => reject(err));
+      .catch(err => {
+        reject(err);
+      });
   });
 };
 
@@ -1089,7 +1163,9 @@ export const ajaxName38 = (config = {}) => {
         )
       )
       .then(res => resolve(res))
-      .catch(err => reject(err));
+      .catch(err => {
+        reject(err);
+      });
   });
 };
 
@@ -1121,7 +1197,9 @@ export const ajaxName39 = ({ openId, providerId }, config = {}) => {
         )
       )
       .then(res => resolve(res))
-      .catch(err => reject(err));
+      .catch(err => {
+        reject(err);
+      });
   });
 };
 
@@ -1149,7 +1227,9 @@ export const ajaxName40 = ({ mainId, type }, config = {}) => {
         )
       )
       .then(res => resolve(res))
-      .catch(err => reject(err));
+      .catch(err => {
+        reject(err);
+      });
   });
 };
 
@@ -1184,7 +1264,9 @@ export const ajaxName41 = ({ username, password, grant_type }, config = {}) => {
         )
       )
       .then(res => resolve(res))
-      .catch(err => reject(err));
+      .catch(err => {
+        reject(err);
+      });
   });
 };
 
@@ -1215,7 +1297,9 @@ export const ajaxName42 = ({ xqId, current, categoryId }, config = {}) => {
         )
       )
       .then(res => resolve(res))
-      .catch(err => reject(err));
+      .catch(err => {
+        reject(err);
+      });
   });
 };
 
@@ -1237,7 +1321,9 @@ export const ajaxName43 = (config = {}) => {
         )
       )
       .then(res => resolve(res))
-      .catch(err => reject(err));
+      .catch(err => {
+        reject(err);
+      });
   });
 };
 
@@ -1264,7 +1350,9 @@ export const ajaxName44 = ({ uid }, config = {}) => {
         )
       )
       .then(res => resolve(res))
-      .catch(err => reject(err));
+      .catch(err => {
+        reject(err);
+      });
   });
 };
 
@@ -1289,7 +1377,9 @@ export const ajaxName45 = ({ messageId }, config = {}) => {
         )
       )
       .then(res => resolve(res))
-      .catch(err => reject(err));
+      .catch(err => {
+        reject(err);
+      });
   });
 };
 
@@ -1314,7 +1404,9 @@ export const ajaxName46 = (config = {}) => {
         )
       )
       .then(res => resolve(res))
-      .catch(err => reject(err));
+      .catch(err => {
+        reject(err);
+      });
   });
 };
 
@@ -1341,6 +1433,8 @@ export const ajaxName47 = (uid, config = {}) => {
         )
       )
       .then(res => resolve(res))
-      .catch(err => reject(err));
+      .catch(err => {
+        reject(err);
+      });
   });
 };

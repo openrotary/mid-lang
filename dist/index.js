@@ -2,7 +2,13 @@
 
 Object.defineProperty(exports, '__esModule', { value: true });
 
+const ErrorStyle =
+  "background-color: #a22041; color: #fff;padding:3px;box-sizing: border-box;border-radius: 3px;";
+
 const prettier = require("prettier");
+
+const addErrorTips = () =>
+  `console.log(\'%c Error: 建议使用Postman配合排查 %c\', '${ErrorStyle}', '')`;
 
 const addHeader = name => `
   // ${name} 项目 API代码
@@ -134,7 +140,10 @@ const AST2API = (_json, config) => {
           }, config)
         )
         .then(res => resolve(res))
-        .catch(err => reject(err))
+        .catch(err => {
+          ${config.dev ? addErrorTips() : ""}
+          reject(err)
+        })
       })
     }
     `;

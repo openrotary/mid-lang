@@ -5,10 +5,16 @@ Object.defineProperty(exports, '__esModule', { value: true });
 const ErrorStyle =
   "background-color: #a22041; color: #fff;padding:3px;box-sizing: border-box;border-radius: 3px;";
 
+const SuccessStyle =
+  "background-color: #82ae46; color: #fff;padding:3px;box-sizing: border-box;border-radius: 3px;";
+
 const prettier = require("prettier");
 
-const addErrorTips = () =>
-  `console.log(\'%c Error: 建议使用Postman配合排查 %c\', '${ErrorStyle}', '')`;
+const addErrorTips = name =>
+  `console.log(\'%c Error: ${name} 请求报错 %c\', '${ErrorStyle}', '')`;
+
+const addSuccessTips = name =>
+  `console.log(\'%c Success: ${name} 请求成功 %c \\n\', '${SuccessStyle}', '', res)`;
 
 const addHeader = name => `
   // ${name} 项目 API代码
@@ -122,8 +128,9 @@ const AST2API = (_json, config) => {
     .map((item, i) => {
       const myParams = getParams(item);
       const needCut = config.slice ? config.slice.includes(item.id) : false;
+      const httpName = `HTTP_${item.id.slice(-5)}`;
       return `
-    export const ajaxName${i + 1} = (${addParams(myParams)} ${addCutParams(
+    export const ${httpName} = (${addParams(myParams)} ${addCutParams(
         needCut
       )} config = {}) => {
       // ${item.name}   ${item.id}
@@ -139,9 +146,12 @@ const AST2API = (_json, config) => {
             }
           }, config)
         )
-        .then(res => resolve(res))
+        .then(res => {
+          ${config.dev ? addSuccessTips(httpName) : ""}
+          resolve(res)
+        })
         .catch(err => {
-          ${config.dev ? addErrorTips() : ""}
+          ${config.dev ? addErrorTips(httpName) : ""}
           reject(err)
         })
       })

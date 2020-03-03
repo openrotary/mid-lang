@@ -1,0 +1,2116 @@
+{
+  "id": "29299f2c-a75b-4ce1-b731-e386af657dcb",
+  "name": "云社区",
+  "description": null,
+  "auth": null,
+  "events": null,
+  "variables": [],
+  "order": [
+    "083cc2ef-df7e-4402-bd87-f4a96f1331ad",
+    "9309a460-938d-421f-8f9d-95e64641bb82",
+    "6ceb08f5-d5a2-4a91-82a7-d68eda831fe1",
+    "ce0ea191-6ca0-4644-99bb-75133c1f3929",
+    "d5c476f3-29d0-4f80-8448-9af795b19ba4",
+    "0b8ec201-6d27-4574-8497-df6a8472c999",
+    "9bc8404b-93ba-49fb-89f7-e48ad4cd61cc",
+    "3d621f6f-871b-4e96-8d07-93cdbd81d550",
+    "0b16c9a0-d4fd-44e5-b7a1-a140d37fef3a",
+    "2f7420c1-26b4-452d-b864-ded65451764c",
+    "edfb6fa5-9444-4e54-b3a1-320de293fa3a",
+    "9edb3369-4294-4cf8-a934-bf4666bcc4ae",
+    "6de3367a-9db6-46b1-b3f7-eb2604246a5c",
+    "50959be9-e850-4611-a0ce-1e6ac56ec496",
+    "93758de4-f5a2-4c75-b140-30b810153cc7",
+    "41fbe61d-8ec6-4ae3-9bf2-ca5eb4dd1637",
+    "f7c454a9-21cd-4be4-b91d-f63087625f5d",
+    "5c44e847-1552-4efe-8177-0cc651c07d8c",
+    "ec8dbf97-f5e3-4c6f-8d29-680eee6b7bce",
+    "b923a7aa-2c2b-42c2-bca3-cba96f9fdc0d",
+    "ed3eec25-39f9-4d12-9bab-5825ed3dae5e",
+    "847a2996-98cc-41b6-b356-adfdd0b8ee03",
+    "8ab03644-f1fe-41f0-b6f4-4d19203f8d64",
+    "cbb8661b-650a-4d00-9c52-afca96bc8a84",
+    "35fee201-39a6-4b9b-96bb-e466914d3b85",
+    "e137c5db-7da4-44f0-a2b2-313e79bef837",
+    "85ccfbf8-307c-4d6e-9401-a8a8eaf12353",
+    "6075c52f-3371-4cf2-948d-c741e98593e8",
+    "a779e9ab-3b8b-4fda-866a-1ccd67166db2",
+    "4cc3e247-6204-48bf-9c95-00ab01d7de4b",
+    "5d81e6f6-ec76-4119-b0a0-63c579cd16c6",
+    "16123f56-2a5f-43ba-8c4d-8b7cf99a17a8",
+    "446fcccb-07b5-42dc-a5ef-9568a1dd8a6c",
+    "a8723a45-11eb-4df2-8159-5a8bc37fb0f4",
+    "a504db90-ae8f-471d-b083-780e7d5ebe84",
+    "6de5e86a-ea61-4c64-a812-963b2a40d4a0",
+    "6473fbfd-cc71-4cef-b17e-053e3f8703f7",
+    "ecce267c-dd2a-4da7-aca9-4924e562774f",
+    "6736cd46-d78a-4520-b690-9e3185cc2326",
+    "1d22ee8e-8224-4723-b9f9-cecc9c2353b8",
+    "c69932f1-cbac-4219-a610-782d3a6c172a",
+    "0d936e16-33a5-4526-a572-bdd0ed85d845",
+    "3bb83d8c-5c78-457e-9410-f2f880378397",
+    "56953c18-2d89-47f5-b480-6f9d304099cd",
+    "78f39a22-ddc5-46e3-9185-e63788e76e67",
+    "7f793453-38af-4bf8-807f-519f6edc0f4e",
+    "9b49a535-fecd-43a2-aecf-267c4adc0885"
+  ],
+  "folders_order": [],
+  "protocolProfileBehavior": {},
+  "folders": [],
+  "requests": [
+    {
+      "id": "083cc2ef-df7e-4402-bd87-f4a96f1331ad",
+      "name": "首页数据",
+      "url": "{{base_url}}/v1/index/datas",
+      "description": null,
+      "data": null,
+      "dataOptions": null,
+      "dataMode": null,
+      "headerData": [],
+      "method": "GET",
+      "pathVariableData": [],
+      "queryParams": [],
+      "auth": null,
+      "events": null,
+      "folder": null,
+      "headers": "",
+      "pathVariables": {}
+    },
+    {
+      "id": "0b16c9a0-d4fd-44e5-b7a1-a140d37fef3a",
+      "name": "获取用户信息",
+      "url": "{{base_url}}/v1/appUser/me",
+      "description": null,
+      "data": [],
+      "dataOptions": null,
+      "dataMode": "urlencoded",
+      "headerData": [
+        {
+          "key": "Content-Type",
+          "name": "Content-Type",
+          "value": "application/x-www-form-urlencoded",
+          "type": "text"
+        },
+        {
+          "key": "Authorization",
+          "value": "bearer 43f456c7-f480-4fea-bf86-d2e80d418e15",
+          "type": "text"
+        },
+        {
+          "key": "imei",
+          "value": "123",
+          "type": "text"
+        }
+      ],
+      "method": "POST",
+      "pathVariableData": [],
+      "queryParams": [],
+      "auth": null,
+      "events": null,
+      "folder": null,
+      "headers": "Content-Type: application/x-www-form-urlencoded\nAuthorization: bearer 43f456c7-f480-4fea-bf86-d2e80d418e15\nimei: 123\n",
+      "pathVariables": {}
+    },
+    {
+      "id": "0d936e16-33a5-4526-a572-bdd0ed85d845",
+      "name": "得到建筑楼",
+      "url": "{{base_url}}/v1/baseorg/buildlist",
+      "description": null,
+      "data": [
+        {
+          "key": "xqID",
+          "value": "",
+          "type": "text"
+        }
+      ],
+      "dataOptions": null,
+      "dataMode": "urlencoded",
+      "headerData": [
+        {
+          "key": "Content-Type",
+          "name": "Content-Type",
+          "type": "text",
+          "value": "application/x-www-form-urlencoded"
+        },
+        {
+          "key": "Authorization",
+          "type": "text",
+          "value": "bearer 43f456c7-f480-4fea-bf86-d2e80d418e15"
+        },
+        {
+          "key": "imei",
+          "type": "text",
+          "value": "123"
+        }
+      ],
+      "method": "GET",
+      "pathVariableData": [],
+      "queryParams": [],
+      "auth": null,
+      "events": null,
+      "folder": null,
+      "protocolProfileBehavior": {
+        "disableBodyPruning": true
+      },
+      "headers": "Content-Type: application/x-www-form-urlencoded\nAuthorization: bearer 43f456c7-f480-4fea-bf86-d2e80d418e15\nimei: 123\n",
+      "pathVariables": {}
+    },
+    {
+      "id": "16123f56-2a5f-43ba-8c4d-8b7cf99a17a8",
+      "name": "房屋验证新增",
+      "url": "{{base_url}}/v1/house/acceptance/add",
+      "description": null,
+      "data": [],
+      "dataOptions": null,
+      "dataMode": "raw",
+      "headerData": [
+        {
+          "key": "Content-Type",
+          "name": "Content-Type",
+          "type": "text",
+          "value": "application/x-www-form-urlencoded"
+        },
+        {
+          "key": "Authorization",
+          "type": "text",
+          "value": "bearer 43f456c7-f480-4fea-bf86-d2e80d418e15"
+        },
+        {
+          "key": "imei",
+          "type": "text",
+          "value": "123"
+        }
+      ],
+      "method": "POST",
+      "pathVariableData": [],
+      "queryParams": [],
+      "auth": null,
+      "events": null,
+      "folder": null,
+      "rawModeData": "public class HouseStateBean implements Serializable {\r\n\r\n    private String uid;\r\n    private int status;\r\n    private String houseName;\r\n    private String images;\r\n    private String content;\r\n    private String houseId;\r\n    private String contactName;\r\n    private String contactPhone;\r\n    private Date createTime;\r\n    private String adminName;\r\n    private String adminPhone;\r\n    private String orderNo;\r\n    private List<HouseStateFlow> houseAcceptanceFlowList;\r\n}\r\n    \r\n     public static class HouseStateFlow implements Serializable {\r\n        private String uid;\r\n        private String repairUserName;\r\n        private String repairUserPhone;\r\n        private String content;\r\n        private String images;\r\n        private Date createTime;\r\n        private int status;\r\n   }",
+      "headers": "Content-Type: application/x-www-form-urlencoded\nAuthorization: bearer 43f456c7-f480-4fea-bf86-d2e80d418e15\nimei: 123\n",
+      "pathVariables": {}
+    },
+    {
+      "id": "1d22ee8e-8224-4723-b9f9-cecc9c2353b8",
+      "name": "邻里列表",
+      "url": "{{base_url}}/v1/near/message/list?current=&size=&typeKey=&xqId=",
+      "description": null,
+      "data": [
+        {
+          "key": "xqID",
+          "value": "",
+          "type": "text"
+        }
+      ],
+      "dataOptions": null,
+      "dataMode": "urlencoded",
+      "headerData": [
+        {
+          "key": "Content-Type",
+          "name": "Content-Type",
+          "type": "text",
+          "value": "application/x-www-form-urlencoded"
+        },
+        {
+          "key": "Authorization",
+          "type": "text",
+          "value": "bearer 43f456c7-f480-4fea-bf86-d2e80d418e15"
+        },
+        {
+          "key": "imei",
+          "type": "text",
+          "value": "123"
+        }
+      ],
+      "method": "GET",
+      "pathVariableData": [],
+      "queryParams": [
+        {
+          "key": "current",
+          "value": "",
+          "description": "int"
+        },
+        {
+          "key": "size",
+          "value": "",
+          "description": "int"
+        },
+        {
+          "key": "typeKey",
+          "value": ""
+        },
+        {
+          "key": "xqId",
+          "value": ""
+        }
+      ],
+      "auth": null,
+      "events": null,
+      "folder": null,
+      "protocolProfileBehavior": {
+        "disableBodyPruning": true
+      },
+      "headers": "Content-Type: application/x-www-form-urlencoded\nAuthorization: bearer 43f456c7-f480-4fea-bf86-d2e80d418e15\nimei: 123\n",
+      "pathVariables": {}
+    },
+    {
+      "id": "2f7420c1-26b4-452d-b864-ded65451764c",
+      "name": "设置默认的房屋",
+      "url": "{{base_url}}/v1/houseUser/setDefaultHouse",
+      "description": null,
+      "data": [
+        {
+          "key": "uid",
+          "value": "",
+          "type": "text"
+        }
+      ],
+      "dataOptions": null,
+      "dataMode": "urlencoded",
+      "headerData": [
+        {
+          "key": "Content-Type",
+          "name": "Content-Type",
+          "value": "application/x-www-form-urlencoded",
+          "type": "text"
+        },
+        {
+          "key": "Authorization",
+          "value": "bearer 43f456c7-f480-4fea-bf86-d2e80d418e15",
+          "type": "text"
+        },
+        {
+          "key": "imei",
+          "value": "123",
+          "type": "text"
+        }
+      ],
+      "method": "POST",
+      "pathVariableData": [],
+      "queryParams": [],
+      "auth": null,
+      "events": null,
+      "folder": null,
+      "headers": "Content-Type: application/x-www-form-urlencoded\nAuthorization: bearer 43f456c7-f480-4fea-bf86-d2e80d418e15\nimei: 123\n",
+      "pathVariables": {}
+    },
+    {
+      "id": "35fee201-39a6-4b9b-96bb-e466914d3b85",
+      "name": "全部账单",
+      "url": "{{base_url}}/v1/cost/bill/listYear",
+      "description": null,
+      "data": [
+        {
+          "key": "houseId",
+          "value": "",
+          "type": "text"
+        },
+        {
+          "key": "current",
+          "value": "",
+          "description": "int类型",
+          "type": "text"
+        }
+      ],
+      "dataOptions": null,
+      "dataMode": "urlencoded",
+      "headerData": [
+        {
+          "key": "Content-Type",
+          "name": "Content-Type",
+          "value": "application/x-www-form-urlencoded",
+          "type": "text"
+        },
+        {
+          "key": "Authorization",
+          "value": "bearer 43f456c7-f480-4fea-bf86-d2e80d418e15",
+          "type": "text"
+        },
+        {
+          "key": "imei",
+          "value": "123",
+          "type": "text"
+        }
+      ],
+      "method": "POST",
+      "pathVariableData": [],
+      "queryParams": [],
+      "auth": null,
+      "events": null,
+      "folder": null,
+      "headers": "Content-Type: application/x-www-form-urlencoded\nAuthorization: bearer 43f456c7-f480-4fea-bf86-d2e80d418e15\nimei: 123\n",
+      "pathVariables": {}
+    },
+    {
+      "id": "3bb83d8c-5c78-457e-9410-f2f880378397",
+      "name": "得到我的小区列表",
+      "url": "{{base_url}}/v1/baseorg/getMyXqList",
+      "description": null,
+      "data": [],
+      "dataOptions": null,
+      "dataMode": "urlencoded",
+      "headerData": [
+        {
+          "key": "Content-Type",
+          "name": "Content-Type",
+          "type": "text",
+          "value": "application/x-www-form-urlencoded"
+        },
+        {
+          "key": "Authorization",
+          "type": "text",
+          "value": "bearer 43f456c7-f480-4fea-bf86-d2e80d418e15"
+        },
+        {
+          "key": "imei",
+          "type": "text",
+          "value": "123"
+        }
+      ],
+      "method": "POST",
+      "pathVariableData": [],
+      "queryParams": [],
+      "auth": null,
+      "events": null,
+      "folder": null,
+      "headers": "Content-Type: application/x-www-form-urlencoded\nAuthorization: bearer 43f456c7-f480-4fea-bf86-d2e80d418e15\nimei: 123\n",
+      "pathVariables": {}
+    },
+    {
+      "id": "3d621f6f-871b-4e96-8d07-93cdbd81d550",
+      "name": "注册by手机号",
+      "url": "{{base_url}}/v1/appUser/registerByPhone",
+      "description": null,
+      "data": [
+        {
+          "key": "pwd",
+          "value": "e10adc3949ba59abbe56e057f20f883e",
+          "type": "text"
+        },
+        {
+          "key": "smsCode",
+          "value": "888888",
+          "type": "text"
+        }
+      ],
+      "dataOptions": null,
+      "dataMode": "urlencoded",
+      "headerData": [
+        {
+          "key": "deviceId",
+          "value": "15022228888"
+        },
+        {
+          "key": "imei",
+          "value": "123",
+          "type": "text"
+        }
+      ],
+      "method": "POST",
+      "pathVariableData": [],
+      "queryParams": [],
+      "auth": null,
+      "events": null,
+      "folder": null,
+      "headers": "deviceId: 15022228888\nimei: 123\n",
+      "pathVariables": {}
+    },
+    {
+      "id": "41fbe61d-8ec6-4ae3-9bf2-ca5eb4dd1637",
+      "name": "删除用户房屋",
+      "url": "{{base_url}}/v1/houseUser/deleteUserHouse",
+      "description": null,
+      "data": [
+        {
+          "key": "uid",
+          "value": "",
+          "type": "text"
+        }
+      ],
+      "dataOptions": null,
+      "dataMode": "urlencoded",
+      "headerData": [
+        {
+          "key": "Content-Type",
+          "name": "Content-Type",
+          "type": "text",
+          "value": "application/x-www-form-urlencoded"
+        },
+        {
+          "key": "Authorization",
+          "type": "text",
+          "value": "bearer 43f456c7-f480-4fea-bf86-d2e80d418e15"
+        },
+        {
+          "key": "imei",
+          "type": "text",
+          "value": "123"
+        }
+      ],
+      "method": "POST",
+      "pathVariableData": [],
+      "queryParams": [],
+      "auth": null,
+      "events": null,
+      "folder": null,
+      "headers": "Content-Type: application/x-www-form-urlencoded\nAuthorization: bearer 43f456c7-f480-4fea-bf86-d2e80d418e15\nimei: 123\n",
+      "pathVariables": {}
+    },
+    {
+      "id": "446fcccb-07b5-42dc-a5ef-9568a1dd8a6c",
+      "name": "消息列表",
+      "url": "{{base_url}}/v1/notification/num",
+      "description": null,
+      "data": [
+        {
+          "key": "xqId",
+          "value": "",
+          "type": "text"
+        },
+        {
+          "key": "houseId",
+          "value": "",
+          "type": "text"
+        }
+      ],
+      "dataOptions": null,
+      "dataMode": "urlencoded",
+      "headerData": [
+        {
+          "key": "Content-Type",
+          "name": "Content-Type",
+          "type": "text",
+          "value": "application/x-www-form-urlencoded"
+        },
+        {
+          "key": "Authorization",
+          "type": "text",
+          "value": "bearer 43f456c7-f480-4fea-bf86-d2e80d418e15"
+        },
+        {
+          "key": "imei",
+          "type": "text",
+          "value": "123"
+        }
+      ],
+      "method": "GET",
+      "pathVariableData": [],
+      "queryParams": [],
+      "auth": null,
+      "events": null,
+      "folder": null,
+      "protocolProfileBehavior": {
+        "disableBodyPruning": true
+      },
+      "headers": "Content-Type: application/x-www-form-urlencoded\nAuthorization: bearer 43f456c7-f480-4fea-bf86-d2e80d418e15\nimei: 123\n",
+      "pathVariables": {}
+    },
+    {
+      "id": "4cc3e247-6204-48bf-9c95-00ab01d7de4b",
+      "name": "搜索小区信息",
+      "url": "{{base_url}}/v1/baseorg/seachCityInfo",
+      "description": null,
+      "data": [
+        {
+          "key": "keyWord",
+          "value": "",
+          "type": "text"
+        }
+      ],
+      "dataOptions": null,
+      "dataMode": "urlencoded",
+      "headerData": [
+        {
+          "key": "Content-Type",
+          "name": "Content-Type",
+          "type": "text",
+          "value": "application/x-www-form-urlencoded"
+        },
+        {
+          "key": "Authorization",
+          "type": "text",
+          "value": "bearer 43f456c7-f480-4fea-bf86-d2e80d418e15"
+        },
+        {
+          "key": "imei",
+          "type": "text",
+          "value": "123"
+        }
+      ],
+      "method": "GET",
+      "pathVariableData": [],
+      "queryParams": [],
+      "auth": null,
+      "events": null,
+      "folder": null,
+      "protocolProfileBehavior": {
+        "disableBodyPruning": true
+      },
+      "headers": "Content-Type: application/x-www-form-urlencoded\nAuthorization: bearer 43f456c7-f480-4fea-bf86-d2e80d418e15\nimei: 123\n",
+      "pathVariables": {}
+    },
+    {
+      "id": "56953c18-2d89-47f5-b480-6f9d304099cd",
+      "name": "搜索城市",
+      "url": "{{base_url}}/v1/baseorg/seachCity",
+      "description": null,
+      "data": [
+        {
+          "key": "keyWord",
+          "value": "",
+          "type": "text"
+        }
+      ],
+      "dataOptions": null,
+      "dataMode": "urlencoded",
+      "headerData": [
+        {
+          "key": "Content-Type",
+          "name": "Content-Type",
+          "type": "text",
+          "value": "application/x-www-form-urlencoded"
+        },
+        {
+          "key": "Authorization",
+          "type": "text",
+          "value": "bearer 43f456c7-f480-4fea-bf86-d2e80d418e15"
+        },
+        {
+          "key": "imei",
+          "type": "text",
+          "value": "123"
+        }
+      ],
+      "method": "GET",
+      "pathVariableData": [],
+      "queryParams": [],
+      "auth": null,
+      "events": null,
+      "folder": null,
+      "protocolProfileBehavior": {
+        "disableBodyPruning": true
+      },
+      "headers": "Content-Type: application/x-www-form-urlencoded\nAuthorization: bearer 43f456c7-f480-4fea-bf86-d2e80d418e15\nimei: 123\n",
+      "pathVariables": {}
+    },
+    {
+      "id": "5c44e847-1552-4efe-8177-0cc651c07d8c",
+      "name": "重置密码",
+      "url": "{{base_url}}/v1/appUser/resetUserPassWord",
+      "description": null,
+      "data": [
+        {
+          "key": "phone",
+          "value": "",
+          "type": "text"
+        },
+        {
+          "key": "smsCode",
+          "value": "",
+          "type": "text"
+        },
+        {
+          "key": "pwd",
+          "value": "",
+          "type": "text"
+        }
+      ],
+      "dataOptions": null,
+      "dataMode": "urlencoded",
+      "headerData": [
+        {
+          "key": "Content-Type",
+          "name": "Content-Type",
+          "value": "application/x-www-form-urlencoded",
+          "type": "text"
+        },
+        {
+          "key": "Authorization",
+          "value": "bearer 43f456c7-f480-4fea-bf86-d2e80d418e15",
+          "type": "text"
+        },
+        {
+          "key": "imei",
+          "value": "123",
+          "type": "text"
+        }
+      ],
+      "method": "POST",
+      "pathVariableData": [],
+      "queryParams": [],
+      "auth": null,
+      "events": null,
+      "folder": null,
+      "headers": "Content-Type: application/x-www-form-urlencoded\nAuthorization: bearer 43f456c7-f480-4fea-bf86-d2e80d418e15\nimei: 123\n",
+      "pathVariables": {}
+    },
+    {
+      "id": "5d81e6f6-ec76-4119-b0a0-63c579cd16c6",
+      "name": "保修未读消息",
+      "url": "{{base_url}}/v1/repair/getUnreadNum",
+      "description": null,
+      "data": [],
+      "dataOptions": null,
+      "dataMode": "urlencoded",
+      "headerData": [
+        {
+          "key": "Content-Type",
+          "name": "Content-Type",
+          "type": "text",
+          "value": "application/x-www-form-urlencoded"
+        },
+        {
+          "key": "Authorization",
+          "type": "text",
+          "value": "bearer 43f456c7-f480-4fea-bf86-d2e80d418e15"
+        },
+        {
+          "key": "imei",
+          "type": "text",
+          "value": "123"
+        }
+      ],
+      "method": "GET",
+      "pathVariableData": [],
+      "queryParams": [],
+      "auth": null,
+      "events": null,
+      "folder": null,
+      "protocolProfileBehavior": {
+        "disableBodyPruning": true
+      },
+      "headers": "Content-Type: application/x-www-form-urlencoded\nAuthorization: bearer 43f456c7-f480-4fea-bf86-d2e80d418e15\nimei: 123\n",
+      "pathVariables": {}
+    },
+    {
+      "id": "6075c52f-3371-4cf2-948d-c741e98593e8",
+      "name": "验证设备",
+      "url": "{{base_url}}/v1/appUser/verifyPhoneSendSms",
+      "description": null,
+      "data": [
+        {
+          "key": "phone",
+          "value": "",
+          "type": "text"
+        }
+      ],
+      "dataOptions": null,
+      "dataMode": "urlencoded",
+      "headerData": [
+        {
+          "key": "Content-Type",
+          "name": "Content-Type",
+          "value": "application/x-www-form-urlencoded",
+          "type": "text"
+        },
+        {
+          "key": "Authorization",
+          "value": "bearer 43f456c7-f480-4fea-bf86-d2e80d418e15",
+          "type": "text"
+        },
+        {
+          "key": "imei",
+          "value": "123",
+          "type": "text"
+        }
+      ],
+      "method": "GET",
+      "pathVariableData": [],
+      "queryParams": [],
+      "auth": null,
+      "events": null,
+      "folder": null,
+      "protocolProfileBehavior": {
+        "disableBodyPruning": true
+      },
+      "headers": "Content-Type: application/x-www-form-urlencoded\nAuthorization: bearer 43f456c7-f480-4fea-bf86-d2e80d418e15\nimei: 123\n",
+      "pathVariables": {}
+    },
+    {
+      "id": "6473fbfd-cc71-4cef-b17e-053e3f8703f7",
+      "name": "房屋列表",
+      "url": "{{base_url}}/v1/house/acceptance/page",
+      "description": null,
+      "data": [
+        {
+          "key": "current",
+          "value": "",
+          "description": "int类型",
+          "type": "text"
+        },
+        {
+          "key": "statusTag",
+          "value": "",
+          "type": "text"
+        },
+        {
+          "key": "startTime",
+          "value": "",
+          "description": "long类型",
+          "type": "text"
+        },
+        {
+          "key": "endTime",
+          "value": "",
+          "description": "long类型",
+          "type": "text"
+        },
+        {
+          "key": "houseName",
+          "value": "",
+          "type": "text"
+        }
+      ],
+      "dataOptions": null,
+      "dataMode": "urlencoded",
+      "headerData": [
+        {
+          "key": "Content-Type",
+          "name": "Content-Type",
+          "type": "text",
+          "value": "application/x-www-form-urlencoded"
+        },
+        {
+          "key": "Authorization",
+          "type": "text",
+          "value": "bearer 43f456c7-f480-4fea-bf86-d2e80d418e15"
+        },
+        {
+          "key": "imei",
+          "type": "text",
+          "value": "123"
+        }
+      ],
+      "method": "GET",
+      "pathVariableData": [],
+      "queryParams": [],
+      "auth": null,
+      "events": null,
+      "folder": null,
+      "protocolProfileBehavior": {
+        "disableBodyPruning": true
+      },
+      "headers": "Content-Type: application/x-www-form-urlencoded\nAuthorization: bearer 43f456c7-f480-4fea-bf86-d2e80d418e15\nimei: 123\n",
+      "pathVariables": {}
+    },
+    {
+      "id": "6736cd46-d78a-4520-b690-9e3185cc2326",
+      "name": "邻里列表保存",
+      "url": "{{base_url}}/v1/near/message/save",
+      "description": null,
+      "data": [],
+      "dataOptions": {
+        "raw": {
+          "language": "json"
+        }
+      },
+      "dataMode": "raw",
+      "headerData": [
+        {
+          "key": "Content-Type",
+          "name": "Content-Type",
+          "value": "application/json",
+          "type": "text"
+        },
+        {
+          "key": "Authorization",
+          "type": "text",
+          "value": "bearer 43f456c7-f480-4fea-bf86-d2e80d418e15"
+        },
+        {
+          "key": "imei",
+          "type": "text",
+          "value": "123"
+        }
+      ],
+      "method": "POST",
+      "pathVariableData": [],
+      "queryParams": [],
+      "auth": null,
+      "events": null,
+      "folder": null,
+      "rawModeData": "{   private String uid;\r\n    private String userId;\r\n    private String typeKey;\r\n    private String content;\r\n    private String images;\r\n    private String remark;\r\n    private String extra;\r\n    private int praiseNum;\r\n    private int commentNum;\r\n    private int collectNum;\r\n    private boolean enabled;\r\n    private Date createTime;\r\n    private Date updateTime;\r\n    private String delFlag;\r\n    private NearMessageExtraBean nearMessageExtra;\r\n    private UserVOBean userVO;\r\n    private String typeName;\r\n    private boolean hasPraised;\r\n    private boolean hasCollected;\r\n    private Page<NearPraiseVOPageBean> nearPraiseVOPage;\r\n    private transient String disucssionTitle;\r\n    private transient List<String> praiseImages;\r\n    private transient String praiseNumTotal;\r\n    private String showText;\r\n}\r\n\r\nNearMessageExtraBean： {      \r\n        private String tradeType; //\"buy\"--买 \"sell\"--卖\r\n        private String tradeOriginal;\r\n        private String tradeDiscount;\r\n        private String carpoolType;\r\n        private String carpoolGoal;\r\n        private String carpoolNum;\r\n        private String carpoolDeparture;\r\n        private transient String tradeOriginalTemp;\r\n        private transient String tradeDiscountTemp;\r\n        }\r\n        \r\nNearPraiseVOPageBean:   {     private String uid;\r\n        private String userId;\r\n        private String mainId;\r\n        private Date createTime;\r\n        private Date updateTime;\r\n        private String delFlag;\r\n        private UserVOBean userVO;}",
+      "headers": "Content-Type: application/json\nAuthorization: bearer 43f456c7-f480-4fea-bf86-d2e80d418e15\nimei: 123\n",
+      "pathVariables": {}
+    },
+    {
+      "id": "6ceb08f5-d5a2-4a91-82a7-d68eda831fe1",
+      "name": "保存房屋信息",
+      "url": "{{base_url}}/v1/houseUser/saveHouse",
+      "description": null,
+      "data": [
+        {
+          "key": "wyOrgID",
+          "value": "",
+          "type": "text"
+        },
+        {
+          "key": "xqOrgID",
+          "value": "",
+          "type": "text"
+        },
+        {
+          "key": "houseID",
+          "value": "",
+          "type": "text"
+        },
+        {
+          "key": "userName",
+          "value": "",
+          "type": "text"
+        },
+        {
+          "key": "ownerType",
+          "value": "",
+          "type": "text"
+        },
+        {
+          "key": "isInstalled",
+          "value": "",
+          "description": "int 类型，具体分别代表什么，咨询后台",
+          "type": "text"
+        }
+      ],
+      "dataOptions": null,
+      "dataMode": "urlencoded",
+      "headerData": [
+        {
+          "key": "Content-Type",
+          "name": "Content-Type",
+          "value": "application/x-www-form-urlencoded",
+          "type": "text"
+        },
+        {
+          "key": "Authorization",
+          "value": "bearer 43f456c7-f480-4fea-bf86-d2e80d418e15",
+          "type": "text"
+        },
+        {
+          "key": "imei",
+          "value": "123",
+          "type": "text"
+        }
+      ],
+      "method": "POST",
+      "pathVariableData": [],
+      "queryParams": [],
+      "auth": null,
+      "events": null,
+      "folder": null,
+      "headers": "Content-Type: application/x-www-form-urlencoded\nAuthorization: bearer 43f456c7-f480-4fea-bf86-d2e80d418e15\nimei: 123\n",
+      "pathVariables": {}
+    },
+    {
+      "id": "6de3367a-9db6-46b1-b3f7-eb2604246a5c",
+      "name": "验证房屋",
+      "url": "{{base_url}}/v1/houseUser/checkHouse",
+      "description": null,
+      "data": [
+        {
+          "key": "checkCode",
+          "value": "",
+          "type": "text"
+        },
+        {
+          "key": "isInstalled",
+          "value": "",
+          "description": "int 类型，具体分别代表什么，咨询后台",
+          "type": "text"
+        }
+      ],
+      "dataOptions": null,
+      "dataMode": "urlencoded",
+      "headerData": [
+        {
+          "key": "Content-Type",
+          "name": "Content-Type",
+          "value": "application/x-www-form-urlencoded",
+          "type": "text"
+        },
+        {
+          "key": "Authorization",
+          "value": "bearer 43f456c7-f480-4fea-bf86-d2e80d418e15",
+          "type": "text"
+        },
+        {
+          "key": "imei",
+          "value": "123",
+          "type": "text"
+        }
+      ],
+      "method": "POST",
+      "pathVariableData": [],
+      "queryParams": [],
+      "auth": null,
+      "events": null,
+      "folder": null,
+      "headers": "Content-Type: application/x-www-form-urlencoded\nAuthorization: bearer 43f456c7-f480-4fea-bf86-d2e80d418e15\nimei: 123\n",
+      "pathVariables": {}
+    },
+    {
+      "id": "6de5e86a-ea61-4c64-a812-963b2a40d4a0",
+      "name": "房屋详情",
+      "url": "{{base_url}}/v1/house/acceptance/detail/1?id=1",
+      "description": null,
+      "data": [],
+      "dataOptions": null,
+      "dataMode": "urlencoded",
+      "headerData": [
+        {
+          "key": "Content-Type",
+          "name": "Content-Type",
+          "type": "text",
+          "value": "application/x-www-form-urlencoded"
+        },
+        {
+          "key": "Authorization",
+          "type": "text",
+          "value": "bearer 43f456c7-f480-4fea-bf86-d2e80d418e15"
+        },
+        {
+          "key": "imei",
+          "type": "text",
+          "value": "123"
+        }
+      ],
+      "method": "GET",
+      "pathVariableData": [],
+      "queryParams": [
+        {
+          "key": "id",
+          "value": "1"
+        }
+      ],
+      "auth": null,
+      "events": null,
+      "folder": null,
+      "protocolProfileBehavior": {
+        "disableBodyPruning": true
+      },
+      "headers": "Content-Type: application/x-www-form-urlencoded\nAuthorization: bearer 43f456c7-f480-4fea-bf86-d2e80d418e15\nimei: 123\n",
+      "pathVariables": {}
+    },
+    {
+      "id": "78f39a22-ddc5-46e3-9185-e63788e76e67",
+      "name": "得到省份列表",
+      "url": "{{base_url}}/v1/baseorg/provinceList",
+      "description": null,
+      "data": [],
+      "dataOptions": null,
+      "dataMode": "urlencoded",
+      "headerData": [
+        {
+          "key": "Content-Type",
+          "name": "Content-Type",
+          "type": "text",
+          "value": "application/x-www-form-urlencoded"
+        },
+        {
+          "key": "Authorization",
+          "type": "text",
+          "value": "bearer 43f456c7-f480-4fea-bf86-d2e80d418e15"
+        },
+        {
+          "key": "imei",
+          "type": "text",
+          "value": "123"
+        }
+      ],
+      "method": "GET",
+      "pathVariableData": [],
+      "queryParams": [],
+      "auth": null,
+      "events": null,
+      "folder": null,
+      "protocolProfileBehavior": {
+        "disableBodyPruning": true
+      },
+      "headers": "Content-Type: application/x-www-form-urlencoded\nAuthorization: bearer 43f456c7-f480-4fea-bf86-d2e80d418e15\nimei: 123\n",
+      "pathVariables": {}
+    },
+    {
+      "id": "7f793453-38af-4bf8-807f-519f6edc0f4e",
+      "name": "得到小区列表",
+      "url": "{{base_url}}/v1/v1/baseorg/xqlist",
+      "description": null,
+      "data": [
+        {
+          "key": "cityId",
+          "value": "",
+          "type": "text"
+        }
+      ],
+      "dataOptions": null,
+      "dataMode": "urlencoded",
+      "headerData": [
+        {
+          "key": "Content-Type",
+          "name": "Content-Type",
+          "type": "text",
+          "value": "application/x-www-form-urlencoded"
+        },
+        {
+          "key": "Authorization",
+          "type": "text",
+          "value": "bearer 43f456c7-f480-4fea-bf86-d2e80d418e15"
+        },
+        {
+          "key": "imei",
+          "type": "text",
+          "value": "123"
+        }
+      ],
+      "method": "GET",
+      "pathVariableData": [],
+      "queryParams": [],
+      "auth": null,
+      "events": null,
+      "folder": null,
+      "protocolProfileBehavior": {
+        "disableBodyPruning": true
+      },
+      "headers": "Content-Type: application/x-www-form-urlencoded\nAuthorization: bearer 43f456c7-f480-4fea-bf86-d2e80d418e15\nimei: 123\n",
+      "pathVariables": {}
+    },
+    {
+      "id": "847a2996-98cc-41b6-b356-adfdd0b8ee03",
+      "name": "得到支付方式列表",
+      "url": "{{base_url}}/v1/payChannel/getMchChannelList",
+      "description": null,
+      "data": [],
+      "dataOptions": null,
+      "dataMode": "urlencoded",
+      "headerData": [
+        {
+          "key": "Content-Type",
+          "name": "Content-Type",
+          "value": "application/x-www-form-urlencoded",
+          "type": "text"
+        },
+        {
+          "key": "Authorization",
+          "value": "bearer 43f456c7-f480-4fea-bf86-d2e80d418e15",
+          "type": "text"
+        },
+        {
+          "key": "imei",
+          "value": "123",
+          "type": "text"
+        }
+      ],
+      "method": "POST",
+      "pathVariableData": [],
+      "queryParams": [],
+      "auth": null,
+      "events": null,
+      "folder": null,
+      "headers": "Content-Type: application/x-www-form-urlencoded\nAuthorization: bearer 43f456c7-f480-4fea-bf86-d2e80d418e15\nimei: 123\n",
+      "pathVariables": {}
+    },
+    {
+      "id": "85ccfbf8-307c-4d6e-9401-a8a8eaf12353",
+      "name": "创建订单",
+      "url": "{{base_url}}/v1/cost/bill/createOrder",
+      "description": null,
+      "data": [
+        {
+          "key": "houseId",
+          "value": "",
+          "type": "text"
+        },
+        {
+          "key": "month",
+          "value": "",
+          "type": "text"
+        },
+        {
+          "key": "device",
+          "value": "",
+          "type": "text"
+        },
+        {
+          "key": "returnUrl",
+          "value": "",
+          "type": "text"
+        }
+      ],
+      "dataOptions": null,
+      "dataMode": "urlencoded",
+      "headerData": [
+        {
+          "key": "Content-Type",
+          "name": "Content-Type",
+          "value": "application/x-www-form-urlencoded",
+          "type": "text"
+        },
+        {
+          "key": "Authorization",
+          "value": "bearer 43f456c7-f480-4fea-bf86-d2e80d418e15",
+          "type": "text"
+        },
+        {
+          "key": "imei",
+          "value": "123",
+          "type": "text"
+        }
+      ],
+      "method": "POST",
+      "pathVariableData": [],
+      "queryParams": [],
+      "auth": null,
+      "events": null,
+      "folder": null,
+      "headers": "Content-Type: application/x-www-form-urlencoded\nAuthorization: bearer 43f456c7-f480-4fea-bf86-d2e80d418e15\nimei: 123\n",
+      "pathVariables": {}
+    },
+    {
+      "id": "8ab03644-f1fe-41f0-b6f4-4d19203f8d64",
+      "name": "退出登录",
+      "url": "{{base_url}}/v1/appUser/logout",
+      "description": null,
+      "data": [],
+      "dataOptions": null,
+      "dataMode": "urlencoded",
+      "headerData": [
+        {
+          "key": "Content-Type",
+          "name": "Content-Type",
+          "type": "text",
+          "value": "application/x-www-form-urlencoded"
+        },
+        {
+          "key": "Authorization",
+          "type": "text",
+          "value": "bearer 43f456c7-f480-4fea-bf86-d2e80d418e15"
+        },
+        {
+          "key": "imei",
+          "type": "text",
+          "value": "123"
+        }
+      ],
+      "method": "POST",
+      "pathVariableData": [],
+      "queryParams": [],
+      "auth": null,
+      "events": null,
+      "folder": null,
+      "headers": "Content-Type: application/x-www-form-urlencoded\nAuthorization: bearer 43f456c7-f480-4fea-bf86-d2e80d418e15\nimei: 123\n",
+      "pathVariables": {}
+    },
+    {
+      "id": "9309a460-938d-421f-8f9d-95e64641bb82",
+      "name": "删除用户房屋 Copy",
+      "url": "{{base_url}}/v1/houseUser/deleteUserHouse",
+      "description": null,
+      "data": [
+        {
+          "key": "uid",
+          "value": "",
+          "type": "text"
+        }
+      ],
+      "dataOptions": null,
+      "dataMode": "urlencoded",
+      "headerData": [
+        {
+          "key": "Content-Type",
+          "name": "Content-Type",
+          "type": "text",
+          "value": "application/x-www-form-urlencoded"
+        },
+        {
+          "key": "Authorization",
+          "type": "text",
+          "value": "bearer 43f456c7-f480-4fea-bf86-d2e80d418e15"
+        },
+        {
+          "key": "imei",
+          "type": "text",
+          "value": "123"
+        }
+      ],
+      "method": "POST",
+      "pathVariableData": [],
+      "queryParams": [],
+      "auth": null,
+      "events": null,
+      "folder": null,
+      "headers": "Content-Type: application/x-www-form-urlencoded\nAuthorization: bearer 43f456c7-f480-4fea-bf86-d2e80d418e15\nimei: 123\n",
+      "pathVariables": {}
+    },
+    {
+      "id": "93758de4-f5a2-4c75-b140-30b810153cc7",
+      "name": "更新用户信息",
+      "url": "{{base_url}}/v1/appUser/updateUserInfo",
+      "description": null,
+      "data": [
+        {
+          "key": "uid",
+          "value": "",
+          "description": "这些传参组成json字符串传输",
+          "type": "text"
+        },
+        {
+          "key": "phone",
+          "value": "",
+          "type": "text"
+        },
+        {
+          "key": "nickname",
+          "value": "",
+          "type": "text"
+        },
+        {
+          "key": "realName",
+          "value": "",
+          "type": "text"
+        },
+        {
+          "key": "avatar",
+          "value": "",
+          "type": "text"
+        },
+        {
+          "key": "sex",
+          "value": "",
+          "type": "text"
+        },
+        {
+          "key": "age",
+          "value": "",
+          "type": "text"
+        },
+        {
+          "key": "birthday",
+          "value": "",
+          "type": "text"
+        },
+        {
+          "key": "email",
+          "value": "841100358@qq.com",
+          "type": "text"
+        },
+        {
+          "key": "imei",
+          "value": "",
+          "type": "text"
+        },
+        {
+          "key": "remark",
+          "value": "",
+          "type": "text"
+        },
+        {
+          "key": "loginTime",
+          "value": "",
+          "description": "long",
+          "type": "text"
+        },
+        {
+          "key": "address",
+          "value": "",
+          "type": "text"
+        },
+        {
+          "key": "xqId",
+          "value": "",
+          "type": "text"
+        },
+        {
+          "key": "xqName",
+          "value": "",
+          "type": "text"
+        },
+        {
+          "key": "wyId",
+          "value": "",
+          "type": "text"
+        },
+        {
+          "key": "areaId",
+          "value": "",
+          "type": "text"
+        }
+      ],
+      "dataOptions": null,
+      "dataMode": "urlencoded",
+      "headerData": [
+        {
+          "key": "Content-Type",
+          "name": "Content-Type",
+          "value": "application/x-www-form-urlencoded",
+          "type": "text"
+        },
+        {
+          "key": "Authorization",
+          "type": "text",
+          "value": "bearer 43f456c7-f480-4fea-bf86-d2e80d418e15"
+        },
+        {
+          "key": "imei",
+          "type": "text",
+          "value": "123"
+        }
+      ],
+      "method": "POST",
+      "pathVariableData": [],
+      "queryParams": [],
+      "auth": null,
+      "events": [
+        {
+          "listen": "prerequest",
+          "script": {
+            "id": "bd53adcf-f575-4886-9229-09e0f80670fa",
+            "exec": [
+              " /**\r",
+              "     * uid : ecffeff69c7c4bd293f14501097ad58d\r",
+              "     * phone : 13511111111\r",
+              "     * nickname : 13511111111\r",
+              "     * realName : null\r",
+              "     * avatar : null\r",
+              "     * sex : 1\r",
+              "     * age : null\r",
+              "     * birthday : null\r",
+              "     * email : null\r",
+              "     * imei : 85GBBM923TY7\r",
+              "     * remark : null\r",
+              "     * loginTime : 1528682299000\r",
+              "     */"
+            ],
+            "type": "text/javascript"
+          }
+        }
+      ],
+      "folder": null,
+      "headers": "Content-Type: application/x-www-form-urlencoded\nAuthorization: bearer 43f456c7-f480-4fea-bf86-d2e80d418e15\nimei: 123\n",
+      "pathVariables": {}
+    },
+    {
+      "id": "9b49a535-fecd-43a2-aecf-267c4adc0885",
+      "name": "得到城市列表",
+      "url": "{{base_url}}/v1/baseorg/cityList",
+      "description": null,
+      "data": [],
+      "dataOptions": null,
+      "dataMode": "raw",
+      "headerData": [
+        {
+          "key": "Content-Type",
+          "name": "Content-Type",
+          "type": "text",
+          "value": "application/x-www-form-urlencoded"
+        },
+        {
+          "key": "Authorization",
+          "type": "text",
+          "value": "bearer 43f456c7-f480-4fea-bf86-d2e80d418e15"
+        },
+        {
+          "key": "imei",
+          "type": "text",
+          "value": "123"
+        }
+      ],
+      "method": "GET",
+      "pathVariableData": [],
+      "queryParams": [],
+      "auth": null,
+      "events": null,
+      "folder": null,
+      "protocolProfileBehavior": {
+        "disableBodyPruning": true
+      },
+      "rawModeData": "",
+      "headers": "Content-Type: application/x-www-form-urlencoded\nAuthorization: bearer 43f456c7-f480-4fea-bf86-d2e80d418e15\nimei: 123\n",
+      "pathVariables": {}
+    },
+    {
+      "id": "9bc8404b-93ba-49fb-89f7-e48ad4cd61cc",
+      "name": "我的房屋信息",
+      "url": "{{base_url}}/v1/houseUser/getMyHouse",
+      "description": null,
+      "data": [],
+      "dataOptions": null,
+      "dataMode": "urlencoded",
+      "headerData": [
+        {
+          "key": "Content-Type",
+          "name": "Content-Type",
+          "value": "application/x-www-form-urlencoded",
+          "type": "text"
+        },
+        {
+          "key": "Authorization",
+          "value": "bearer 43f456c7-f480-4fea-bf86-d2e80d418e15",
+          "type": "text"
+        },
+        {
+          "key": "imei",
+          "value": "123",
+          "type": "text"
+        }
+      ],
+      "method": "POST",
+      "pathVariableData": [],
+      "queryParams": [],
+      "auth": null,
+      "events": null,
+      "folder": null,
+      "headers": "Content-Type: application/x-www-form-urlencoded\nAuthorization: bearer 43f456c7-f480-4fea-bf86-d2e80d418e15\nimei: 123\n",
+      "pathVariables": {}
+    },
+    {
+      "id": "9edb3369-4294-4cf8-a934-bf4666bcc4ae",
+      "name": "验证成员",
+      "url": "{{base_url}}/v1/houseUser/checkUser",
+      "description": null,
+      "data": [
+        {
+          "key": "uid",
+          "value": "",
+          "type": "text"
+        },
+        {
+          "key": "isCheckIn",
+          "value": "",
+          "description": "int 类型，具体分别代表什么，咨询后台",
+          "type": "text"
+        }
+      ],
+      "dataOptions": null,
+      "dataMode": "urlencoded",
+      "headerData": [
+        {
+          "key": "Content-Type",
+          "name": "Content-Type",
+          "value": "application/x-www-form-urlencoded",
+          "type": "text"
+        },
+        {
+          "key": "Authorization",
+          "value": "bearer 43f456c7-f480-4fea-bf86-d2e80d418e15",
+          "type": "text"
+        },
+        {
+          "key": "imei",
+          "value": "123",
+          "type": "text"
+        }
+      ],
+      "method": "POST",
+      "pathVariableData": [],
+      "queryParams": [],
+      "auth": null,
+      "events": null,
+      "folder": null,
+      "headers": "Content-Type: application/x-www-form-urlencoded\nAuthorization: bearer 43f456c7-f480-4fea-bf86-d2e80d418e15\nimei: 123\n",
+      "pathVariables": {}
+    },
+    {
+      "id": "a504db90-ae8f-471d-b083-780e7d5ebe84",
+      "name": "得到版本号",
+      "url": "{{base_url}}/v1/version/getVersion/androidcommunity",
+      "description": null,
+      "data": [],
+      "dataOptions": null,
+      "dataMode": "urlencoded",
+      "headerData": [
+        {
+          "key": "Content-Type",
+          "name": "Content-Type",
+          "type": "text",
+          "value": "application/x-www-form-urlencoded"
+        },
+        {
+          "key": "Authorization",
+          "type": "text",
+          "value": "bearer 43f456c7-f480-4fea-bf86-d2e80d418e15"
+        },
+        {
+          "key": "imei",
+          "type": "text",
+          "value": "123"
+        }
+      ],
+      "method": "GET",
+      "pathVariableData": [],
+      "queryParams": [],
+      "auth": null,
+      "events": null,
+      "folder": null,
+      "protocolProfileBehavior": {
+        "disableBodyPruning": true
+      },
+      "headers": "Content-Type: application/x-www-form-urlencoded\nAuthorization: bearer 43f456c7-f480-4fea-bf86-d2e80d418e15\nimei: 123\n",
+      "pathVariables": {}
+    },
+    {
+      "id": "a779e9ab-3b8b-4fda-866a-1ccd67166db2",
+      "name": "反馈未读消息",
+      "url": "{{base_url}}/v1/feedback/getUnreadNum",
+      "description": null,
+      "data": [],
+      "dataOptions": null,
+      "dataMode": "urlencoded",
+      "headerData": [
+        {
+          "key": "Content-Type",
+          "name": "Content-Type",
+          "type": "text",
+          "value": "application/x-www-form-urlencoded"
+        },
+        {
+          "key": "Authorization",
+          "type": "text",
+          "value": "bearer 43f456c7-f480-4fea-bf86-d2e80d418e15"
+        },
+        {
+          "key": "imei",
+          "type": "text",
+          "value": "123"
+        }
+      ],
+      "method": "GET",
+      "pathVariableData": [],
+      "queryParams": [],
+      "auth": null,
+      "events": null,
+      "folder": null,
+      "protocolProfileBehavior": {
+        "disableBodyPruning": true
+      },
+      "headers": "Content-Type: application/x-www-form-urlencoded\nAuthorization: bearer 43f456c7-f480-4fea-bf86-d2e80d418e15\nimei: 123\n",
+      "pathVariables": {}
+    },
+    {
+      "id": "a8723a45-11eb-4df2-8159-5a8bc37fb0f4",
+      "name": "房屋列表 Copy Copy Copy",
+      "url": "{{base_url}}/v1/house/acceptance/acceptance",
+      "description": null,
+      "data": [],
+      "dataOptions": null,
+      "dataMode": "raw",
+      "headerData": [
+        {
+          "key": "Content-Type",
+          "name": "Content-Type",
+          "type": "text",
+          "value": "application/x-www-form-urlencoded"
+        },
+        {
+          "key": "Authorization",
+          "type": "text",
+          "value": "bearer 43f456c7-f480-4fea-bf86-d2e80d418e15"
+        },
+        {
+          "key": "imei",
+          "type": "text",
+          "value": "123"
+        }
+      ],
+      "method": "POST",
+      "pathVariableData": [],
+      "queryParams": [],
+      "auth": null,
+      "events": null,
+      "folder": null,
+      "rawModeData": "  private String acceptanceId;\r\n    private int status;\r\n    private String content;\r\n    private String images;",
+      "headers": "Content-Type: application/x-www-form-urlencoded\nAuthorization: bearer 43f456c7-f480-4fea-bf86-d2e80d418e15\nimei: 123\n",
+      "pathVariables": {}
+    },
+    {
+      "id": "b923a7aa-2c2b-42c2-bca3-cba96f9fdc0d",
+      "name": "更新密码收到的验证码",
+      "url": "{{base_url}}/v1/appUser/updateNewPwdSendSms",
+      "description": null,
+      "data": [
+        {
+          "key": "phone",
+          "value": "",
+          "type": "text"
+        }
+      ],
+      "dataOptions": null,
+      "dataMode": "urlencoded",
+      "headerData": [
+        {
+          "key": "Content-Type",
+          "name": "Content-Type",
+          "value": "application/x-www-form-urlencoded",
+          "type": "text"
+        },
+        {
+          "key": "Authorization",
+          "value": "bearer 43f456c7-f480-4fea-bf86-d2e80d418e15",
+          "type": "text"
+        },
+        {
+          "key": "imei",
+          "value": "123",
+          "type": "text"
+        },
+        {
+          "key": "deviceId",
+          "value": "",
+          "type": "text"
+        }
+      ],
+      "method": "POST",
+      "pathVariableData": [],
+      "queryParams": [],
+      "auth": null,
+      "events": null,
+      "folder": null,
+      "headers": "Content-Type: application/x-www-form-urlencoded\nAuthorization: bearer 43f456c7-f480-4fea-bf86-d2e80d418e15\nimei: 123\ndeviceId: \n",
+      "pathVariables": {}
+    },
+    {
+      "id": "c69932f1-cbac-4219-a610-782d3a6c172a",
+      "name": "得到房屋的列表",
+      "url": "{{base_url}}/v1/baseorg/houselist",
+      "description": null,
+      "data": [
+        {
+          "key": "areaID",
+          "value": "",
+          "type": "text"
+        }
+      ],
+      "dataOptions": null,
+      "dataMode": "urlencoded",
+      "headerData": [
+        {
+          "key": "Content-Type",
+          "name": "Content-Type",
+          "type": "text",
+          "value": "application/x-www-form-urlencoded"
+        },
+        {
+          "key": "Authorization",
+          "type": "text",
+          "value": "bearer 43f456c7-f480-4fea-bf86-d2e80d418e15"
+        },
+        {
+          "key": "imei",
+          "type": "text",
+          "value": "123"
+        }
+      ],
+      "method": "GET",
+      "pathVariableData": [],
+      "queryParams": [],
+      "auth": null,
+      "events": null,
+      "folder": null,
+      "protocolProfileBehavior": {
+        "disableBodyPruning": true
+      },
+      "headers": "Content-Type: application/x-www-form-urlencoded\nAuthorization: bearer 43f456c7-f480-4fea-bf86-d2e80d418e15\nimei: 123\n",
+      "pathVariables": {}
+    },
+    {
+      "id": "cbb8661b-650a-4d00-9c52-afca96bc8a84",
+      "name": "账单",
+      "url": "{{base_url}}/v1/cost/bill/list",
+      "description": null,
+      "data": [
+        {
+          "key": "houseId",
+          "value": "",
+          "type": "text"
+        },
+        {
+          "key": "isComplete",
+          "value": "",
+          "description": "int 类型",
+          "type": "text"
+        },
+        {
+          "key": "current",
+          "value": "",
+          "description": "int类型",
+          "type": "text"
+        }
+      ],
+      "dataOptions": null,
+      "dataMode": "urlencoded",
+      "headerData": [
+        {
+          "key": "Content-Type",
+          "name": "Content-Type",
+          "value": "application/x-www-form-urlencoded",
+          "type": "text"
+        },
+        {
+          "key": "Authorization",
+          "value": "bearer 43f456c7-f480-4fea-bf86-d2e80d418e15",
+          "type": "text"
+        },
+        {
+          "key": "imei",
+          "value": "123",
+          "type": "text"
+        }
+      ],
+      "method": "POST",
+      "pathVariableData": [],
+      "queryParams": [],
+      "auth": null,
+      "events": null,
+      "folder": null,
+      "headers": "Content-Type: application/x-www-form-urlencoded\nAuthorization: bearer 43f456c7-f480-4fea-bf86-d2e80d418e15\nimei: 123\n",
+      "pathVariables": {}
+    },
+    {
+      "id": "ce0ea191-6ca0-4644-99bb-75133c1f3929",
+      "name": "登录",
+      "url": "{{base_url}}/v1/authentication/login",
+      "description": null,
+      "data": [
+        {
+          "key": "password",
+          "value": "e10adc3949ba59abbe56e057f20f883e",
+          "type": "text"
+        },
+        {
+          "key": "grant_type",
+          "value": "password",
+          "type": "text"
+        },
+        {
+          "key": "username",
+          "value": "15022228888",
+          "type": "text"
+        }
+      ],
+      "dataOptions": null,
+      "dataMode": "urlencoded",
+      "headerData": [
+        {
+          "key": "Authorization",
+          "value": "Basic YW5kcm9pZDokMmEkMTAkdUMuVGRFMW5qT09xcWtveXI3M1QzT2tKcGNiQVJiczFJMUtkMGU0c3FOSUNKMGsyVFhlaVc="
+        },
+        {
+          "key": "imei",
+          "value": "123"
+        },
+        {
+          "key": "Content-Type",
+          "name": "Content-Type",
+          "value": "application/x-www-form-urlencoded",
+          "type": "text"
+        }
+      ],
+      "method": "POST",
+      "pathVariableData": [],
+      "queryParams": [],
+      "auth": null,
+      "events": null,
+      "folder": null,
+      "headers": "Authorization: Basic YW5kcm9pZDokMmEkMTAkdUMuVGRFMW5qT09xcWtveXI3M1QzT2tKcGNiQVJiczFJMUtkMGU0c3FOSUNKMGsyVFhlaVc=\nimei: 123\nContent-Type: application/x-www-form-urlencoded\n",
+      "pathVariables": {}
+    },
+    {
+      "id": "d5c476f3-29d0-4f80-8448-9af795b19ba4",
+      "name": "短信",
+      "url": "{{base_url}}/v1/code/sms",
+      "description": null,
+      "data": [
+        {
+          "key": "mobile",
+          "value": "15022228888",
+          "type": "text"
+        }
+      ],
+      "dataOptions": null,
+      "dataMode": "urlencoded",
+      "headerData": [
+        {
+          "key": "deviceId",
+          "value": "15022228888",
+          "type": "text"
+        },
+        {
+          "key": "Content-Type",
+          "name": "Content-Type",
+          "value": "application/x-www-form-urlencoded",
+          "type": "text"
+        }
+      ],
+      "method": "GET",
+      "pathVariableData": [],
+      "queryParams": [],
+      "auth": null,
+      "events": null,
+      "folder": null,
+      "protocolProfileBehavior": {
+        "disableBodyPruning": true
+      },
+      "headers": "deviceId: 15022228888\nContent-Type: application/x-www-form-urlencoded\n",
+      "pathVariables": {}
+    },
+    {
+      "id": "e137c5db-7da4-44f0-a2b2-313e79bef837",
+      "name": "账单详情",
+      "url": "{{base_url}}/v1/cost/bill/detail",
+      "description": null,
+      "data": [
+        {
+          "key": "houseId",
+          "value": "",
+          "type": "text"
+        },
+        {
+          "key": "month",
+          "value": "",
+          "type": "text"
+        }
+      ],
+      "dataOptions": null,
+      "dataMode": "urlencoded",
+      "headerData": [
+        {
+          "key": "Content-Type",
+          "name": "Content-Type",
+          "value": "application/x-www-form-urlencoded",
+          "type": "text"
+        },
+        {
+          "key": "Authorization",
+          "value": "bearer 43f456c7-f480-4fea-bf86-d2e80d418e15",
+          "type": "text"
+        },
+        {
+          "key": "imei",
+          "value": "123",
+          "type": "text"
+        }
+      ],
+      "method": "POST",
+      "pathVariableData": [],
+      "queryParams": [],
+      "auth": null,
+      "events": null,
+      "folder": null,
+      "headers": "Content-Type: application/x-www-form-urlencoded\nAuthorization: bearer 43f456c7-f480-4fea-bf86-d2e80d418e15\nimei: 123\n",
+      "pathVariables": {}
+    },
+    {
+      "id": "ec8dbf97-f5e3-4c6f-8d29-680eee6b7bce",
+      "name": "重置密码收到的验证码",
+      "url": "{{base_url}}/v1/appUser/resetUserPwdSendSms",
+      "description": null,
+      "data": [
+        {
+          "key": "phone",
+          "value": "",
+          "type": "text"
+        }
+      ],
+      "dataOptions": null,
+      "dataMode": "urlencoded",
+      "headerData": [
+        {
+          "key": "Content-Type",
+          "name": "Content-Type",
+          "type": "text",
+          "value": "application/x-www-form-urlencoded"
+        },
+        {
+          "key": "Authorization",
+          "type": "text",
+          "value": "bearer 43f456c7-f480-4fea-bf86-d2e80d418e15"
+        },
+        {
+          "key": "imei",
+          "type": "text",
+          "value": "123"
+        }
+      ],
+      "method": "GET",
+      "pathVariableData": [],
+      "queryParams": [],
+      "auth": null,
+      "events": null,
+      "folder": null,
+      "protocolProfileBehavior": {
+        "disableBodyPruning": true
+      },
+      "headers": "Content-Type: application/x-www-form-urlencoded\nAuthorization: bearer 43f456c7-f480-4fea-bf86-d2e80d418e15\nimei: 123\n",
+      "pathVariables": {}
+    },
+    {
+      "id": "ecce267c-dd2a-4da7-aca9-4924e562774f",
+      "name": "文件上传",
+      "url": "{{base_url}}/v1/file/upload",
+      "description": null,
+      "data": null,
+      "dataOptions": null,
+      "dataMode": null,
+      "headerData": [],
+      "method": "POST",
+      "pathVariableData": [],
+      "queryParams": [],
+      "auth": null,
+      "events": null,
+      "folder": null,
+      "headers": "",
+      "pathVariables": {}
+    },
+    {
+      "id": "ed3eec25-39f9-4d12-9bab-5825ed3dae5e",
+      "name": "更新密码",
+      "url": "{{base_url}}/v1/appUser/updateNewPwd",
+      "description": null,
+      "data": [
+        {
+          "key": "smsCode",
+          "value": "",
+          "type": "text"
+        },
+        {
+          "key": "pwd",
+          "value": "",
+          "type": "text"
+        }
+      ],
+      "dataOptions": null,
+      "dataMode": "urlencoded",
+      "headerData": [
+        {
+          "key": "Content-Type",
+          "name": "Content-Type",
+          "value": "application/x-www-form-urlencoded",
+          "type": "text"
+        },
+        {
+          "key": "Authorization",
+          "value": "bearer 43f456c7-f480-4fea-bf86-d2e80d418e15",
+          "type": "text"
+        },
+        {
+          "key": "imei",
+          "value": "123",
+          "type": "text"
+        },
+        {
+          "key": "deviceId",
+          "value": "",
+          "type": "text"
+        }
+      ],
+      "method": "POST",
+      "pathVariableData": [],
+      "queryParams": [],
+      "auth": null,
+      "events": null,
+      "folder": null,
+      "headers": "Content-Type: application/x-www-form-urlencoded\nAuthorization: bearer 43f456c7-f480-4fea-bf86-d2e80d418e15\nimei: 123\ndeviceId: \n",
+      "pathVariables": {}
+    },
+    {
+      "id": "edfb6fa5-9444-4e54-b3a1-320de293fa3a",
+      "name": "添加房屋成员",
+      "url": "{{base_url}}/v1/houseUser/addUser",
+      "description": null,
+      "data": [
+        {
+          "key": "houseID",
+          "value": "",
+          "type": "text"
+        },
+        {
+          "key": "userName",
+          "value": "",
+          "type": "text"
+        },
+        {
+          "key": "userAccount",
+          "value": "",
+          "type": "text"
+        },
+        {
+          "key": "ownerType",
+          "value": "",
+          "type": "text"
+        },
+        {
+          "key": "resetCode",
+          "value": "",
+          "type": "text"
+        }
+      ],
+      "dataOptions": null,
+      "dataMode": "urlencoded",
+      "headerData": [
+        {
+          "key": "Content-Type",
+          "name": "Content-Type",
+          "value": "application/x-www-form-urlencoded",
+          "type": "text"
+        },
+        {
+          "key": "Authorization",
+          "value": "bearer 43f456c7-f480-4fea-bf86-d2e80d418e15",
+          "type": "text"
+        },
+        {
+          "key": "imei",
+          "value": "123",
+          "type": "text"
+        }
+      ],
+      "method": "POST",
+      "pathVariableData": [],
+      "queryParams": [],
+      "auth": null,
+      "events": null,
+      "folder": null,
+      "headers": "Content-Type: application/x-www-form-urlencoded\nAuthorization: bearer 43f456c7-f480-4fea-bf86-d2e80d418e15\nimei: 123\n",
+      "pathVariables": {}
+    },
+    {
+      "id": "f7c454a9-21cd-4be4-b91d-f63087625f5d",
+      "name": "邻里列表删除",
+      "url": "{{base_url}}/v1/near/message/delete",
+      "description": null,
+      "data": [
+        {
+          "key": "uid",
+          "value": "",
+          "type": "text"
+        }
+      ],
+      "dataOptions": null,
+      "dataMode": "urlencoded",
+      "headerData": [
+        {
+          "key": "Content-Type",
+          "name": "Content-Type",
+          "type": "text",
+          "value": "application/x-www-form-urlencoded"
+        },
+        {
+          "key": "Authorization",
+          "type": "text",
+          "value": "bearer 43f456c7-f480-4fea-bf86-d2e80d418e15"
+        },
+        {
+          "key": "imei",
+          "type": "text",
+          "value": "123"
+        }
+      ],
+      "method": "POST",
+      "pathVariableData": [],
+      "queryParams": [],
+      "auth": null,
+      "events": null,
+      "folder": null,
+      "headers": "Content-Type: application/x-www-form-urlencoded\nAuthorization: bearer 43f456c7-f480-4fea-bf86-d2e80d418e15\nimei: 123\n",
+      "pathVariables": {}
+    }
+  ]
+}

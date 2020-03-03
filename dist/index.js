@@ -148,11 +148,12 @@ const AST2API = (_json, config) => {
         )
         .then(res => {
           ${config.dev ? addSuccessTips(httpName) : ""}
-          resolve(res)
+          resolve([res, null])
         })
         .catch(err => {
           ${config.dev ? addErrorTips(httpName) : ""}
-          reject(err)
+          console.log(new Error())
+          reject([null, err])
         })
       })
     }

@@ -19,6 +19,17 @@ const addSuccessTips = name =>
 const addHeader = name => `
   // ${name} 项目 API代码
   import qs from 'qs'
+
+    function deepObjectMerge(FirstOBJ, SecondOBJ) {
+        // 深度合并对象
+        for (var key in SecondOBJ) {
+            FirstOBJ[key] =
+                FirstOBJ[key] && FirstOBJ[key].toString() === '[object Object]'
+                    ? deepObjectMerge(FirstOBJ[key], SecondOBJ[key])
+                    : (FirstOBJ[key] = SecondOBJ[key])
+        }
+        return FirstOBJ
+    }
   `;
 
 const addAjaxLib = config => {
@@ -33,13 +44,22 @@ const addAjaxLib = config => {
   `;
 };
 
-const getParams = data =>
-  data.data
+const getParams = data => {
+  if (data.dataMode === "raw" && data.rawModeData) {
+    const list = Object.keys(JSON.parse(data.rawModeData)).map(item => ({
+      key: item
+    }));
+    return list;
+  }
+  return data.data
     ? data.data.concat(data.queryParams || [])
     : [].concat(data.queryParams || []);
+};
 
-const addParams = data =>
-  !data.length ? "" : `{ ${data.map(item => item.key).join(", ")} },`;
+const addParams = data => {
+  // console.log("datall", data);
+  return !data.length ? "" : `{ ${data.map(item => item.key).join(", ")} },`;
+};
 
 const addCutParams = status => (status ? `uid,` : "");
 
@@ -49,6 +69,7 @@ const isParamsNull = (data, name, status = false) => {
     list.push({ key: "uid" });
   }
   return list
+    .filter(item => !!item.enabled)
     .map(
       item => `if (!${item.key}) {
         throw Error('${name} 请求缺失参数 ${item.key}')
@@ -85,6 +106,10 @@ const handleUrl = (url, needCut = false) => {
 };
 
 const handleParams = (data, config) => {
+  if (config.method === "POST" && config.dataMode === "raw") {
+    // console.log("===", data instanceof Array);
+    return data.length ? `{ ${data.map(item => item.key).join(",")} }` : "{}";
+  }
   if (config.method === "GET") {
     return data.length
       ? `{ params: { ${data.map(item => item.key).join(",")} }}`
@@ -140,7 +165,7 @@ const AST2API = (_json, config) => {
         ${config.core.name}.${item.method.toLowerCase()}(
           ${handleUrl(item.url, needCut)},
           ${handleParams(myParams, item)},
-          Object.assign({
+          deepObjectMerge({
             headers: {
               ${handleHeaders(item.headerData, config.headers)}
             }

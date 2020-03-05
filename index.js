@@ -3,7 +3,7 @@
 const fs = require("fs");
 // const path = require("path");
 const commander = require("commander");
-const { AST2API } = require("./dist/index.js");
+const { JSON2API } = require("./dist/index.js");
 
 commander.version("1.0.0");
 
@@ -15,7 +15,7 @@ commander
     const config = require(`${process.cwd()}/mid.config.js`);
     // console.log(config);
     // const [funcList, importList] = md2AST(md);
-    const code = AST2API(json, config);
+    const code = JSON2API(json, config);
     fs.writeFileSync(`./${apiName}`, code);
   });
 

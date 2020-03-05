@@ -126,7 +126,7 @@ const handleHeaders = (data, config) => {
     : "";
 };
 
-const AST2API = (_json, config) => {
+const JSON2API = (_json, config) => {
   if (!config) {
     throw Error(`缺失配置文件`);
   }
@@ -145,6 +145,37 @@ const AST2API = (_json, config) => {
       const myParams = getParams(item);
       const needCut = config.slice ? config.slice.includes(item.id) : false;
       const httpName = `HTTP_${item.id.slice(-5)}`;
+      if (item.method === "GET") {
+        return `
+    export const ${httpName} = (${addParams(myParams)} ${addCutParams(
+          needCut
+        )} config = {}) => {
+      // ${item.name}   ${item.id}
+      ${isParamsNull(myParams, item.name, needCut)}
+      ${isHeaderParmasNull(item.name, item.headerData, config.headers)}
+      return new Promise((resolve, reject) => {
+        ${config.core.name}.${item.method.toLowerCase()}(
+          ${handleUrl(item.url, needCut)},
+          Object.assign(${handleParams(myParams, item)},
+          deepObjectMerge({
+            headers: {
+              ${handleHeaders(item.headerData, config.headers)}
+            }
+          }, config))
+        )
+        .then(res => {
+          ${config.dev ? addSuccessTips(httpName) : ""}
+          resolve([res, null])
+        })
+        .catch(err => {
+          ${config.dev ? addErrorTips(httpName) : ""}
+          console.log(new Error())
+          reject([null, err])
+        })
+      })
+    }
+    `;
+      }
       return `
     export const ${httpName} = (${addParams(myParams)} ${addCutParams(
         needCut
@@ -180,4 +211,4 @@ const AST2API = (_json, config) => {
   // return result;
   return prettier.format(result, { parser: "babel" });
 };
-export { AST2API };
+export { JSON2API };

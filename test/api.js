@@ -1,6 +1,17 @@
 // 招呼社区APP 项目 API代码
 import qs from "qs";
 
+function deepObjectMerge(FirstOBJ, SecondOBJ) {
+  // 深度合并对象
+  for (var key in SecondOBJ) {
+    FirstOBJ[key] =
+      FirstOBJ[key] && FirstOBJ[key].toString() === "[object Object]"
+        ? deepObjectMerge(FirstOBJ[key], SecondOBJ[key])
+        : (FirstOBJ[key] = SecondOBJ[key]);
+  }
+  return FirstOBJ;
+}
+
 import $axios from "../http";
 
 export const HTTP_e8354 = (
@@ -53,7 +64,7 @@ export const HTTP_e8354 = (
           userPhone,
           bookTime
         }),
-        Object.assign(
+        deepObjectMerge(
           {
             headers: {
               "Content-Type": "application/x-www-form-urlencoded"
@@ -69,7 +80,7 @@ export const HTTP_e8354 = (
           "",
           res
         );
-        resolve(res);
+        resolve([res, null]);
       })
       .catch(err => {
         console.log(
@@ -77,7 +88,8 @@ export const HTTP_e8354 = (
           "background-color: #a22041; color: #fff;padding:3px;box-sizing: border-box;border-radius: 3px;",
           ""
         );
-        reject(err);
+        console.log(new Error());
+        reject([null, err]);
       });
   });
 };
@@ -93,7 +105,7 @@ export const HTTP_d4370 = ({ uid }, config = {}) => {
       .post(
         "/v1/wy/detail",
         qs.stringify({ uid }),
-        Object.assign(
+        deepObjectMerge(
           {
             headers: {
               "Content-Type": "application/x-www-form-urlencoded"
@@ -109,7 +121,7 @@ export const HTTP_d4370 = ({ uid }, config = {}) => {
           "",
           res
         );
-        resolve(res);
+        resolve([res, null]);
       })
       .catch(err => {
         console.log(
@@ -117,7 +129,8 @@ export const HTTP_d4370 = ({ uid }, config = {}) => {
           "background-color: #a22041; color: #fff;padding:3px;box-sizing: border-box;border-radius: 3px;",
           ""
         );
-        reject(err);
+        console.log(new Error());
+        reject([null, err]);
       });
   });
 };
@@ -133,7 +146,7 @@ export const HTTP_14edf = ({ messageId }, config = {}) => {
       .post(
         "/v1/near/collect/delete",
         qs.stringify({ messageId }),
-        Object.assign(
+        deepObjectMerge(
           {
             headers: {
               "Content-Type": "application/x-www-form-urlencoded"
@@ -149,7 +162,7 @@ export const HTTP_14edf = ({ messageId }, config = {}) => {
           "",
           res
         );
-        resolve(res);
+        resolve([res, null]);
       })
       .catch(err => {
         console.log(
@@ -157,7 +170,8 @@ export const HTTP_14edf = ({ messageId }, config = {}) => {
           "background-color: #a22041; color: #fff;padding:3px;box-sizing: border-box;border-radius: 3px;",
           ""
         );
-        reject(err);
+        console.log(new Error());
+        reject([null, err]);
       });
   });
 };
@@ -176,7 +190,7 @@ export const HTTP_7c508 = ({ current, size }, config = {}) => {
       .post(
         "/v1/near/message/listByMyPraise",
         qs.stringify({ current, size }),
-        Object.assign(
+        deepObjectMerge(
           {
             headers: {
               "Content-Type": "application/x-www-form-urlencoded"
@@ -192,7 +206,7 @@ export const HTTP_7c508 = ({ current, size }, config = {}) => {
           "",
           res
         );
-        resolve(res);
+        resolve([res, null]);
       })
       .catch(err => {
         console.log(
@@ -200,7 +214,8 @@ export const HTTP_7c508 = ({ current, size }, config = {}) => {
           "background-color: #a22041; color: #fff;padding:3px;box-sizing: border-box;border-radius: 3px;",
           ""
         );
-        reject(err);
+        console.log(new Error());
+        reject([null, err]);
       });
   });
 };
@@ -219,7 +234,7 @@ export const HTTP_2ef25 = ({ current, size }, config = {}) => {
       .post(
         "/v1/near/message/listByMyComment",
         qs.stringify({ current, size }),
-        Object.assign(
+        deepObjectMerge(
           {
             headers: {
               "Content-Type": "application/x-www-form-urlencoded"
@@ -235,7 +250,7 @@ export const HTTP_2ef25 = ({ current, size }, config = {}) => {
           "",
           res
         );
-        resolve(res);
+        resolve([res, null]);
       })
       .catch(err => {
         console.log(
@@ -243,7 +258,8 @@ export const HTTP_2ef25 = ({ current, size }, config = {}) => {
           "background-color: #a22041; color: #fff;padding:3px;box-sizing: border-box;border-radius: 3px;",
           ""
         );
-        reject(err);
+        console.log(new Error());
+        reject([null, err]);
       });
   });
 };
@@ -258,12 +274,14 @@ export const HTTP_0eb1c = ({ uid }, config = {}) => {
     $axios
       .get(
         "/v1/near/message/get",
-        { params: { uid } },
         Object.assign(
-          {
-            headers: {}
-          },
-          config
+          { params: { uid } },
+          deepObjectMerge(
+            {
+              headers: {}
+            },
+            config
+          )
         )
       )
       .then(res => {
@@ -273,7 +291,7 @@ export const HTTP_0eb1c = ({ uid }, config = {}) => {
           "",
           res
         );
-        resolve(res);
+        resolve([res, null]);
       })
       .catch(err => {
         console.log(
@@ -281,22 +299,15 @@ export const HTTP_0eb1c = ({ uid }, config = {}) => {
           "background-color: #a22041; color: #fff;padding:3px;box-sizing: border-box;border-radius: 3px;",
           ""
         );
-        reject(err);
+        console.log(new Error());
+        reject([null, err]);
       });
   });
 };
 
 export const HTTP_6fcf8 = ({ status, pageNO, pageSize }, config = {}) => {
   // 反馈列表未读消息数   2a9c40b6-e14f-40cd-8200-a9dbb526fcf8
-  if (!status) {
-    throw Error("反馈列表未读消息数 请求缺失参数 status");
-  }
-  if (!pageNO) {
-    throw Error("反馈列表未读消息数 请求缺失参数 pageNO");
-  }
-  if (!pageSize) {
-    throw Error("反馈列表未读消息数 请求缺失参数 pageSize");
-  }
+
   if (!config.headers || !config.headers.imei) {
     throw Error("反馈列表未读消息数 缺失头请求参数 imei");
   }
@@ -304,14 +315,16 @@ export const HTTP_6fcf8 = ({ status, pageNO, pageSize }, config = {}) => {
     $axios
       .get(
         "/v1/feedback/getUnreadNum",
-        { params: { status, pageNO, pageSize } },
         Object.assign(
-          {
-            headers: {
-              "Content-Type": "application/x-www-form-urlencoded"
-            }
-          },
-          config
+          { params: { status, pageNO, pageSize } },
+          deepObjectMerge(
+            {
+              headers: {
+                "Content-Type": "application/x-www-form-urlencoded"
+              }
+            },
+            config
+          )
         )
       )
       .then(res => {
@@ -321,7 +334,7 @@ export const HTTP_6fcf8 = ({ status, pageNO, pageSize }, config = {}) => {
           "",
           res
         );
-        resolve(res);
+        resolve([res, null]);
       })
       .catch(err => {
         console.log(
@@ -329,7 +342,8 @@ export const HTTP_6fcf8 = ({ status, pageNO, pageSize }, config = {}) => {
           "background-color: #a22041; color: #fff;padding:3px;box-sizing: border-box;border-radius: 3px;",
           ""
         );
-        reject(err);
+        console.log(new Error());
+        reject([null, err]);
       });
   });
 };
@@ -348,7 +362,7 @@ export const HTTP_7def2 = ({ houseId, month }, config = {}) => {
       .post(
         "/v1/cost/bill/detail",
         { houseId, month },
-        Object.assign(
+        deepObjectMerge(
           {
             headers: {}
           },
@@ -362,7 +376,7 @@ export const HTTP_7def2 = ({ houseId, month }, config = {}) => {
           "",
           res
         );
-        resolve(res);
+        resolve([res, null]);
       })
       .catch(err => {
         console.log(
@@ -370,12 +384,25 @@ export const HTTP_7def2 = ({ houseId, month }, config = {}) => {
           "background-color: #a22041; color: #fff;padding:3px;box-sizing: border-box;border-radius: 3px;",
           ""
         );
-        reject(err);
+        console.log(new Error());
+        reject([null, err]);
       });
   });
 };
 
-export const HTTP_e565c = (config = {}) => {
+export const HTTP_e565c = (
+  {
+    houseId,
+    invoiceType,
+    invoiceName,
+    invoiceTaxNumber,
+    invoiceAddress,
+    invoiceTel,
+    invoiceBankName,
+    invoiceBankNumber
+  },
+  config = {}
+) => {
   // 添加发票信息   3a46a395-4956-483b-a09b-0a240fae565c
 
   if (!config.headers || !config.headers.imei) {
@@ -385,8 +412,17 @@ export const HTTP_e565c = (config = {}) => {
     $axios
       .post(
         "/v1/house/invoice/add",
-        null,
-        Object.assign(
+        {
+          houseId,
+          invoiceType,
+          invoiceName,
+          invoiceTaxNumber,
+          invoiceAddress,
+          invoiceTel,
+          invoiceBankName,
+          invoiceBankNumber
+        },
+        deepObjectMerge(
           {
             headers: {
               "Content-Type": "application/json"
@@ -402,7 +438,7 @@ export const HTTP_e565c = (config = {}) => {
           "",
           res
         );
-        resolve(res);
+        resolve([res, null]);
       })
       .catch(err => {
         console.log(
@@ -410,20 +446,21 @@ export const HTTP_e565c = (config = {}) => {
           "background-color: #a22041; color: #fff;padding:3px;box-sizing: border-box;border-radius: 3px;",
           ""
         );
-        reject(err);
+        console.log(new Error());
+        reject([null, err]);
       });
   });
 };
 
-export const HTTP_bca0c = (config = {}) => {
+export const HTTP_bca0c = ({ content, messageId }, config = {}) => {
   // 邻里-消息-发布评论   3b2c8b29-961b-4e4d-8c4d-2e43e2dbca0c
 
   return new Promise((resolve, reject) => {
     $axios
       .post(
         "/v1/near/comment/save",
-        null,
-        Object.assign(
+        { content, messageId },
+        deepObjectMerge(
           {
             headers: {
               "Content-Type": "application/json"
@@ -439,7 +476,7 @@ export const HTTP_bca0c = (config = {}) => {
           "",
           res
         );
-        resolve(res);
+        resolve([res, null]);
       })
       .catch(err => {
         console.log(
@@ -447,7 +484,8 @@ export const HTTP_bca0c = (config = {}) => {
           "background-color: #a22041; color: #fff;padding:3px;box-sizing: border-box;border-radius: 3px;",
           ""
         );
-        reject(err);
+        console.log(new Error());
+        reject([null, err]);
       });
   });
 };
@@ -466,7 +504,7 @@ export const HTTP_97f84 = (config = {}) => {
       .post(
         "/v1/appUser/me",
         null,
-        Object.assign(
+        deepObjectMerge(
           {
             headers: {
               "Content-Type": "application/x-www-form-urlencoded"
@@ -482,7 +520,7 @@ export const HTTP_97f84 = (config = {}) => {
           "",
           res
         );
-        resolve(res);
+        resolve([res, null]);
       })
       .catch(err => {
         console.log(
@@ -490,7 +528,8 @@ export const HTTP_97f84 = (config = {}) => {
           "background-color: #a22041; color: #fff;padding:3px;box-sizing: border-box;border-radius: 3px;",
           ""
         );
-        reject(err);
+        console.log(new Error());
+        reject([null, err]);
       });
   });
 };
@@ -512,7 +551,7 @@ export const HTTP_506fc = ({ houseId, isComplete, current }, config = {}) => {
       .post(
         "/v1/cost/bill/list",
         { houseId, isComplete, current },
-        Object.assign(
+        deepObjectMerge(
           {
             headers: {}
           },
@@ -526,7 +565,7 @@ export const HTTP_506fc = ({ houseId, isComplete, current }, config = {}) => {
           "",
           res
         );
-        resolve(res);
+        resolve([res, null]);
       })
       .catch(err => {
         console.log(
@@ -534,7 +573,8 @@ export const HTTP_506fc = ({ houseId, isComplete, current }, config = {}) => {
           "background-color: #a22041; color: #fff;padding:3px;box-sizing: border-box;border-radius: 3px;",
           ""
         );
-        reject(err);
+        console.log(new Error());
+        reject([null, err]);
       });
   });
 };
@@ -562,7 +602,7 @@ export const HTTP_98dd2 = (
       .post(
         "/v1/cost/bill/createOrder",
         { houseId, month, payType, device },
-        Object.assign(
+        deepObjectMerge(
           {
             headers: {}
           },
@@ -576,7 +616,7 @@ export const HTTP_98dd2 = (
           "",
           res
         );
-        resolve(res);
+        resolve([res, null]);
       })
       .catch(err => {
         console.log(
@@ -584,7 +624,8 @@ export const HTTP_98dd2 = (
           "background-color: #a22041; color: #fff;padding:3px;box-sizing: border-box;border-radius: 3px;",
           ""
         );
-        reject(err);
+        console.log(new Error());
+        reject([null, err]);
       });
   });
 };
@@ -604,14 +645,16 @@ export const HTTP_3486b = ({ xqId, houseId }, config = {}) => {
     $axios
       .get(
         "/v1/notification/num",
-        { params: { xqId, houseId } },
         Object.assign(
-          {
-            headers: {
-              "Content-Type": "application/x-www-form-urlencoded"
-            }
-          },
-          config
+          { params: { xqId, houseId } },
+          deepObjectMerge(
+            {
+              headers: {
+                "Content-Type": "application/x-www-form-urlencoded"
+              }
+            },
+            config
+          )
         )
       )
       .then(res => {
@@ -621,7 +664,7 @@ export const HTTP_3486b = ({ xqId, houseId }, config = {}) => {
           "",
           res
         );
-        resolve(res);
+        resolve([res, null]);
       })
       .catch(err => {
         console.log(
@@ -629,22 +672,15 @@ export const HTTP_3486b = ({ xqId, houseId }, config = {}) => {
           "background-color: #a22041; color: #fff;padding:3px;box-sizing: border-box;border-radius: 3px;",
           ""
         );
-        reject(err);
+        console.log(new Error());
+        reject([null, err]);
       });
   });
 };
 
 export const HTTP_eff33 = ({ status, pageNO, pageSize }, config = {}) => {
   // 我的房屋信息   4934c523-96c7-41b0-9d21-09bb94eeff33
-  if (!status) {
-    throw Error("我的房屋信息 请求缺失参数 status");
-  }
-  if (!pageNO) {
-    throw Error("我的房屋信息 请求缺失参数 pageNO");
-  }
-  if (!pageSize) {
-    throw Error("我的房屋信息 请求缺失参数 pageSize");
-  }
+
   if (!config.headers || !config.headers.imei) {
     throw Error("我的房屋信息 缺失头请求参数 imei");
   }
@@ -653,7 +689,7 @@ export const HTTP_eff33 = ({ status, pageNO, pageSize }, config = {}) => {
       .post(
         "/v1/houseUser/getMyHouse",
         qs.stringify({ status, pageNO, pageSize }),
-        Object.assign(
+        deepObjectMerge(
           {
             headers: {
               "Content-Type": "application/x-www-form-urlencoded"
@@ -669,7 +705,7 @@ export const HTTP_eff33 = ({ status, pageNO, pageSize }, config = {}) => {
           "",
           res
         );
-        resolve(res);
+        resolve([res, null]);
       })
       .catch(err => {
         console.log(
@@ -677,16 +713,15 @@ export const HTTP_eff33 = ({ status, pageNO, pageSize }, config = {}) => {
           "background-color: #a22041; color: #fff;padding:3px;box-sizing: border-box;border-radius: 3px;",
           ""
         );
-        reject(err);
+        console.log(new Error());
+        reject([null, err]);
       });
   });
 };
 
 export const HTTP_7690e = (uid, config = {}) => {
   // 删除发票接口   51f184f4-0236-45c5-b543-46ae64d7690e
-  if (!uid) {
-    throw Error("删除发票接口 请求缺失参数 uid");
-  }
+
   if (!config.headers || !config.headers.imei) {
     throw Error("删除发票接口 缺失头请求参数 imei");
   }
@@ -695,7 +730,7 @@ export const HTTP_7690e = (uid, config = {}) => {
       .post(
         `/v1/house/invoice/delete/${uid}`,
         null,
-        Object.assign(
+        deepObjectMerge(
           {
             headers: {
               "Content-Type": "application/json"
@@ -711,7 +746,7 @@ export const HTTP_7690e = (uid, config = {}) => {
           "",
           res
         );
-        resolve(res);
+        resolve([res, null]);
       })
       .catch(err => {
         console.log(
@@ -719,7 +754,8 @@ export const HTTP_7690e = (uid, config = {}) => {
           "background-color: #a22041; color: #fff;padding:3px;box-sizing: border-box;border-radius: 3px;",
           ""
         );
-        reject(err);
+        console.log(new Error());
+        reject([null, err]);
       });
   });
 };
@@ -736,14 +772,16 @@ export const HTTP_6c5ac = ({ xqId }, config = {}) => {
     $axios
       .get(
         "/v1/index/datas",
-        { params: { xqId } },
         Object.assign(
-          {
-            headers: {
-              "Content-Type": "application/x-www-form-urlencoded"
-            }
-          },
-          config
+          { params: { xqId } },
+          deepObjectMerge(
+            {
+              headers: {
+                "Content-Type": "application/x-www-form-urlencoded"
+              }
+            },
+            config
+          )
         )
       )
       .then(res => {
@@ -753,7 +791,7 @@ export const HTTP_6c5ac = ({ xqId }, config = {}) => {
           "",
           res
         );
-        resolve(res);
+        resolve([res, null]);
       })
       .catch(err => {
         console.log(
@@ -761,12 +799,26 @@ export const HTTP_6c5ac = ({ xqId }, config = {}) => {
           "background-color: #a22041; color: #fff;padding:3px;box-sizing: border-box;border-radius: 3px;",
           ""
         );
-        reject(err);
+        console.log(new Error());
+        reject([null, err]);
       });
   });
 };
 
-export const HTTP_0cd3c = (config = {}) => {
+export const HTTP_0cd3c = (
+  {
+    uid,
+    houseId,
+    invoiceType,
+    invoiceName,
+    invoiceTaxNumber,
+    invoiceAddress,
+    invoiceTel,
+    invoiceBankName,
+    invoiceBankNumber
+  },
+  config = {}
+) => {
   // 编辑发票信息   56567e3a-f912-4144-817a-cb9d7880cd3c
 
   if (!config.headers || !config.headers.imei) {
@@ -776,8 +828,18 @@ export const HTTP_0cd3c = (config = {}) => {
     $axios
       .post(
         "/v1/house/invoice/edit",
-        null,
-        Object.assign(
+        {
+          uid,
+          houseId,
+          invoiceType,
+          invoiceName,
+          invoiceTaxNumber,
+          invoiceAddress,
+          invoiceTel,
+          invoiceBankName,
+          invoiceBankNumber
+        },
+        deepObjectMerge(
           {
             headers: {
               "Content-Type": "application/json"
@@ -793,7 +855,7 @@ export const HTTP_0cd3c = (config = {}) => {
           "",
           res
         );
-        resolve(res);
+        resolve([res, null]);
       })
       .catch(err => {
         console.log(
@@ -801,7 +863,8 @@ export const HTTP_0cd3c = (config = {}) => {
           "background-color: #a22041; color: #fff;padding:3px;box-sizing: border-box;border-radius: 3px;",
           ""
         );
-        reject(err);
+        console.log(new Error());
+        reject([null, err]);
       });
   });
 };
@@ -820,7 +883,7 @@ export const HTTP_054d3 = ({ current, size }, config = {}) => {
       .post(
         "/v1/near/message/listByMyCollect",
         qs.stringify({ current, size }),
-        Object.assign(
+        deepObjectMerge(
           {
             headers: {
               "Content-Type": "application/x-www-form-urlencoded"
@@ -836,7 +899,7 @@ export const HTTP_054d3 = ({ current, size }, config = {}) => {
           "",
           res
         );
-        resolve(res);
+        resolve([res, null]);
       })
       .catch(err => {
         console.log(
@@ -844,7 +907,8 @@ export const HTTP_054d3 = ({ current, size }, config = {}) => {
           "background-color: #a22041; color: #fff;padding:3px;box-sizing: border-box;border-radius: 3px;",
           ""
         );
-        reject(err);
+        console.log(new Error());
+        reject([null, err]);
       });
   });
 };
@@ -859,14 +923,16 @@ export const HTTP_77d53 = (config = {}) => {
     $axios
       .get(
         "/v1/repair/getUnreadNum",
-        {},
         Object.assign(
-          {
-            headers: {
-              "Content-Type": "application/x-www-form-urlencoded"
-            }
-          },
-          config
+          {},
+          deepObjectMerge(
+            {
+              headers: {
+                "Content-Type": "application/x-www-form-urlencoded"
+              }
+            },
+            config
+          )
         )
       )
       .then(res => {
@@ -876,7 +942,7 @@ export const HTTP_77d53 = (config = {}) => {
           "",
           res
         );
-        resolve(res);
+        resolve([res, null]);
       })
       .catch(err => {
         console.log(
@@ -884,7 +950,8 @@ export const HTTP_77d53 = (config = {}) => {
           "background-color: #a22041; color: #fff;padding:3px;box-sizing: border-box;border-radius: 3px;",
           ""
         );
-        reject(err);
+        console.log(new Error());
+        reject([null, err]);
       });
   });
 };
@@ -901,14 +968,16 @@ export const HTTP_20509 = ({ mobile }, config = {}) => {
     $axios
       .get(
         "/v1/code/sms",
-        { params: { mobile } },
         Object.assign(
-          {
-            headers: {
-              "Content-Type": "application/x-www-form-urlencoded"
-            }
-          },
-          config
+          { params: { mobile } },
+          deepObjectMerge(
+            {
+              headers: {
+                "Content-Type": "application/x-www-form-urlencoded"
+              }
+            },
+            config
+          )
         )
       )
       .then(res => {
@@ -918,7 +987,7 @@ export const HTTP_20509 = ({ mobile }, config = {}) => {
           "",
           res
         );
-        resolve(res);
+        resolve([res, null]);
       })
       .catch(err => {
         console.log(
@@ -926,7 +995,8 @@ export const HTTP_20509 = ({ mobile }, config = {}) => {
           "background-color: #a22041; color: #fff;padding:3px;box-sizing: border-box;border-radius: 3px;",
           ""
         );
-        reject(err);
+        console.log(new Error());
+        reject([null, err]);
       });
   });
 };
@@ -942,7 +1012,7 @@ export const HTTP_07c80 = (config = {}) => {
       .post(
         "/v1/xq/noticeList",
         null,
-        Object.assign(
+        deepObjectMerge(
           {
             headers: {
               "Content-Type": "application/x-www-form-urlencoded"
@@ -958,7 +1028,7 @@ export const HTTP_07c80 = (config = {}) => {
           "",
           res
         );
-        resolve(res);
+        resolve([res, null]);
       })
       .catch(err => {
         console.log(
@@ -966,7 +1036,8 @@ export const HTTP_07c80 = (config = {}) => {
           "background-color: #a22041; color: #fff;padding:3px;box-sizing: border-box;border-radius: 3px;",
           ""
         );
-        reject(err);
+        console.log(new Error());
+        reject([null, err]);
       });
   });
 };
@@ -988,7 +1059,7 @@ export const HTTP_c18a3 = ({ current, size, userId }, config = {}) => {
       .post(
         "/v1/near/message/listByUserId",
         { current, size, userId },
-        Object.assign(
+        deepObjectMerge(
           {
             headers: {
               "Content-Type": "application/x-www-form-urlencoded"
@@ -1004,7 +1075,7 @@ export const HTTP_c18a3 = ({ current, size, userId }, config = {}) => {
           "",
           res
         );
-        resolve(res);
+        resolve([res, null]);
       })
       .catch(err => {
         console.log(
@@ -1012,7 +1083,8 @@ export const HTTP_c18a3 = ({ current, size, userId }, config = {}) => {
           "background-color: #a22041; color: #fff;padding:3px;box-sizing: border-box;border-radius: 3px;",
           ""
         );
-        reject(err);
+        console.log(new Error());
+        reject([null, err]);
       });
   });
 };
@@ -1044,7 +1116,7 @@ export const HTTP_7e8d8 = (
       .post(
         "10.71.1.36:8084/v1/cost/bill/createOrder",
         { houseId, month, payType, device },
-        Object.assign(
+        deepObjectMerge(
           {
             headers: {}
           },
@@ -1058,7 +1130,7 @@ export const HTTP_7e8d8 = (
           "",
           res
         );
-        resolve(res);
+        resolve([res, null]);
       })
       .catch(err => {
         console.log(
@@ -1066,7 +1138,8 @@ export const HTTP_7e8d8 = (
           "background-color: #a22041; color: #fff;padding:3px;box-sizing: border-box;border-radius: 3px;",
           ""
         );
-        reject(err);
+        console.log(new Error());
+        reject([null, err]);
       });
   });
 };
@@ -1084,7 +1157,7 @@ export const HTTP_00bbf = ({ uid }, config = {}) => {
       .post(
         "/v1/xq/noticeDetail",
         qs.stringify({ uid }),
-        Object.assign(
+        deepObjectMerge(
           {
             headers: {
               "Content-Type": "application/x-www-form-urlencoded"
@@ -1100,7 +1173,7 @@ export const HTTP_00bbf = ({ uid }, config = {}) => {
           "",
           res
         );
-        resolve(res);
+        resolve([res, null]);
       })
       .catch(err => {
         console.log(
@@ -1108,7 +1181,8 @@ export const HTTP_00bbf = ({ uid }, config = {}) => {
           "background-color: #a22041; color: #fff;padding:3px;box-sizing: border-box;border-radius: 3px;",
           ""
         );
-        reject(err);
+        console.log(new Error());
+        reject([null, err]);
       });
   });
 };
@@ -1124,20 +1198,19 @@ export const HTTP_84190 = ({ current, size, xqId, typeKey }, config = {}) => {
   if (!xqId) {
     throw Error("邻里-消息-列表 请求缺失参数 xqId");
   }
-  if (!typeKey) {
-    throw Error("邻里-消息-列表 请求缺失参数 typeKey");
-  }
 
   return new Promise((resolve, reject) => {
     $axios
       .get(
         "/v1/near/message/list",
-        { params: { current, size, xqId, typeKey } },
         Object.assign(
-          {
-            headers: {}
-          },
-          config
+          { params: { current, size, xqId, typeKey } },
+          deepObjectMerge(
+            {
+              headers: {}
+            },
+            config
+          )
         )
       )
       .then(res => {
@@ -1147,7 +1220,7 @@ export const HTTP_84190 = ({ current, size, xqId, typeKey }, config = {}) => {
           "",
           res
         );
-        resolve(res);
+        resolve([res, null]);
       })
       .catch(err => {
         console.log(
@@ -1155,7 +1228,8 @@ export const HTTP_84190 = ({ current, size, xqId, typeKey }, config = {}) => {
           "background-color: #a22041; color: #fff;padding:3px;box-sizing: border-box;border-radius: 3px;",
           ""
         );
-        reject(err);
+        console.log(new Error());
+        reject([null, err]);
       });
   });
 };
@@ -1174,7 +1248,7 @@ export const HTTP_1d69c = ({ mainId, type }, config = {}) => {
       .post(
         "/v1/near/praise/save",
         qs.stringify({ mainId, type }),
-        Object.assign(
+        deepObjectMerge(
           {
             headers: {
               "Content-Type": "application/x-www-form-urlencoded"
@@ -1190,7 +1264,7 @@ export const HTTP_1d69c = ({ mainId, type }, config = {}) => {
           "",
           res
         );
-        resolve(res);
+        resolve([res, null]);
       })
       .catch(err => {
         console.log(
@@ -1198,7 +1272,8 @@ export const HTTP_1d69c = ({ mainId, type }, config = {}) => {
           "background-color: #a22041; color: #fff;padding:3px;box-sizing: border-box;border-radius: 3px;",
           ""
         );
-        reject(err);
+        console.log(new Error());
+        reject([null, err]);
       });
   });
 };
@@ -1217,7 +1292,7 @@ export const HTTP_1d765 = ({ houseId, current }, config = {}) => {
       .post(
         "/v1/cost/bill/listYear",
         { houseId, current },
-        Object.assign(
+        deepObjectMerge(
           {
             headers: {}
           },
@@ -1231,7 +1306,7 @@ export const HTTP_1d765 = ({ houseId, current }, config = {}) => {
           "",
           res
         );
-        resolve(res);
+        resolve([res, null]);
       })
       .catch(err => {
         console.log(
@@ -1239,7 +1314,8 @@ export const HTTP_1d765 = ({ houseId, current }, config = {}) => {
           "background-color: #a22041; color: #fff;padding:3px;box-sizing: border-box;border-radius: 3px;",
           ""
         );
-        reject(err);
+        console.log(new Error());
+        reject([null, err]);
       });
   });
 };
@@ -1259,14 +1335,16 @@ export const HTTP_b7f35 = ({ startTime, endTime }, config = {}) => {
     $axios
       .get(
         "/v1/house/acceptance/page",
-        { params: { startTime, endTime } },
         Object.assign(
-          {
-            headers: {
-              "Content-Type": "application/x-www-form-urlencoded"
-            }
-          },
-          config
+          { params: { startTime, endTime } },
+          deepObjectMerge(
+            {
+              headers: {
+                "Content-Type": "application/x-www-form-urlencoded"
+              }
+            },
+            config
+          )
         )
       )
       .then(res => {
@@ -1276,7 +1354,7 @@ export const HTTP_b7f35 = ({ startTime, endTime }, config = {}) => {
           "",
           res
         );
-        resolve(res);
+        resolve([res, null]);
       })
       .catch(err => {
         console.log(
@@ -1284,12 +1362,13 @@ export const HTTP_b7f35 = ({ startTime, endTime }, config = {}) => {
           "background-color: #a22041; color: #fff;padding:3px;box-sizing: border-box;border-radius: 3px;",
           ""
         );
-        reject(err);
+        console.log(new Error());
+        reject([null, err]);
       });
   });
 };
 
-export const HTTP_3b55b = (config = {}) => {
+export const HTTP_3b55b = ({ content, type }, config = {}) => {
   // 业主端-反馈-提交反馈   84ed1ea5-c6f0-4096-a415-4c151803b55b
 
   if (!config.headers || !config.headers.imei) {
@@ -1299,8 +1378,8 @@ export const HTTP_3b55b = (config = {}) => {
     $axios
       .post(
         "/v1/feedback/save",
-        null,
-        Object.assign(
+        { content, type },
+        deepObjectMerge(
           {
             headers: {
               "Content-Type": "application/json"
@@ -1316,7 +1395,7 @@ export const HTTP_3b55b = (config = {}) => {
           "",
           res
         );
-        resolve(res);
+        resolve([res, null]);
       })
       .catch(err => {
         console.log(
@@ -1324,12 +1403,13 @@ export const HTTP_3b55b = (config = {}) => {
           "background-color: #a22041; color: #fff;padding:3px;box-sizing: border-box;border-radius: 3px;",
           ""
         );
-        reject(err);
+        console.log(new Error());
+        reject([null, err]);
       });
   });
 };
 
-export const HTTP_76475 = (config = {}) => {
+export const HTTP_76475 = ({ acceptanceId, status, content }, config = {}) => {
   // 房屋验收报修 验收   8ccb544d-67c2-498d-a032-d9357fb76475
 
   if (!config.headers || !config.headers.imei) {
@@ -1339,8 +1419,8 @@ export const HTTP_76475 = (config = {}) => {
     $axios
       .post(
         "/v1/house/acceptance/acceptance",
-        null,
-        Object.assign(
+        { acceptanceId, status, content },
+        deepObjectMerge(
           {
             headers: {
               "Content-Type": "application/json"
@@ -1356,7 +1436,7 @@ export const HTTP_76475 = (config = {}) => {
           "",
           res
         );
-        resolve(res);
+        resolve([res, null]);
       })
       .catch(err => {
         console.log(
@@ -1364,7 +1444,8 @@ export const HTTP_76475 = (config = {}) => {
           "background-color: #a22041; color: #fff;padding:3px;box-sizing: border-box;border-radius: 3px;",
           ""
         );
-        reject(err);
+        console.log(new Error());
+        reject([null, err]);
       });
   });
 };
@@ -1383,7 +1464,7 @@ export const HTTP_2b683 = ({ grant_type, refresh_token }, config = {}) => {
       .post(
         "/oauth/token",
         qs.stringify({ grant_type, refresh_token }),
-        Object.assign(
+        deepObjectMerge(
           {
             headers: {
               Authorization:
@@ -1400,7 +1481,7 @@ export const HTTP_2b683 = ({ grant_type, refresh_token }, config = {}) => {
           "",
           res
         );
-        resolve(res);
+        resolve([res, null]);
       })
       .catch(err => {
         console.log(
@@ -1408,7 +1489,8 @@ export const HTTP_2b683 = ({ grant_type, refresh_token }, config = {}) => {
           "background-color: #a22041; color: #fff;padding:3px;box-sizing: border-box;border-radius: 3px;",
           ""
         );
-        reject(err);
+        console.log(new Error());
+        reject([null, err]);
       });
   });
 };
@@ -1424,7 +1506,7 @@ export const HTTP_b2d3a = ({ current }, config = {}) => {
       .post(
         "/v1/near/message/messageList",
         { current },
-        Object.assign(
+        deepObjectMerge(
           {
             headers: {}
           },
@@ -1438,7 +1520,7 @@ export const HTTP_b2d3a = ({ current }, config = {}) => {
           "",
           res
         );
-        resolve(res);
+        resolve([res, null]);
       })
       .catch(err => {
         console.log(
@@ -1446,19 +1528,27 @@ export const HTTP_b2d3a = ({ current }, config = {}) => {
           "background-color: #a22041; color: #fff;padding:3px;box-sizing: border-box;border-radius: 3px;",
           ""
         );
-        reject(err);
+        console.log(new Error());
+        reject([null, err]);
       });
   });
 };
 
-export const HTTP_6f4ce = ({ smsCode, phone }, config = {}) => {
+export const HTTP_6f4ce = (
+  {
+    providerId,
+    providerUserId,
+    displayName,
+    profileUrl,
+    imageUrl,
+    accessToken,
+    secret,
+    refreshToken
+  },
+  config = {}
+) => {
   // 第三方openId注册   9b403fd7-205a-4e71-a674-87c06386f4ce
-  if (!smsCode) {
-    throw Error("第三方openId注册 请求缺失参数 smsCode");
-  }
-  if (!phone) {
-    throw Error("第三方openId注册 请求缺失参数 phone");
-  }
+
   if (!config.headers || !config.headers.imei) {
     throw Error("第三方openId注册 缺失头请求参数 imei");
   }
@@ -1469,8 +1559,17 @@ export const HTTP_6f4ce = ({ smsCode, phone }, config = {}) => {
     $axios
       .post(
         "/v1/appUser/social/registerByOpenId",
-        { smsCode, phone },
-        Object.assign(
+        {
+          providerId,
+          providerUserId,
+          displayName,
+          profileUrl,
+          imageUrl,
+          accessToken,
+          secret,
+          refreshToken
+        },
+        deepObjectMerge(
           {
             headers: {
               Authorization:
@@ -1488,7 +1587,7 @@ export const HTTP_6f4ce = ({ smsCode, phone }, config = {}) => {
           "",
           res
         );
-        resolve(res);
+        resolve([res, null]);
       })
       .catch(err => {
         console.log(
@@ -1496,7 +1595,8 @@ export const HTTP_6f4ce = ({ smsCode, phone }, config = {}) => {
           "background-color: #a22041; color: #fff;padding:3px;box-sizing: border-box;border-radius: 3px;",
           ""
         );
-        reject(err);
+        console.log(new Error());
+        reject([null, err]);
       });
   });
 };
@@ -1512,7 +1612,7 @@ export const HTTP_15e4e = ({ id }, config = {}) => {
       .post(
         "/v1/feedback/detail",
         qs.stringify({ id }),
-        Object.assign(
+        deepObjectMerge(
           {
             headers: {
               "Content-Type": "application/x-www-form-urlencoded"
@@ -1528,7 +1628,7 @@ export const HTTP_15e4e = ({ id }, config = {}) => {
           "",
           res
         );
-        resolve(res);
+        resolve([res, null]);
       })
       .catch(err => {
         console.log(
@@ -1536,20 +1636,21 @@ export const HTTP_15e4e = ({ id }, config = {}) => {
           "background-color: #a22041; color: #fff;padding:3px;box-sizing: border-box;border-radius: 3px;",
           ""
         );
-        reject(err);
+        console.log(new Error());
+        reject([null, err]);
       });
   });
 };
 
-export const HTTP_bcadf = (config = {}) => {
+export const HTTP_bcadf = ({ feedbackId, content }, config = {}) => {
   // 业主端-反馈-回复   b54e6bba-c621-4412-97eb-68ef896bcadf
 
   return new Promise((resolve, reject) => {
     $axios
       .post(
         "/v1/feedback/reply",
-        null,
-        Object.assign(
+        { feedbackId, content },
+        deepObjectMerge(
           {
             headers: {
               "Content-Type": "application/json"
@@ -1565,7 +1666,7 @@ export const HTTP_bcadf = (config = {}) => {
           "",
           res
         );
-        resolve(res);
+        resolve([res, null]);
       })
       .catch(err => {
         console.log(
@@ -1573,7 +1674,8 @@ export const HTTP_bcadf = (config = {}) => {
           "background-color: #a22041; color: #fff;padding:3px;box-sizing: border-box;border-radius: 3px;",
           ""
         );
-        reject(err);
+        console.log(new Error());
+        reject([null, err]);
       });
   });
 };
@@ -1597,7 +1699,7 @@ export const HTTP_883d5 = ({ status, pageNO, pageSize }, config = {}) => {
       .post(
         "/v1/repair/getMyRepair",
         qs.stringify({ status, pageNO, pageSize }),
-        Object.assign(
+        deepObjectMerge(
           {
             headers: {
               "Content-Type": "application/x-www-form-urlencoded"
@@ -1613,7 +1715,7 @@ export const HTTP_883d5 = ({ status, pageNO, pageSize }, config = {}) => {
           "",
           res
         );
-        resolve(res);
+        resolve([res, null]);
       })
       .catch(err => {
         console.log(
@@ -1621,20 +1723,24 @@ export const HTTP_883d5 = ({ status, pageNO, pageSize }, config = {}) => {
           "background-color: #a22041; color: #fff;padding:3px;box-sizing: border-box;border-radius: 3px;",
           ""
         );
-        reject(err);
+        console.log(new Error());
+        reject([null, err]);
       });
   });
 };
 
-export const HTTP_7c3f1 = (config = {}) => {
+export const HTTP_7c3f1 = (
+  { nearMessageExtra, remark, typeKey },
+  config = {}
+) => {
   // 邻里-消息-发布消息   bd4bff5e-f5f2-4738-a954-22768c97c3f1
 
   return new Promise((resolve, reject) => {
     $axios
       .post(
         "/v1/near/message/save",
-        null,
-        Object.assign(
+        { nearMessageExtra, remark, typeKey },
+        deepObjectMerge(
           {
             headers: {
               "Content-Type": "application/json"
@@ -1650,7 +1756,7 @@ export const HTTP_7c3f1 = (config = {}) => {
           "",
           res
         );
-        resolve(res);
+        resolve([res, null]);
       })
       .catch(err => {
         console.log(
@@ -1658,7 +1764,8 @@ export const HTTP_7c3f1 = (config = {}) => {
           "background-color: #a22041; color: #fff;padding:3px;box-sizing: border-box;border-radius: 3px;",
           ""
         );
-        reject(err);
+        console.log(new Error());
+        reject([null, err]);
       });
   });
 };
@@ -1679,7 +1786,7 @@ export const HTTP_db5ae = ({ openId, providerId }, config = {}) => {
       .post(
         "/v1/authentication/openId",
         qs.stringify({ openId, providerId }),
-        Object.assign(
+        deepObjectMerge(
           {
             headers: {
               Authorization:
@@ -1697,7 +1804,7 @@ export const HTTP_db5ae = ({ openId, providerId }, config = {}) => {
           "",
           res
         );
-        resolve(res);
+        resolve([res, null]);
       })
       .catch(err => {
         console.log(
@@ -1705,7 +1812,8 @@ export const HTTP_db5ae = ({ openId, providerId }, config = {}) => {
           "background-color: #a22041; color: #fff;padding:3px;box-sizing: border-box;border-radius: 3px;",
           ""
         );
-        reject(err);
+        console.log(new Error());
+        reject([null, err]);
       });
   });
 };
@@ -1724,7 +1832,7 @@ export const HTTP_875d4 = ({ mainId, type }, config = {}) => {
       .post(
         "/v1/near/praise/delete",
         qs.stringify({ mainId, type }),
-        Object.assign(
+        deepObjectMerge(
           {
             headers: {
               "Content-Type": "application/x-www-form-urlencoded"
@@ -1740,7 +1848,7 @@ export const HTTP_875d4 = ({ mainId, type }, config = {}) => {
           "",
           res
         );
-        resolve(res);
+        resolve([res, null]);
       })
       .catch(err => {
         console.log(
@@ -1748,7 +1856,8 @@ export const HTTP_875d4 = ({ mainId, type }, config = {}) => {
           "background-color: #a22041; color: #fff;padding:3px;box-sizing: border-box;border-radius: 3px;",
           ""
         );
-        reject(err);
+        console.log(new Error());
+        reject([null, err]);
       });
   });
 };
@@ -1761,9 +1870,6 @@ export const HTTP_fed43 = ({ username, password, grant_type }, config = {}) => {
   if (!password) {
     throw Error("登录 请求缺失参数 password");
   }
-  if (!grant_type) {
-    throw Error("登录 请求缺失参数 grant_type");
-  }
   if (!config.headers || !config.headers.imei) {
     throw Error("登录 缺失头请求参数 imei");
   }
@@ -1772,7 +1878,7 @@ export const HTTP_fed43 = ({ username, password, grant_type }, config = {}) => {
       .post(
         "/v1/authentication/login",
         qs.stringify({ username, password, grant_type }),
-        Object.assign(
+        deepObjectMerge(
           {
             headers: {
               Authorization:
@@ -1790,7 +1896,7 @@ export const HTTP_fed43 = ({ username, password, grant_type }, config = {}) => {
           "",
           res
         );
-        resolve(res);
+        resolve([res, null]);
       })
       .catch(err => {
         console.log(
@@ -1798,7 +1904,8 @@ export const HTTP_fed43 = ({ username, password, grant_type }, config = {}) => {
           "background-color: #a22041; color: #fff;padding:3px;box-sizing: border-box;border-radius: 3px;",
           ""
         );
-        reject(err);
+        console.log(new Error());
+        reject([null, err]);
       });
   });
 };
@@ -1807,9 +1914,6 @@ export const HTTP_b4379 = ({ xqId, current, categoryId }, config = {}) => {
   // 常用查询   e917c86f-0857-4f01-a309-ba6f187b4379
   if (!xqId) {
     throw Error("常用查询 请求缺失参数 xqId");
-  }
-  if (!current) {
-    throw Error("常用查询 请求缺失参数 current");
   }
   if (!categoryId) {
     throw Error("常用查询 请求缺失参数 categoryId");
@@ -1820,7 +1924,7 @@ export const HTTP_b4379 = ({ xqId, current, categoryId }, config = {}) => {
       .post(
         "/v1/xq/contact",
         qs.stringify({ xqId, current, categoryId }),
-        Object.assign(
+        deepObjectMerge(
           {
             headers: {
               "Content-Type": "application/x-www-form-urlencoded"
@@ -1836,7 +1940,7 @@ export const HTTP_b4379 = ({ xqId, current, categoryId }, config = {}) => {
           "",
           res
         );
-        resolve(res);
+        resolve([res, null]);
       })
       .catch(err => {
         console.log(
@@ -1844,7 +1948,8 @@ export const HTTP_b4379 = ({ xqId, current, categoryId }, config = {}) => {
           "background-color: #a22041; color: #fff;padding:3px;box-sizing: border-box;border-radius: 3px;",
           ""
         );
-        reject(err);
+        console.log(new Error());
+        reject([null, err]);
       });
   });
 };
@@ -1857,7 +1962,7 @@ export const HTTP_079f5 = (config = {}) => {
       .post(
         "/v1/xq/contactCategory",
         null,
-        Object.assign(
+        deepObjectMerge(
           {
             headers: {
               "Content-Type": "application/x-www-form-urlencoded"
@@ -1873,7 +1978,7 @@ export const HTTP_079f5 = (config = {}) => {
           "",
           res
         );
-        resolve(res);
+        resolve([res, null]);
       })
       .catch(err => {
         console.log(
@@ -1881,7 +1986,8 @@ export const HTTP_079f5 = (config = {}) => {
           "background-color: #a22041; color: #fff;padding:3px;box-sizing: border-box;border-radius: 3px;",
           ""
         );
-        reject(err);
+        console.log(new Error());
+        reject([null, err]);
       });
   });
 };
@@ -1899,7 +2005,7 @@ export const HTTP_ec761 = ({ uid }, config = {}) => {
       .post(
         "/v1/repair/getRepairDetail",
         qs.stringify({ uid }),
-        Object.assign(
+        deepObjectMerge(
           {
             headers: {
               "Content-Type": "application/x-www-form-urlencoded"
@@ -1915,7 +2021,7 @@ export const HTTP_ec761 = ({ uid }, config = {}) => {
           "",
           res
         );
-        resolve(res);
+        resolve([res, null]);
       })
       .catch(err => {
         console.log(
@@ -1923,7 +2029,8 @@ export const HTTP_ec761 = ({ uid }, config = {}) => {
           "background-color: #a22041; color: #fff;padding:3px;box-sizing: border-box;border-radius: 3px;",
           ""
         );
-        reject(err);
+        console.log(new Error());
+        reject([null, err]);
       });
   });
 };
@@ -1939,7 +2046,7 @@ export const HTTP_2dbd3 = ({ messageId }, config = {}) => {
       .post(
         "/v1/near/collect/save",
         qs.stringify({ messageId }),
-        Object.assign(
+        deepObjectMerge(
           {
             headers: {
               "Content-Type": "application/x-www-form-urlencoded"
@@ -1955,7 +2062,7 @@ export const HTTP_2dbd3 = ({ messageId }, config = {}) => {
           "",
           res
         );
-        resolve(res);
+        resolve([res, null]);
       })
       .catch(err => {
         console.log(
@@ -1963,7 +2070,8 @@ export const HTTP_2dbd3 = ({ messageId }, config = {}) => {
           "background-color: #a22041; color: #fff;padding:3px;box-sizing: border-box;border-radius: 3px;",
           ""
         );
-        reject(err);
+        console.log(new Error());
+        reject([null, err]);
       });
   });
 };
@@ -1979,7 +2087,7 @@ export const HTTP_94833 = (config = {}) => {
       .post(
         "/v1/feedback/list",
         null,
-        Object.assign(
+        deepObjectMerge(
           {
             headers: {
               "Content-Type": "application/x-www-form-urlencoded"
@@ -1995,7 +2103,7 @@ export const HTTP_94833 = (config = {}) => {
           "",
           res
         );
-        resolve(res);
+        resolve([res, null]);
       })
       .catch(err => {
         console.log(
@@ -2003,16 +2111,15 @@ export const HTTP_94833 = (config = {}) => {
           "background-color: #a22041; color: #fff;padding:3px;box-sizing: border-box;border-radius: 3px;",
           ""
         );
-        reject(err);
+        console.log(new Error());
+        reject([null, err]);
       });
   });
 };
 
 export const HTTP_35dcf = (uid, config = {}) => {
   // 查看发票信息   fe358ba9-f21a-4774-bf94-129f26135dcf
-  if (!uid) {
-    throw Error("查看发票信息 请求缺失参数 uid");
-  }
+
   if (!config.headers || !config.headers.imei) {
     throw Error("查看发票信息 缺失头请求参数 imei");
   }
@@ -2020,14 +2127,16 @@ export const HTTP_35dcf = (uid, config = {}) => {
     $axios
       .get(
         `/v1/house/invoice/detail/${uid}`,
-        {},
         Object.assign(
-          {
-            headers: {
-              "Content-Type": "application/x-www-form-urlencoded"
-            }
-          },
-          config
+          {},
+          deepObjectMerge(
+            {
+              headers: {
+                "Content-Type": "application/x-www-form-urlencoded"
+              }
+            },
+            config
+          )
         )
       )
       .then(res => {
@@ -2037,7 +2146,7 @@ export const HTTP_35dcf = (uid, config = {}) => {
           "",
           res
         );
-        resolve(res);
+        resolve([res, null]);
       })
       .catch(err => {
         console.log(
@@ -2045,7 +2154,8 @@ export const HTTP_35dcf = (uid, config = {}) => {
           "background-color: #a22041; color: #fff;padding:3px;box-sizing: border-box;border-radius: 3px;",
           ""
         );
-        reject(err);
+        console.log(new Error());
+        reject([null, err]);
       });
   });
 };

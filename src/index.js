@@ -37,6 +37,10 @@ const addAjaxLib = config => {
 
 const getParams = data => {
   if (data.dataMode === "raw" && data.rawModeData) {
+    const _data = JSON.parse(data.rawModeData);
+    if (_data instanceof Array) {
+      return { key: "array" };
+    }
     const list = Object.keys(JSON.parse(data.rawModeData)).map(item => ({
       key: item
     }));
@@ -49,13 +53,16 @@ const getParams = data => {
 
 const addParams = data => {
   // console.log("datall", data);
-  return !data.length ? "" : `{ ${data.map(item => item.key).join(", ")} },`;
+  if (data instanceof Array) {
+    return !data.length ? "" : `{ ${data.map(item => item.key).join(", ")} },`;
+  }
+  return `${data.key || "{}"},`;
 };
 
 const addCutParams = status => (status ? `uid,` : "");
 
 const isParamsNull = (data, name, status = false) => {
-  let list = data.slice();
+  let list = data instanceof Array ? data.slice() : [data];
   if (status) {
     list.push({ key: "uid" });
   }
@@ -97,6 +104,9 @@ const handleUrl = (url, needCut = false) => {
 };
 
 const handleParams = (data, config) => {
+  if (!(data instanceof Array)) {
+    return data.key || "{}";
+  }
   if (config.method === "POST" && config.dataMode === "raw") {
     // console.log("===", data instanceof Array);
     return data.length ? `{ ${data.map(item => item.key).join(",")} }` : "{}";

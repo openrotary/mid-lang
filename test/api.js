@@ -60,7 +60,7 @@ export const HTTP_77378 = ({ uid }, config = {}) => {
   });
 };
 
-export const HTTP_ba754 = (config = {}) => {
+export const HTTP_ba754 = (params = null, config = {}) => {
   // 调查问卷列表   27cf4667-3ae9-4bb8-92f0-728eb8cba754
 
   return new Promise((resolve, reject) => {
@@ -349,7 +349,7 @@ export const HTTP_42084 = ({ uid }, config = {}) => {
   });
 };
 
-export const HTTP_f699e = (config = {}) => {
+export const HTTP_f699e = (params = null, config = {}) => {
   // 小区公告列表   8d80e494-c35b-47d8-aed7-442c3e2f699e
 
   return new Promise((resolve, reject) => {
@@ -679,7 +679,7 @@ export const HTTP_7fdaa = ({ mobile }, config = {}) => {
   });
 };
 
-export const HTTP_7d007 = (config = {}) => {
+export const HTTP_7d007 = (params = null, config = {}) => {
   // 房屋验收报修 查看详情   f85ba504-f2de-4ab0-af7b-1a8a5077d007
 
   return new Promise((resolve, reject) => {

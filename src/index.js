@@ -54,7 +54,9 @@ const getParams = data => {
 const addParams = data => {
   // console.log("datall", data);
   if (data instanceof Array) {
-    return !data.length ? "" : `{ ${data.map(item => item.key).join(", ")} },`;
+    return !data.length
+      ? "params = null,"
+      : `{ ${data.map(item => item.key).join(", ")} },`;
   }
   return `${data.key || "{}"},`;
 };
